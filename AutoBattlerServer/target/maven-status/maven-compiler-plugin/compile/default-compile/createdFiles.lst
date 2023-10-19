@@ -1,0 +1,12 @@
+com\team3\autobattlerserver\Client.class
+com\team3\autobattlerserver\PacketCreator.class
+com\team3\autobattlerserver\TestPacket2.class
+com\team3\autobattlerserver\PacketCreatorFactory.class
+com\team3\autobattlerserver\PacketHandlerFactory.class
+com\team3\autobattlerserver\TestSingleton$TestSingletonHolder.class
+com\team3\autobattlerserver\TestSingleton.class
+com\team3\autobattlerserver\ClientHandler.class
+com\team3\autobattlerserver\PacketHandler.class
+com\team3\autobattlerserver\ClientHandlerGUI.class
+com\team3\autobattlerserver\TestPacket.class
+com\team3\autobattlerserver\AutoBattlerServer.class
