@@ -4,16 +4,19 @@
 
 package com.team3.autobattlerserver;
 
-import java.io.IOException;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import com.team3.autobattlerserver.Client.ClientHandler;
+
 import java.io.IOException;
 import java.lang.ClassNotFoundException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-        
+
+
+
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.util.logging.ConsoleHandler;
+
 /**
  *
  * @author Rio
@@ -24,12 +27,18 @@ public class AutoBattlerServer {
     //socket server port on which it will listen
     private static int port = 31228;
     
+    static Logger logger = Logger.getLogger(AutoBattlerServer.class.getName());
+
+    
     public AutoBattlerServer(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
     
 
     public void startServer() {
+        //System.out.println("Server has started.");
+        logger.log( Level.FINE, "Server started.");
+
         try {
             while (!serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
@@ -53,8 +62,14 @@ public class AutoBattlerServer {
         //create the socket server object
         ServerSocket serverSocket = new ServerSocket(port);
         AutoBattlerServer server = new AutoBattlerServer(serverSocket);
-        System.out.println("Starting Server.");
+        
+        logger.addHandler(new ConsoleHandler());
+
+        
+        logger.fine("Starting server...");
+
         server.startServer();
+        
     }
     
 }
