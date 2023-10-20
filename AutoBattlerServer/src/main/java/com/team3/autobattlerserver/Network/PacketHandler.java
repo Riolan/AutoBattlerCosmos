@@ -1,4 +1,4 @@
-package com.team3.autobattlerserver;
+package com.team3.autobattlerserver.Network;
 
 import org.json.JSONObject;
 

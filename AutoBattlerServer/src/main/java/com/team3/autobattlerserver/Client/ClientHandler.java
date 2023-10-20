@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.team3.autobattlerserver;
+package com.team3.autobattlerserver.Client;
 
+import com.team3.autobattlerserver.Client.Client;
+import com.team3.autobattlerserver.Network.PacketHandler;
+import com.team3.autobattlerserver.Network.PacketHandlerFactory;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -70,9 +73,11 @@ public class ClientHandler implements Runnable {
                 System.out.println("Message Received: " + message);
                 
                 
-                clientGUI.jTextPane1.setText(clientGUI.jTextPane1.getText() + '\n' + message);
-                        
                 jsonObject = new JSONObject(message);
+                
+                
+                clientGUI.jTextPane1.setText(clientGUI.jTextPane1.getText() + '\n' + jsonObject.toString(2));
+                        
                 
                 int id = jsonObject.getInt("id");
                 
@@ -81,9 +86,6 @@ public class ClientHandler implements Runnable {
                 PacketHandler packet = packetHandlerFactory.make(id);
                 
                 packet.execute(jsonObject);
-                
-                
-                
                 
                 
             } catch (IOException e) {
