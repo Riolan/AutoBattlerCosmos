@@ -31,7 +31,7 @@ public class TestPacket implements PacketHandler {
         // Make a GUI class that handles every page frame swing etc.
         System.out.println("Changing screen to TEST");
         SceneManager scene = SceneManager.getInstance();
-        scene.changeScene(SceneManager.GameStates.TEST);
+        scene.changeScene(SceneManager.GameStates.TEST2);
         
     }
     

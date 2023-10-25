@@ -7,13 +7,15 @@ package com.team3.autobattler.Network;
 
 import org.json.JSONObject;
 /**
- *
+ *https://refactoring.guru/design-patterns/builder/java/example
  * @author riola
  */
 public interface PacketCreator {
     
     JSONObject jsonObject = new JSONObject();
 
-    public JSONObject create();
+    int packetId = -1;
+    
+    public JSONObject create(String stringJsonObject);
     
 }

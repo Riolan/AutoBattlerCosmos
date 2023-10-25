@@ -5,6 +5,9 @@
 package com.team3.autobattler.Network;
 
 
+import com.team3.autobattler.AutoBattler;
+import static com.team3.autobattler.AutoBattler.clientGameState;
+import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.PacketHandlerFactory;
 import com.team3.autobattler.Network.PacketHandler;
 import java.net.*;
@@ -62,6 +65,13 @@ public class SocketHandler {
             listener.start();
             
             System.out.println("Socket Handler Connect Succeeded.");
+            if (AutoBattler.clientGameState.canChangeGameState(clientGameState, GameStates.CONNECTED)) {
+                clientGameState = GameStates.CONNECTED;
+            }
+                        
+            System.out.println("Current Client Game State: " + clientGameState);
+
+        
             return true;
         } catch (IOException e) {
             System.out.println("Socket Handler Connect Error: " + e.getMessage());

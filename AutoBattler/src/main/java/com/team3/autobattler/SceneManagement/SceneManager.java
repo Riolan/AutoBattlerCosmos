@@ -4,6 +4,7 @@
  */
 package com.team3.autobattler.SceneManagement;
 
+import com.team3.autobattler.SceneManagement.Scenes.TestPane;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,7 +25,10 @@ public class SceneManager extends javax.swing.JFrame {
     TestPane testPane;
     ConnectToServer testConnect;
 
-
+    
+    // Abstract this out to another not dependent on Scene
+    // copy too server both will maintain the state, and some reconcilliationn/stop from
+    // cheating is required. look into State Pattern enum
      public enum GameStates {
         TEST("Test"), TEST2("Test2"), TEST3("Test3");
         private final String statename;
@@ -47,7 +51,7 @@ public class SceneManager extends javax.swing.JFrame {
             throw new IllegalAccessException("You cannot construct an instance of the SceneManager class. Please use the getInstance() function.");
         }
         
-        System.out.println("Scene Manager thing...");
+        System.out.println("Starting Scene Manager");
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
         
@@ -79,7 +83,10 @@ public class SceneManager extends javax.swing.JFrame {
                 // Show the menu
                 cardLayout.show(mainPanel, "testConnect");
                 break;
-            
+            case TEST2:
+                // Show the menu
+                cardLayout.show(mainPanel, "testPane");
+                break;
         }
 
     }

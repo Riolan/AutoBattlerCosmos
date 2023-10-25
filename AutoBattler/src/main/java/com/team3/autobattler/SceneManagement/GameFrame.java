@@ -5,6 +5,7 @@
 package com.team3.autobattler.SceneManagement;
 
 
+import com.team3.autobattler.SceneManagement.Scenes.TestPane;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;

@@ -107,21 +107,11 @@ public class ConnectToServer extends javax.swing.JPanel {
     
     private void connect(String ip, int port) {
         
-        System.out.println("Connect to: " + ip + ":" + port);
-
-        
         // connect to server
         new Thread(() -> {
             // call controller
-            boolean hasConnected = AutoBattler.socketHandler.connect(ip, port);
-            
-            if (hasConnected) {
-                // Connection Logic
-                // Go To Login Page
-                
-            }
-            
-            System.out.println("Thread result: " + hasConnected);
+            boolean hasConnected = AutoBattler.socketHandler.connect(ip, port);            
+            System.out.println("Connection Thread Initialization Result: " + hasConnected);
            
         }).start();
     }

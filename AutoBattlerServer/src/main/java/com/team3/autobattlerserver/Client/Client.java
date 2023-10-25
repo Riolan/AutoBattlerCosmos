@@ -5,19 +5,35 @@
 package com.team3.autobattlerserver.Client;
 
 import java.io.Serializable;
-
+import com.team3.autobattlerserver.Game.GameStates;
 /**
  *
  * @author Rio
  */
 public class Client implements Serializable {
-    private String username;
-
-    public String getUsername() {
-        return username;
+    static User user;
+    GameStates gameState;    
+    
+    public User getUser() {
+        return user;
     }
-    public void setUsername(String username) {
-        this.username = username;
+    
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    public GameStates getGameState() {
+        return gameState;
+    }
+    
+
+    // If able to change the gamestate change it and return true.
+    public boolean setGameState(GameStates gameState) {
+        if (this.gameState.canChangeGameState(this.gameState, gameState)) {
+            this.gameState = gameState;
+            return true;
+        }
+        return false;
     }
     
     

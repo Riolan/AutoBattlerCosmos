@@ -14,8 +14,8 @@ import com.team3.autobattler.Network.PacketCreator;
 public class PacketCreatorFactory {
     public PacketCreator make(int packetId) {
         switch (packetId) {
-            case 0: return new TestPacket2();
-            default: return new TestPacket2();
+            case 0: return new TestPacket2(packetId);
+            default: return new TestPacket2(packetId);
         }
     }
 }
