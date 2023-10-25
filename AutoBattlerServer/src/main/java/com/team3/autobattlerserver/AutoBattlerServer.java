@@ -20,6 +20,7 @@ import java.util.logging.ConsoleHandler;
 /**
  *
  * @author Rio
+ * RIO SAYS HI
  */
 public class AutoBattlerServer {
     //static ServerSocket variable
