@@ -28,5 +28,17 @@ public abstract class Unit
         return type;
     }
     
+    // Add a method to handle taking damage
+    public void takeDamage(int damage) {
+        health -= damage;
+        if (health < 0) {
+            health = 0; // Ensure that health doesn't go negative
+        }
+    }
+    
+    public boolean isAlive() {
+        return health > 0;
+    }
+    
     // ... other class members and methods ...
 }
