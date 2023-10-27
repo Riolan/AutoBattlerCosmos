@@ -43,12 +43,40 @@ public class PlanetTest {
 
     @Override
     public void startBattle() {
+        int team1AttackerIndex = 0;
+        int team2AttackerIndex = 0;
+
         while (isTeam1Alive() && isTeam2Alive()) {
-            // Implement your test battle logic here
-            // For testing purposes, you can simulate unit attacks or other actions
+            Unit team1Attacker = team1.get(team1AttackerIndex);
+            Unit team2Attacker = team2.get(team2AttackerIndex);
+
+            // Check if the units in the first slot are alive and attack each other
+            if (team1Attacker.isAlive() && team2Attacker.isAlive()) {
+                int damage1 = team1Attacker.getAttack();
+                int damage2 = team2Attacker.getAttack();
+
+                team2Attacker.takeDamage(damage1);
+                team1Attacker.takeDamage(damage2);
+
+                // If a unit's health is zero or less, it's defeated, and the next unit takes its place
+                if (!team1Attacker.isAlive()) {
+                    team1AttackerIndex++;
+                }
+                if (!team2Attacker.isAlive()) {
+                    team2AttackerIndex++;
+                }
+            } else {
+                // If a unit is defeated, move to the next unit in the slot
+                if (!team1Attacker.isAlive()) {
+                    team1AttackerIndex++;
+                }
+                if (!team2Attacker.isAlive()) {
+                    team2AttackerIndex++;
+                }
+            }
         }
     }
-}
+    }
 
     @Test
     public void testPlanetCreation() {
