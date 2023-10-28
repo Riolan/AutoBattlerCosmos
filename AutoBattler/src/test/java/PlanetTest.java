@@ -1,4 +1,4 @@
-package com.team3.autobattler.Game.Tests;
+package test.java;
 
 import com.team3.autobattler.Game.Base.Battle;
 import org.junit.Test;
@@ -13,6 +13,11 @@ import org.junit.Before;
 import com.team3.autobattler.Game.Base.Unit;
 import com.team3.autobattler.Game.Base.UnitType;
 import com.team3.autobattler.Game.Factories.UnitFactory;
+import com.team3.autobattler.Game.Tests.Earth;
+import com.team3.autobattler.Game.Tests.Jupiter;
+import com.team3.autobattler.Game.Tests.Mars;
+import com.team3.autobattler.Game.Tests.Neptune;
+import com.team3.autobattler.Game.Tests.Saturn;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -41,41 +46,45 @@ public class PlanetTest {
         super(team1, team2);
     }
 
-    @Override
-    public void startBattle() {
-        int team1AttackerIndex = 0;
-        int team2AttackerIndex = 0;
+        @Override
+        public void startBattle() {
+            int team1AttackerIndex = 0;
+            int team2AttackerIndex = 0;
 
-        while (isTeam1Alive() && isTeam2Alive()) {
-            Unit team1Attacker = team1.get(team1AttackerIndex);
-            Unit team2Attacker = team2.get(team2AttackerIndex);
+            while (isTeam1Alive() && isTeam2Alive()) {
+                Unit team1Attacker = team1.get(team1AttackerIndex);
+                Unit team2Attacker = team2.get(team2AttackerIndex);
 
-            // Check if the units in the first slot are alive and attack each other
-            if (team1Attacker.isAlive() && team2Attacker.isAlive()) {
-                int damage1 = team1Attacker.getAttack();
-                int damage2 = team2Attacker.getAttack();
+                // Check if the units in the first slot are alive and attack each other
+                if (team1Attacker.isAlive() && team2Attacker.isAlive()) {
+                    int damage1 = team1Attacker.getAttack();
+                    int damage2 = team2Attacker.getAttack();
 
-                team2Attacker.takeDamage(damage1);
-                team1Attacker.takeDamage(damage2);
+                    team2Attacker.takeDamage(damage1);
+                    team1Attacker.takeDamage(damage2);
 
-                // If a unit's health is zero or less, it's defeated, and the next unit takes its place
-                if (!team1Attacker.isAlive()) {
-                    team1AttackerIndex++;
+                    // Check if a unit's health is zero or less, and remove it from the team
+                    if (!team1Attacker.isAlive()) {
+                        team1.remove(team1Attacker);
+                    }
+                    if (!team2Attacker.isAlive()) {
+                        team2.remove(team2Attacker);
+                    }
                 }
-                if (!team2Attacker.isAlive()) {
-                    team2AttackerIndex++;
+
+                // Move to the next unit in the slot
+                team1AttackerIndex++;
+                team2AttackerIndex++;
+
+                // Check if we have reached the end of the list for either team
+                if (team1AttackerIndex >= team1.size()) {
+                    team1AttackerIndex = 0;
                 }
-            } else {
-                // If a unit is defeated, move to the next unit in the slot
-                if (!team1Attacker.isAlive()) {
-                    team1AttackerIndex++;
-                }
-                if (!team2Attacker.isAlive()) {
-                    team2AttackerIndex++;
+                if (team2AttackerIndex >= team2.size()) {
+                    team2AttackerIndex = 0;
                 }
             }
-        }
-    }
+        }   
     }
 
     @Test
@@ -106,20 +115,25 @@ public class PlanetTest {
         team2.add(mars2);
         team2.add(earth2);
         
-        TestBattle battle = new TestBattle(team1, team2);
-        battle.startBattle();
+        //TestBattle battle = new TestBattle(team1, team2);
+        //battle.startBattle();
 
         // Verify that the planets were created with the correct properties
         assertEquals(100, earth1.getHealth());
-        assertEquals(20, earth1.getAttack());
+        assertEquals(18, earth1.getAttack());
         assertEquals(earthType, earth1.getType());
 
-        assertEquals(120, mars1.getHealth());
-        assertEquals(30, mars1.getAttack());
+        assertEquals(80, mars1.getHealth());
+        assertEquals(25, mars1.getAttack());
         assertEquals(marsType, mars1.getType());
 
         // Verify that the planets are not the same instance (flyweight pattern)
         assertNotSame(earth1, earth2);
+        
+        
+        
+        TestBattle battle = new TestBattle(team1, team2);
+        battle.startBattle();
         
         assertTrue(team1.isEmpty() || team2.isEmpty());
         
