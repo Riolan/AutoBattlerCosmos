@@ -7,7 +7,10 @@ package com.team3.autobattler.SceneManagement;
 
 
 import com.team3.autobattler.AutoBattler;
+import com.team3.autobattler.Network.PacketCreator;
+import com.team3.autobattler.Network.PacketCreatorFactory;
 import java.awt.Color;
+import org.json.JSONObject;
 
 /**
  *
@@ -101,7 +104,13 @@ public class ConnectToServer extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         System.out.println("Sending data: ");
-        AutoBattler.socketHandler.sendData("{\"id\":1,\"age\":19,\"class\":\"test\"}");        
+        
+        PacketCreatorFactory packetCreatorFactory = new PacketCreatorFactory();
+        PacketCreator packet = packetCreatorFactory.make(1);
+        JSONObject data = packet.create();
+        
+        
+        AutoBattler.socketHandler.sendData(data.toString());        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     

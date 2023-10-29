@@ -10,12 +10,22 @@ import org.json.JSONObject;
  *https://refactoring.guru/design-patterns/builder/java/example
  * @author riola
  */
-public interface PacketCreator {
-    
-    JSONObject jsonObject = new JSONObject();
+public abstract class PacketCreator {
 
-    int packetId = -1;
+    public int id;
+    public JSONObject jsonObject = new JSONObject();    
     
-    public JSONObject create(String stringJsonObject);
+    public JSONObject create() {
+        return jsonObject.append("id", id);
+    }
+    
+    
+    public void addInt(String nm, int in) {
+        jsonObject.put(nm, in);
+    }
+    
+    public void addString(String nm, String in) {
+        jsonObject.put(nm, in);
+    }
     
 }

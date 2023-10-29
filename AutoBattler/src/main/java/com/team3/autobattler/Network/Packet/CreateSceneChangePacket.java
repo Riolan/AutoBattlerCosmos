@@ -11,14 +11,18 @@ import org.json.JSONObject;
  * https://refactoring.guru/design-patterns/builder/java/example
  * @author riola
  */
-public class CreateSceneChangePacket implements PacketCreator {
+public class CreateSceneChangePacket extends PacketCreator {
+    
+    public CreateSceneChangePacket(int id) {
+        this.id = id;
+    }
+    
     @Override
-    public JSONObject create(String stringJsonObject) {
-        try {
-            JSONObject jsonObject = new JSONObject(stringJsonObject);
-        } catch (JSONException err){
+    public JSONObject create() {
 
-        }
         return jsonObject;
     }
+    
+    
+    
 }

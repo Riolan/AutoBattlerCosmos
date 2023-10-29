@@ -5,22 +5,24 @@
 package com.team3.autobattler.Network.Packet;
 
 import com.team3.autobattler.Network.PacketCreator;
+import java.util.Objects;
 import org.json.JSONObject;
 
 /**
  *
  * @author riola
  */
-public class TestPacket2 implements PacketCreator {
+public class TestPacket2 extends PacketCreator {
     
-    TestPacket2(int packetId) {
-    
+    // Ensure creation has id, a requirement for every packet.
+    public TestPacket2(int id) {
+        this.id = id;
     }
     
-    @Override
-    public JSONObject create(String stringJsonObject) {
-        jsonObject.put("id", 1);
-        jsonObject.put("age", 19);
+    public JSONObject create(String age) {
+        // First call is to always init an id for the packet.
+        jsonObject = super.create();
+        jsonObject.append("age", age);
         return jsonObject;
     }
 }
