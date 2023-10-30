@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.team3.autobattlerserver.Network.Packets;
+package com.team3.autobattlerserver.Network.Packets.Handle;
 import com.team3.autobattlerserver.Client.ClientHandler;
 import com.team3.autobattlerserver.Network.PacketCreator;
 import com.team3.autobattlerserver.Network.PacketCreatorFactory;

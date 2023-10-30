@@ -4,6 +4,8 @@
  */
 package com.team3.autobattler.Network.Packet.Handle;
 
+import com.team3.autobattler.AutoBattler;
+import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.PacketHandler;
 import org.json.JSONObject;
 
@@ -19,9 +21,10 @@ public class GameStateChangePacket implements PacketHandler {
         // validation, then implement proper, more extansive
         System.out.println("GameStateChangePacket, Recieved: " + inputBuffer);
         
-        
-        
-    
+        GameStates newState = inputBuffer.getEnum(GameStates.class, "gameState");
+        boolean canChangeState = AutoBattler.clientGameState.canChangeGameState(AutoBattler.clientGameState,
+                newState);
+        if (canChangeState) AutoBattler.sceneManager.changeScene(newState);
     }
     
     

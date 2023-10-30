@@ -11,9 +11,8 @@ import com.team3.autobattler.SceneManagement.SceneManager;
 import org.json.JSONObject;
 
 /**
- *
+ * TestPacket
  * @author riola
- * Todo Rename to HandleTestPacket or TestPacketHandler or rename execute to handle()
  */
 public class TestPacket implements PacketHandler {
     
