@@ -9,7 +9,6 @@ import com.team3.autobattler.Network.Packet.PacketVisitorImpl;
 import com.team3.autobattler.Network.Packet.PacketVisitor;
 import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.AutoBattler;
-import static com.team3.autobattler.AutoBattler.clientGameState;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.PacketErrors.MalformedPacketException;
 import com.team3.autobattler.Network.Packet.PacketHandlerFactory;
@@ -42,7 +41,10 @@ public class SocketHandler {
     Thread listener = null;
     
     // Associated information
-    String username;
+    Client client;
+    
+    
+    
     
     /**
      * Connect to server by setting up socket.
@@ -62,6 +64,10 @@ public class SocketHandler {
             socket.connect(new InetSocketAddress(ipAddress, port), TIMEOUT);
             System.out.println("Connect to: " + ipAddress + ":" + port + " On local port: " + socket.getLocalPort());
             
+            // if able to connect
+            client = new Client();
+            client.setGameState(GameStates.CONNECTED);
+            
             
             // Set up input and output streams
             dataInputStream = new DataInputStream(socket.getInputStream());
@@ -75,13 +81,6 @@ public class SocketHandler {
             listener = new Thread(this::listen);
             listener.start();
             
-            System.out.println("Socket Handler Connect Succeeded.");
-            if (AutoBattler.clientGameState.canChangeGameState(clientGameState, GameStates.CONNECTED)) {
-                clientGameState = GameStates.CONNECTED;
-            }
-                        
-            System.out.println("Current Client Game State: " + clientGameState);
-
         
             return true;
         } catch (IOException e) {
@@ -159,7 +158,7 @@ public class SocketHandler {
      */
     public void sendData(PacketElement packet) { //throws MalformedPacketException {
             // Do not send data if not connected to server.
-            if (clientGameState.equals(clientGameState.UNCONNECTED)) return;
+            if (client.getGameState().equals(GameStates.UNCONNECTED)) return;
             JSONObject data = packet.accept(visitor);
             
             // Not a reasonable check atm, but example for later

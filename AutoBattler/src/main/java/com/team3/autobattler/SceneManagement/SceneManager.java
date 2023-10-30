@@ -4,12 +4,16 @@
  */
 package com.team3.autobattler.SceneManagement;
 
+import com.team3.autobattler.Game.GameStateObservable;
+import com.team3.autobattler.Game.GameStateObserver;
 import com.team3.autobattler.Game.GameStates;
-import com.team3.autobattler.SceneManagement.Scenes.TestPane;
+import com.team3.autobattler.Game.MyGameState;
+import com.team3.autobattler.SceneManagement.Scenes.*;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -29,6 +33,8 @@ public class SceneManager extends javax.swing.JFrame {
     
     TestPane testPane;
     ConnectToServer testConnect;
+    //
+    LoginScene loginScene;
 
 
 
@@ -56,11 +62,20 @@ public class SceneManager extends javax.swing.JFrame {
         
         testPane = new TestPane();
         testConnect = new ConnectToServer();
+        //
+        loginScene = new LoginScene();
         
         
+        mainPanel.add(loginScene, "loginScene");
         mainPanel.add(testConnect, "testConnect");
         mainPanel.add(testPane, "testPane");
+        //
+        
         add(mainPanel);
+        
+
+        
+        
         
         // Not sure why, but breaks things
         //initComponents();
@@ -69,6 +84,7 @@ public class SceneManager extends javax.swing.JFrame {
         pack();
         setLocationByPlatform(true);
         setVisible(true);
+        
     }
 
     /**
@@ -77,9 +93,9 @@ public class SceneManager extends javax.swing.JFrame {
      * based on the game state so.....
      * @param newScene 
      */
-    // A simplified way of loading and unloading scenes
-    // Notice that the method is static so that anyone can call it.
     public void changeScene(GameStates newScene) {
+
+        
         System.out.println("Change Scene " + newScene.toString());
         switch (newScene){
             case UNCONNECTED:
@@ -88,13 +104,16 @@ public class SceneManager extends javax.swing.JFrame {
                 break;
             case CONNECTED:
                 // Show the menu
-                cardLayout.show(mainPanel, "testPane");
+                cardLayout.show(mainPanel, "testConnect");
                 break;
+            case LOGIN:
+                cardLayout.show(loginScene, "loginScene");
         }
 
     }
-    
 
+    
+    
     /**
      * Retrieves the singleton instance.
      *

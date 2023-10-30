@@ -4,9 +4,11 @@
 
 package com.team3.autobattler;
 
+import com.team3.autobattler.Game.GameStateObservable;
 import com.team3.autobattler.Network.SocketHandler;
 import com.team3.autobattler.SceneManagement.SceneManager;
 import com.team3.autobattler.Game.GameStates;
+import com.team3.autobattler.Game.MyGameState;
 
 
 /**
@@ -20,19 +22,18 @@ public class AutoBattler {
     // Scene Manager, manages game GUI
     public static SceneManager sceneManager;
     
-    public static GameStates clientGameState;
     
     public AutoBattler() {
         
         // Client Game State
-        clientGameState = GameStates.UNCONNECTED;
-        System.out.println("Current Client Game State: " + clientGameState);
+        //clientGameState = GameStates.UNCONNECTED;
+        //System.out.println("Current Client Game State: " + clientGameState);
         
         // SocketHandler
         // Network Manager
         socketHandler = new SocketHandler();
 
-        
+
         // Game
         // gameManager
 

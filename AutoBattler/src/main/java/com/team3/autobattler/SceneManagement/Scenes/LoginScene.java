@@ -4,6 +4,8 @@
  */
 package com.team3.autobattler.SceneManagement.Scenes;
 
+import com.team3.autobattler.AutoBattler;
+
 /**
  *
  * @author riola
@@ -44,7 +46,7 @@ public class LoginScene extends javax.swing.JPanel {
 
         add(jPanel1);
 
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         usernameField.setText("Username");
         jPanel2.add(usernameField);
@@ -62,6 +64,11 @@ public class LoginScene extends javax.swing.JPanel {
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
         jPanel3.add(loginButton, java.awt.BorderLayout.CENTER);
         jPanel3.add(filler2, java.awt.BorderLayout.LINE_END);
         jPanel3.add(filler3, java.awt.BorderLayout.LINE_START);
@@ -73,6 +80,30 @@ public class LoginScene extends javax.swing.JPanel {
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
+
+    /**
+     * Starts initial connection to Server.
+     * @param ip
+     * @param port 
+     */
+    private void connect(String ip, int port) {
+        
+        // Connect to server
+        new Thread(() -> {
+            // call controller
+            boolean hasConnected = AutoBattler.socketHandler.connect(ip, port);            
+            System.out.println("Connection Thread Initialization Result: " + hasConnected);
+           
+        }).start();
+    }
+    
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+        
+         connect("127.0.0.1", 31228);
+        
+        
+    }//GEN-LAST:event_loginButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
