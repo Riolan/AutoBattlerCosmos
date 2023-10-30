@@ -7,13 +7,12 @@ package com.team3.autobattler.SceneManagement;
 
 
 import com.team3.autobattler.AutoBattler;
-import com.team3.autobattler.Network.PacketCreator;
-import com.team3.autobattler.Network.PacketCreatorFactory;
+import com.team3.autobattler.Network.Packet.Create.TestPacket;
+import com.team3.autobattler.Network.Packet.PacketElement;
 import java.awt.Color;
-import org.json.JSONObject;
 
 /**
- *
+ * Basic connect to Server GUI
  * @author riola
  */
 public class ConnectToServer extends javax.swing.JPanel {
@@ -97,26 +96,30 @@ public class ConnectToServer extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // l8r needs an ip
+        // Connect to local host on port 31228
+        // Will need to update to necessary ip later
+        // if we are running an actual server.
         connect("127.0.0.1", 31228);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         System.out.println("Sending data: ");
+
         
-        PacketCreatorFactory packetCreatorFactory = new PacketCreatorFactory();
-        PacketCreator packet = packetCreatorFactory.make(1);
-        JSONObject data = packet.create();
+        PacketElement packet = new TestPacket("Ping!");
+        AutoBattler.socketHandler.sendData(packet);        
         
-        
-        AutoBattler.socketHandler.sendData(data.toString());        
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
+    /**
+     * Starts initial connection to Server.
+     * @param ip
+     * @param port 
+     */
     private void connect(String ip, int port) {
         
-        // connect to server
+        // Connect to server
         new Thread(() -> {
             // call controller
             boolean hasConnected = AutoBattler.socketHandler.connect(ip, port);            

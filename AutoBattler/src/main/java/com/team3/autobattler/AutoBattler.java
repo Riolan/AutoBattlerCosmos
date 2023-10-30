@@ -10,11 +10,9 @@ import com.team3.autobattler.Game.GameStates;
 
 
 /**
- *
+ * Clients Model
  * @author Rio
  */
-
-// Entry point in to the Auto Battler Game's Client
 public class AutoBattler {
 
     // Socket Handler, handles connection to Server.

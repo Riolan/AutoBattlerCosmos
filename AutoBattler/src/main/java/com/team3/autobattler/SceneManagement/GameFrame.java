@@ -22,7 +22,7 @@ import javax.swing.SwingUtilities;
 
 
 /**
- * @TODO refactor into singleton
+ * TODO refactor into singleton
  * @author riola
  */
 public class GameFrame extends javax.swing.JFrame {

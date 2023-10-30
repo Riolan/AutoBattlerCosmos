@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.team3.autobattler.Network;
+package com.team3.autobattler.Network.Packet;
 
-import com.team3.autobattler.Network.Packet.TestPacket;
-import com.team3.autobattler.Network.PacketHandler;
+import com.team3.autobattler.Network.Packet.Handle.*;
+import com.team3.autobattler.Network.Packet.PacketHandler;
 
 /**
  *
@@ -15,6 +15,7 @@ public class PacketHandlerFactory {
     public PacketHandler make(int packetId) {
         switch (packetId) {
             case 0: return new TestPacket();
+            case 1: return new GameStateChangePacket();
             default: return new TestPacket();
         }
     }    

@@ -13,8 +13,8 @@ import org.json.JSONObject;
 public class TestPacket2 implements PacketCreator {
     @Override
     public JSONObject create() {
-        jsonObject.put("id", 1);
-        jsonObject.put("age", 19);
+        jsonObject.put("id", 0);
+        jsonObject.put("pong", "Pong!");
         return jsonObject;
     }
 }

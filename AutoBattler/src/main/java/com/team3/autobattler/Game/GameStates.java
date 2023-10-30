@@ -49,11 +49,21 @@ public enum GameStates {
         SIGNUP.validStates = Arrays.asList(new GameStates[]{GameStates.LOGIN});
         UNCONNECTED.validStates = Arrays.asList(new GameStates[]{GameStates.CONNECTED});
     }
-
+    
+    /**
+     * 
+     * @param vaildStates 
+     */
     GameStates(List<GameStates> vaildStates) {
         this.validStates = validStates;
     }
 
+    /**
+     * Using current state, check if next state is a valid change.
+     * @param fromState
+     * @param toState
+     * @return 
+     */
     public boolean canChangeGameState(GameStates fromState, GameStates toState) {
         return fromState.validStates.contains(toState);
     }

@@ -5,11 +5,15 @@
 package com.team3.autobattler.Network;
 
 
+import com.team3.autobattler.Network.Packet.PacketVisitorImpl;
+import com.team3.autobattler.Network.Packet.PacketVisitor;
+import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.AutoBattler;
 import static com.team3.autobattler.AutoBattler.clientGameState;
 import com.team3.autobattler.Game.GameStates;
-import com.team3.autobattler.Network.PacketHandlerFactory;
-import com.team3.autobattler.Network.PacketHandler;
+import com.team3.autobattler.Network.PacketErrors.MalformedPacketException;
+import com.team3.autobattler.Network.Packet.PacketHandlerFactory;
+import com.team3.autobattler.Network.Packet.PacketHandler;
 import java.net.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -19,12 +23,10 @@ import org.json.JSONObject;
 
 
 /**
- *
+ * Deals with general connection.
+ * Would be good to refactor into a singleton later to ensure only one instance.
  * @author Rio
  */
-
-// @@ TODO REFACTOR INTO SINGLETON
-// Rename for clarity (?)
 public class SocketHandler {
     
     // Socket to connect to another computer (Server)
@@ -42,6 +44,15 @@ public class SocketHandler {
     // Associated information
     String username;
     
+    /**
+     * Connect to server by setting up socket.
+     * Spawning new thread.
+     * Changing game state.
+     * Some of the above can be moved to a different method.
+     * @param ipAddress
+     * @param port
+     * @return 
+     */
     public boolean connect(String ipAddress, int port) {
     
         try {
@@ -79,6 +90,9 @@ public class SocketHandler {
         }
     }
     
+    /**
+     * Begin listening to the socket.
+     */
     private void listen() {
         boolean isRunning = true;
         // https://stackoverflow.com/questions/60259280/how-to-replace-switch-case-to-oop
@@ -89,25 +103,23 @@ public class SocketHandler {
         // listener e.g. Server
         while (isRunning) {
             try {
-                //String message = (String) dataInputStream.readUTF();
-                //System.out.println("Message Received: " + message);
-                
-                //Byte input = dataInputStream.readByte();
-                
-                //System.out.println("Recieved: " + dataInputStream.readUTF());
-                // Analyze packet through packet handler
-                // https://stackoverflow.com/questions/5542367/cast-byte-to-enum
-                
-                //byte[] inputBuffer = dataInputStream.readUTF();
-                //System.out.println("Recieved: " + inputBuffer);
-                String lines = dataInputStream.readUTF();
+                // Recieved some data:
+                String buffer = dataInputStream.readUTF();
+
+                // Convert data expected packet format
+                JSONObject obj = new JSONObject(buffer);
+                // May want to throw a Malformed Packet Exception, and log user who
+                // has sent it.
+                if (!obj.has("id")) continue;
                 
                 
-                JSONObject obj = new JSONObject(lines);
+                // Analyze packet through packet handler by id
                 int id = obj.getInt("id");
                 
-                System.out.println(lines);          
+                System.out.println("Socket Handler input: " + buffer);
+                // Using Packet Handler Factory make respective handler
                 PacketHandler packet = packetHandlerFactory.make(id);
+                // excute the respetive handler once it has been properly assigned
                 packet.execute(obj);
                 
                 
@@ -124,6 +136,9 @@ public class SocketHandler {
         
     }
     
+    /**
+     * Close out necessary resources, data streams, and socket.
+     */
     public void closeResources() {
         try {
             socket.close();
@@ -134,13 +149,29 @@ public class SocketHandler {
         }
     }
     
-    public void sendData(String data) {
-        try {
-            dataOutputStream.writeUTF(data);
-        } catch (IOException e) {
-            System.out.println("***********\n\t" + e.getMessage() + "\n***********");
-        }
-    
+    ///////
+    // Current attempt at packet sending.
+    ///////
+    private PacketVisitor visitor = new PacketVisitorImpl();
+    /**
+     * 
+     * @param packet 
+     */
+    public void sendData(PacketElement packet) { //throws MalformedPacketException {
+            // Do not send data if not connected to server.
+            if (clientGameState.equals(clientGameState.UNCONNECTED)) return;
+            JSONObject data = packet.accept(visitor);
+            
+            // Not a reasonable check atm, but example for later
+            // packets should have a set id rather than passing it
+            //if (data.get("id") == null) throw new MalformedPacketException("Packet id is null. Supply the packet with valid id.");
+            
+            try {
+                dataOutputStream.writeUTF(data.toString());
+            } catch (IOException e) {
+                System.out.println("***********\n\t" + e.getMessage() + "\n***********");
+            }
+
     }
     
     
