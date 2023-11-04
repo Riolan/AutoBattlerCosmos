@@ -43,7 +43,9 @@ public class SocketHandler {
     // Associated information
     Client client;
     
-    
+    public Client getClient() {
+        return this.client;
+    }
     
     
     /**

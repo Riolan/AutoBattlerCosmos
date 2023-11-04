@@ -38,6 +38,8 @@ public class GameStateObservable {
             // Throw error, no observer is defined.
             return;
         }
+        
+        System.out.println("Observer gamestate change:" + gameState);
         this.gameState = gameState;
     }
     

@@ -5,6 +5,7 @@
 package com.team3.autobattlerserver.Client;
 
 
+import com.team3.autobattlerserver.Game.GameStates;
 import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.Packets.Create.*;
 /**
@@ -13,13 +14,14 @@ import com.team3.autobattlerserver.Network.Packets.Create.*;
  */
 public class ClientHandlerGUI extends javax.swing.JFrame {
 
+    int id;
     /**
      * Creates new form ClientHandlerGUI
      */
-    public ClientHandlerGUI() {
+    public ClientHandlerGUI(int id) {
         initComponents();
         
-        
+        this.id = id;
         jComboBox1.addItem("Test");
         jComboBox1.addItem("GameStateChange");
         
@@ -120,8 +122,11 @@ public class ClientHandlerGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         System.out.println("What is in combo box: " + jComboBox1.getSelectedItem());
-        PacketElement packet = new TestPacket("Ping!");
+        PacketElement packet = new GameStateChangePacket(GameStates.LOGIN); //new TestPacket("Pong!");
+        ClientHandler client = ClientHandler.clientHandlers.get(this.id);
         
+        
+        client.sendData(packet);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

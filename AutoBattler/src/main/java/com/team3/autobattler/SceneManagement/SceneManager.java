@@ -107,7 +107,8 @@ public class SceneManager extends javax.swing.JFrame {
                 cardLayout.show(mainPanel, "testConnect");
                 break;
             case LOGIN:
-                cardLayout.show(loginScene, "loginScene");
+                cardLayout.show(mainPanel, "loginScene");
+                break;
         }
 
     }

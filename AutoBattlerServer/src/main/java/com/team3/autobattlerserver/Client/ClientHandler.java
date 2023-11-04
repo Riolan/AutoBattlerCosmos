@@ -5,8 +5,11 @@
 package com.team3.autobattlerserver.Client;
 
 import com.team3.autobattlerserver.Game.GameStates;
+import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.PacketHandler;
 import com.team3.autobattlerserver.Network.PacketHandlerFactory;
+import com.team3.autobattlerserver.Network.PacketVisitor;
+import com.team3.autobattlerserver.Network.PacketVisitorImpl;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ public class ClientHandler implements Runnable {
 
     // public to be accessible
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
+    public static int clientAmt = 0;
     private Socket socket;
 
     private DataInputStream inputstream;
@@ -30,6 +34,8 @@ public class ClientHandler implements Runnable {
 
     ClientHandlerGUI clientGUI;
 
+    private int clientId;
+    
     public ClientHandler(Socket socket) {
         try {
             this.socket = socket;
@@ -49,13 +55,16 @@ public class ClientHandler implements Runnable {
             System.out.println("Updated Client Game State: " + client.gameState);
 
 
-            
             // Client Handler List 
             clientHandlers.add(this);
+            
+            this.clientId = clientAmt;
+            clientAmt++;
+            
             System.out.println("Added new ClientHandler to clientHandlers.");
 
             // Client GUI
-            clientGUI = new ClientHandlerGUI();
+            clientGUI = new ClientHandlerGUI(this.clientId);
             clientGUI.changeLabel(socket.toString());
             clientGUI.setVisible(true);
 
@@ -89,7 +98,7 @@ public class ClientHandler implements Runnable {
                 // Strategy pattern for different algorithm based on input.
                 PacketHandler packet = packetHandlerFactory.make(packetId);
                 // Excute the packet (closer to handle)
-                packet.execute(jsonObject);
+                packet.execute(this.clientId, jsonObject);
 
             } catch (IOException e) {
                 
@@ -100,18 +109,40 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    public void sendJSON(JSONObject inputbuffer) {
-        try {
-            outputstream.writeUTF(inputbuffer.toString());
-        } catch (IOException e) {
-            closeEverything(socket, inputstream, outputstream);
-        }
-    }
+    private PacketVisitor visitor = new PacketVisitorImpl();
+    /**
+     * 
+     * @param packet 
+     */
+    public void sendData(PacketElement packet) { //throws MalformedPacketException {
+            // Do not send data if not connected to server.
+            if (client.getGameState().equals(GameStates.UNCONNECTED)) return;
+            JSONObject data = packet.accept(visitor);
+            
+            // Not a reasonable check atm, but example for later
+            // packets should have a set id rather than passing it
+            //if (data.get("id") == null) throw new MalformedPacketException("Packet id is null. Supply the packet with valid id.");
+            
+            try {
+                outputstream.writeUTF(data.toString());
+            } catch (IOException e) {
+                System.out.println("***********\n\t" + e.getMessage() + "\n***********");
+            }
 
+    }
+    
     public void removeClientHandler() {
         clientHandlers.remove(this);
     }
 
+    
+    
+    /**
+     * 
+     * @param socket
+     * @param bufferedReader
+     * @param bufferedWriter 
+     */
     public void closeEverything(Socket socket, DataInputStream bufferedReader, DataOutputStream bufferedWriter) {
         removeClientHandler();
 

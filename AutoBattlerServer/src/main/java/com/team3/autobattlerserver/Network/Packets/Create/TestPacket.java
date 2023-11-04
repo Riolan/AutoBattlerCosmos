@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class TestPacket implements PacketElement {
     // Required ID for each packet
     private int id = PacketBuilder.TEST.getId();
-    private String ping;
+    private String pong;
     
     Field fld[] = this.getClass().getDeclaredFields();
     
@@ -28,7 +28,7 @@ public class TestPacket implements PacketElement {
      * @param ping
      */
     public TestPacket(String ping) {
-        this.ping = ping;
+        this.pong = ping;
         for(Field x : fld) {
             if (x.getName().equals("fld")) continue;
             try {

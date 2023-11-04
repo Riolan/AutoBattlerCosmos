@@ -17,7 +17,10 @@ import org.json.JSONObject;
 public class TestPacket implements PacketHandler {
     
     @Override
-    public void execute(JSONObject inputBuffer) {
+    public void execute(int aId, JSONObject inputBuffer) {
+                
+        System.out.println("execute: Client Id: " + aId);
+
         if (inputBuffer.has("ping")) System.out.println(inputBuffer.get("ping"));
         
         
