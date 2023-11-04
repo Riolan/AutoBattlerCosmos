@@ -1,7 +1,7 @@
 package com.team3.autobattler.Game.Base;
 
 // Unit.java
-public abstract class Unit 
+public class Unit 
 {
     private UnitType type; // Use UnitType to store shared characteristics
     private int health;

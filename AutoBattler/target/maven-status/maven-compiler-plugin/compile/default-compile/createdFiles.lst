@@ -1,13 +1,16 @@
+com\team3\autobattler\SceneManagement\ConnectToServer$5.class
 com\team3\autobattler\Game\Factories\UnitFactory.class
 com\team3\autobattler\Network\PacketCreator.class
 com\team3\autobattler\Game\Base\Unit.class
 com\team3\autobattler\SceneManagement\ConnectToServer$2.class
 com\team3\autobattler\Game\Base\Player.class
 com\team3\autobattler\SceneManagement\SceneManager.class
+com\team3\autobattler\SceneManagement\ConnectToServer$4.class
 com\team3\autobattler\Network\SocketHandler.class
 com\team3\autobattler\Network\Packet\TestPacket2.class
 com\team3\autobattler\SceneManagement\SceneManager$1.class
 com\team3\autobattler\Network\Packet\TestPacket.class
+com\team3\autobattler\SceneManagement\ConnectToServer$6.class
 com\team3\autobattler\Network\PacketCreatorFactory.class
 com\team3\autobattler\SceneManagement\SceneManager$GameStates.class
 com\team3\autobattler\SceneManagement\ConnectToServer$1.class

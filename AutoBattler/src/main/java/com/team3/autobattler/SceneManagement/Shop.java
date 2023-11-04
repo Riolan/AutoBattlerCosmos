@@ -9,7 +9,7 @@ package com.team3.autobattler.SceneManagement;
  * @author colli
  */
 public class Shop extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form Shop
      */
@@ -30,6 +30,9 @@ public class Shop extends javax.swing.JPanel {
         canvas2 = new java.awt.Canvas();
         canvas3 = new java.awt.Canvas();
         canvas4 = new java.awt.Canvas();
+        jButton1 = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -46,6 +49,10 @@ public class Shop extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(canvas3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 561, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(247, 247, 247)
+                .addComponent(jButton1)
+                .addGap(0, 486, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(160, 160, 160)
@@ -55,7 +62,9 @@ public class Shop extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(165, Short.MAX_VALUE)
+                .addGap(65, 65, 65)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -76,5 +85,6 @@ public class Shop extends javax.swing.JPanel {
     private java.awt.Canvas canvas2;
     private java.awt.Canvas canvas3;
     private java.awt.Canvas canvas4;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

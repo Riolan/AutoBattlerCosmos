@@ -4,16 +4,27 @@
  */
 package com.team3.autobattler.Game.Base;
 
+
 /**
  *
  * @author colli
  */
 public class Player {
-    Player()
-    {
-    int gold = 10;
-    int health = 5;
-    int turnNum = 1;
+    
+   public Player() {
+        gold = 10;
+        health = 5;
+        turnNum = 1;
+        items = new Item[4];
+        units = new Unit[4];
     }
+   
+    
+    public int gold;
+    public int health;
+    public int turnNum;
+            
+    public Item[] items;
+    public Unit[] units;
     
 }
