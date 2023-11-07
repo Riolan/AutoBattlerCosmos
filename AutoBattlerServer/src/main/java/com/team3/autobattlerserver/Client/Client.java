@@ -11,8 +11,19 @@ import com.team3.autobattlerserver.Game.GameStates;
  * @author Rio
  */
 public class Client implements Serializable {
-    static User user;
-    GameStates gameState;    
+    User user;
+    GameStates gameState; 
+    int currency;
+
+    
+    public int getCurrency() {
+        return currency;
+    }
+    
+    void setCurrency(int currency) {
+        this.currency = currency;
+    }
+    
     
     public User getUser() {
         return user;
