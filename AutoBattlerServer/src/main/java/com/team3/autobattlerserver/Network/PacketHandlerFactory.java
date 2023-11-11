@@ -4,7 +4,7 @@
  */
 package com.team3.autobattlerserver.Network;
 
-import com.team3.autobattlerserver.Network.Packets.TestPacket;
+import com.team3.autobattlerserver.Network.Packets.Handle.TestPacket;
 
 /**
  *

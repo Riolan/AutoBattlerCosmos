@@ -4,20 +4,17 @@
 
 package com.team3.autobattler;
 
-import com.team3.autobattler.SceneManagement.TestPane;
-import com.team3.autobattler.SceneManagement.ConnectToServer;
-import com.team3.autobattler.SceneManagement.GameFrame;
+import com.team3.autobattler.Game.GameStateObservable;
 import com.team3.autobattler.Network.SocketHandler;
 import com.team3.autobattler.SceneManagement.SceneManager;
-
+import com.team3.autobattler.Game.GameStates;
+import com.team3.autobattler.Game.MyGameState;
 
 
 /**
- *
+ * Clients Model
  * @author Rio
  */
-
-// Entry point in to the Auto Battler Game's Client
 public class AutoBattler {
 
     // Socket Handler, handles connection to Server.
@@ -25,22 +22,23 @@ public class AutoBattler {
     // Scene Manager, manages game GUI
     public static SceneManager sceneManager;
     
+    
     public AutoBattler() {
+        
+        // Client Game State
+        //clientGameState = GameStates.UNCONNECTED;
+        //System.out.println("Current Client Game State: " + clientGameState);
+        
         // SocketHandler
+        // Network Manager
         socketHandler = new SocketHandler();
+
+
         // Game
+        // gameManager
 
         // SceneManager https://refactoring.guru/design-patterns/mediator
-        // Currently a game frame
         sceneManager = sceneManager.getInstance();
-        //sceneManager.changeScene(SceneManager.GameStates.TEST);
-        //sceneManager.changeScene(sceneManager.GameStates.TEST);
-        // Ensure proper loading.
-        //NewScene test = new NewScene();
-        //sceneManager.changeScene(test);
-        
-        //gameFrame = new GameFrame();
-        
     }
  
     

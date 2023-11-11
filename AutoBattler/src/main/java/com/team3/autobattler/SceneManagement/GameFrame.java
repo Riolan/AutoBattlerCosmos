@@ -5,6 +5,7 @@
 package com.team3.autobattler.SceneManagement;
 
 
+import com.team3.autobattler.SceneManagement.Scenes.TestPane;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -21,7 +22,7 @@ import javax.swing.SwingUtilities;
 
 
 /**
- * @TODO refactor into singleton
+ * TODO refactor into singleton
  * @author riola
  */
 public class GameFrame extends javax.swing.JFrame {

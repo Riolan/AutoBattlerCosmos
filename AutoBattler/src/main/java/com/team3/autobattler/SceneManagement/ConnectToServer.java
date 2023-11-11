@@ -7,10 +7,12 @@ package com.team3.autobattler.SceneManagement;
 
 
 import com.team3.autobattler.AutoBattler;
+import com.team3.autobattler.Network.Packet.Create.TestPacket;
+import com.team3.autobattler.Network.Packet.PacketElement;
 import java.awt.Color;
 
 /**
- *
+ * Basic connect to Server GUI
  * @author riola
  */
 public class ConnectToServer extends javax.swing.JPanel {
@@ -94,34 +96,32 @@ public class ConnectToServer extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // l8r needs an ip
+        // Connect to local host on port 31228
+        // Will need to update to necessary ip later
+        // if we are running an actual server.
         connect("127.0.0.1", 31228);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        System.out.println("Sending data: ");
-        AutoBattler.socketHandler.sendData("{\"id\":1,\"age\":19,\"class\":\"test\"}");        
+
+        PacketElement packet = new TestPacket("Ping!");
+        AutoBattler.socketHandler.sendData(packet);        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
+    /**
+     * Starts initial connection to Server.
+     * @param ip
+     * @param port 
+     */
     private void connect(String ip, int port) {
         
-        System.out.println("Connect to: " + ip + ":" + port);
-
-        
-        // connect to server
+        // Connect to server
         new Thread(() -> {
             // call controller
-            boolean hasConnected = AutoBattler.socketHandler.connect(ip, port);
-            
-            if (hasConnected) {
-                // Connection Logic
-                // Go To Login Page
-                
-            }
-            
-            System.out.println("Thread result: " + hasConnected);
+            boolean hasConnected = AutoBattler.socketHandler.connect(ip, port);            
+            System.out.println("Connection Thread Initialization Result: " + hasConnected);
            
         }).start();
     }

@@ -5,17 +5,14 @@
 package com.team3.autobattlerserver;
 
 import com.team3.autobattlerserver.Client.ClientHandler;
-
 import java.io.IOException;
-import java.lang.ClassNotFoundException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-
-
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -37,8 +34,7 @@ public class AutoBattlerServer {
     
 
     public void startServer() {
-        //System.out.println("Server has started.");
-        logger.log( Level.FINE, "Server started.");
+        logger.log( Level.INFO, "Server started.");
 
         try {
             while (!serverSocket.isClosed()) {
@@ -64,10 +60,14 @@ public class AutoBattlerServer {
         ServerSocket serverSocket = new ServerSocket(port);
         AutoBattlerServer server = new AutoBattlerServer(serverSocket);
         
-        logger.addHandler(new ConsoleHandler());
 
+        Handler handlerObj = new ConsoleHandler();
+        handlerObj.setLevel(Level.ALL);
+        logger.addHandler(handlerObj);
+        logger.setLevel(Level.ALL);
+        logger.setUseParentHandlers(false);
         
-        logger.fine("Starting server...");
+        logger.log(Level.INFO, "Starting server...");
 
         server.startServer();
         

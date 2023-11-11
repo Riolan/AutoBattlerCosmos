@@ -2,18 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.team3.autobattler.Network;
+package com.team3.autobattler.Network.PacketErrors;
 
-
-import org.json.JSONObject;
 /**
  *
  * @author riola
  */
-public interface PacketCreator {
-    
-    JSONObject jsonObject = new JSONObject();
-
-    public JSONObject create();
-    
+public class MalformedPacketException extends Exception {
+    public MalformedPacketException(String errorMessage) {
+        super(errorMessage);
+    }
 }

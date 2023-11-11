@@ -4,16 +4,14 @@
  */
 package com.team3.autobattlerserver.Network;
 
-
+import com.team3.autobattlerserver.Network.Packets.Create.*;
 import org.json.JSONObject;
 
 /**
  *
  * @author Rio
  */
-public interface PacketCreator {
-    JSONObject jsonObject = new JSONObject();
-
-    public JSONObject create();
-    
+public interface PacketVisitor {
+    JSONObject visit(TestPacket testingPacket);
+    JSONObject visit(GameStateChangePacket testingPacket);
 }
