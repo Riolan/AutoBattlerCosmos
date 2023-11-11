@@ -119,6 +119,28 @@ public class SceneManager extends javax.swing.JFrame {
         }
 
     }
+    
+    
+    public javax.swing.JPanel getScene(GameStates scene) {
+        switch (scene){
+            case UNCONNECTED:
+                // Show the menu
+                //cardLayout.show(mainPanel, "testConnect");
+                break;
+            case CONNECTED:
+                // Show the menu
+                //cardLayout.show(mainPanel, "testConnect");
+                break;
+            case LOGIN:
+                //cardLayout.show(mainPanel, "loginScene");
+                break;
+            case SHOP:
+                return shopScene;
+        }
+
+        // uhm not the best solution
+        return new JPanel();
+    }
 
     
     

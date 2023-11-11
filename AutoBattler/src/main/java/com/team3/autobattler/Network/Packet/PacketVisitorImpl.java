@@ -9,7 +9,9 @@ import com.team3.autobattler.Network.Packet.Create.*;
 import org.json.JSONObject;
 
 /**
- *
+ * This feels like it could be further reduced with reflection
+ * but due to time constraints and having not worked with reflection much
+ * this should be sufficient.
  * @author Rio
  */
 public class PacketVisitorImpl implements PacketVisitor {
@@ -22,6 +24,13 @@ public class PacketVisitorImpl implements PacketVisitor {
     
     @Override
     public JSONObject visit(GameStateChangePacket packet) {
+        JSONObject data = packet.getJsonObject();
+        return data;
+    }
+    
+    
+    @Override
+    public JSONObject visit(ShopEntitiesPacket packet) {
         JSONObject data = packet.getJsonObject();
         return data;
     }

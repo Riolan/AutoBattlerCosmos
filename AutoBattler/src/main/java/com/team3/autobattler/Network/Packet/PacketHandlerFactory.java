@@ -16,6 +16,7 @@ public class PacketHandlerFactory {
         switch (packetId) {
             case 0: return new TestPacket();
             case 1: return new GameStateChangePacket();
+            case 2: return new ShopEntitiesPacket();
             default: return new TestPacket();
         }
     }    
