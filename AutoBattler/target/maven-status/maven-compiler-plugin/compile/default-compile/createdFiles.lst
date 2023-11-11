@@ -1,8 +1,11 @@
 com\team3\autobattler\SceneManagement\ConnectToServer$5.class
 com\team3\autobattler\Game\Factories\UnitFactory.class
 com\team3\autobattler\Network\PacketCreator.class
+com\team3\autobattler\SceneManagement\ConnectToServer$7.class
 com\team3\autobattler\Game\Base\Unit.class
 com\team3\autobattler\SceneManagement\ConnectToServer$2.class
+com\team3\autobattler\SceneManagement\ConnectToServer$9.class
+com\team3\autobattler\SceneManagement\Shop$1.class
 com\team3\autobattler\Game\Base\Player.class
 com\team3\autobattler\SceneManagement\SceneManager.class
 com\team3\autobattler\SceneManagement\ConnectToServer$4.class
@@ -22,10 +25,12 @@ com\team3\autobattler\SceneManagement\ConnectToServer.class
 com\team3\autobattler\SceneManagement\Shop.class
 com\team3\autobattler\Network\PacketHandler.class
 com\team3\autobattler\AutoBattler.class
+com\team3\autobattler\SceneManagement\ConnectToServer$8.class
 com\team3\autobattler\Game\Base\Item.class
 com\team3\autobattler\Game\Tests\Earth.class
 com\team3\autobattler\SceneManagement\ConnectToServer$3.class
 com\team3\autobattler\Game\Base\UnitType.class
 com\team3\autobattler\Network\PacketHandlerFactory.class
+com\team3\autobattler\SceneManagement\ConnectToServer$10.class
 com\team3\autobattler\SceneManagement\GameFrame.class
 com\team3\autobattler\SceneManagement\TestPane.class

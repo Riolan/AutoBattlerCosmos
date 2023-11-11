@@ -32,7 +32,12 @@ public class Shop extends javax.swing.JPanel {
         canvas4 = new java.awt.Canvas();
         jButton1 = new javax.swing.JButton();
 
-        jButton1.setText("jButton1");
+        jButton1.setLabel("Shop");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -52,7 +57,7 @@ public class Shop extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(247, 247, 247)
                 .addComponent(jButton1)
-                .addGap(0, 486, Short.MAX_VALUE))
+                .addGap(0, 489, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(160, 160, 160)
@@ -77,7 +82,13 @@ public class Shop extends javax.swing.JPanel {
                     .addComponent(canvas4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(20, 20, 20)))
         );
+
+        jButton1.getAccessibleContext().setAccessibleName("Shop");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

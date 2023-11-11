@@ -72,7 +72,7 @@ public class ConnectToServer extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setText("jButton3");
+        jButton3.setLabel("Shop");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -136,6 +136,7 @@ public class ConnectToServer extends javax.swing.JPanel {
     computer = new Player();
     
     ItemFactory iFactory = ItemFactory.getInstance();
+    
     // Item factory should probably be an instance not a static class.
     // Call get item for 10 or so real examples to add them to the map.
     // Then use a random number generator to grab keys from the map.
@@ -148,7 +149,7 @@ public class ConnectToServer extends javax.swing.JPanel {
     
         
     JFrame frame = new JFrame("Shop" );
-    frame.setSize( 500,500 );
+    frame.setSize( 1820,980 );
     frame.setLocationRelativeTo( null );
     frame.getContentPane().setLayout(null);
 
@@ -160,7 +161,7 @@ public class ConnectToServer extends javax.swing.JPanel {
             player.items[0] = item;
         }
     });
-    JButton buttonU = new JButton("Creature");
+    JButton buttonU = new JButton("Purchase");
            buttonU.addActionListener(new ActionListener()
     {
         public void actionPerformed(ActionEvent e) {
@@ -168,15 +169,61 @@ public class ConnectToServer extends javax.swing.JPanel {
             player.units[0] = unit;
         }
     });
-    
-    buttonI.setSize(300, 50);
-    buttonU.setSize(300, 50);
+    JButton buttonJ = new JButton("Purchase");
+    buttonJ.addActionListener(new ActionListener()
+    {
+    public void actionPerformed(ActionEvent e) {
+            Unit unit = new Unit(0,0,new UnitType("blah","blah"));
+            player.units[0] = unit;
+        }
+    });
+    JButton buttonK = new JButton("Purchase");
+    buttonK.addActionListener(new ActionListener()
+    {
+    public void actionPerformed(ActionEvent e) {
+            Unit unit = new Unit(0,0,new UnitType("blah","blah"));
+            player.units[0] = unit;
+        }
+    });
+    JButton buttonL = new JButton("Purchase");
+    buttonL.addActionListener(new ActionListener()
+    {
+    public void actionPerformed(ActionEvent e) {
+            Unit unit = new Unit(0,0,new UnitType("blah","blah"));
+            player.units[0] = unit;
+        }
+    });
+    JButton buttonR = new JButton("Reroll");
+    buttonR.addActionListener(new ActionListener()
+    {
+    public void actionPerformed(ActionEvent e) {
+            Unit unit = new Unit(0,0,new UnitType("blah","blah"));
+            player.units[0] = unit;
+        }
+    });
+
+
+    buttonI.setSize(100, 50);
+    buttonU.setSize(100, 50);
+    buttonJ.setSize(100, 50);
+    buttonK.setSize(100, 50);
+    buttonL.setSize(100, 50);
+    buttonR.setSize(100, 50);
     
     frame.add(buttonU);
     frame.add(buttonI);
+    frame.add(buttonJ);
+    frame.add(buttonK);
+    frame.add(buttonL);
+    frame.add(buttonR);
     
-    buttonU.setLocation(90,70);
-    buttonI.setLocation(90,10);
+    buttonU.setLocation(90,800);
+    buttonI.setLocation(1390,800);
+    buttonJ.setLocation(290,800);
+    buttonK.setLocation(490,800);
+    buttonL.setLocation(690,800);
+    buttonR.setLocation(890,800);
+    
     frame.setVisible( true );
     
     Item item = new Item(new ItemType("blah",""));
