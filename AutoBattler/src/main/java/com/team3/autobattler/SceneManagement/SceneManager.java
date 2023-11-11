@@ -4,7 +4,20 @@
  */
 package com.team3.autobattler.SceneManagement;
 
+import com.team3.autobattler.Game.GameStateObservable;
+import com.team3.autobattler.Game.GameStateObserver;
+import com.team3.autobattler.Game.GameStates;
+import com.team3.autobattler.Game.MyGameState;
+import com.team3.autobattler.SceneManagement.Scenes.*;
 import java.awt.CardLayout;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -17,26 +30,14 @@ public class SceneManager extends javax.swing.JFrame {
     public static SceneManager INSTANCE;
     CardLayout cardLayout;
     JPanel mainPanel;    
-
-    GameStates currentScene;
-    
     
     TestPane testPane;
     ConnectToServer testConnect;
+    //
+    LoginScene loginScene;
+    ShopScene shopScene;
 
 
-     public enum GameStates {
-        TEST("Test"), TEST2("Test2"), TEST3("Test3");
-        private final String statename;
-        private GameStates(String scene) {
-            this.statename = scene;
-        }
-       
-        @Override
-        public String toString(){
-            return statename;
-        }
-    }
 
     
     /**
@@ -47,44 +48,80 @@ public class SceneManager extends javax.swing.JFrame {
             throw new IllegalAccessException("You cannot construct an instance of the SceneManager class. Please use the getInstance() function.");
         }
         
-        System.out.println("Scene Manager thing...");
+        System.out.println(new File("res/icon.png"));
+        try {
+            this.setIconImage(ImageIO.read(new File("res/icon.png")));
+        } catch (IOException ex) {
+            Logger.getLogger(SceneManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        this.setTitle("Auto Battler: Cosmos");
+        
+        System.out.println("Starting Scene Manager");
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
         
         testPane = new TestPane();
         testConnect = new ConnectToServer();
+        //
+        loginScene = new LoginScene();
+        shopScene = new ShopScene();
         
         
+        
+        mainPanel.add(loginScene, "loginScene");
         mainPanel.add(testConnect, "testConnect");
         mainPanel.add(testPane, "testPane");
+        mainPanel.add(shopScene, "shopScene");
+        //
+        
         add(mainPanel);
+        
+
+        
+        
         
         // Not sure why, but breaks things
         //initComponents();
-        
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationByPlatform(true);
         setVisible(true);
+        
     }
 
-    // A simplified way of loading and unloading scenes
-    // Notice that the method is static so that anyone can call it.
+    /**
+     * Ok, this is pretty bad implementation. Would like to set up an
+     * observer so it just updates when gameState is updated. It is literally
+     * based on the game state so.....
+     * @param newScene 
+     */
     public void changeScene(GameStates newScene) {
-        System.out.println("Change Scene " + newScene.toString());
 
+        
+        System.out.println("Change Scene " + newScene.toString());
         switch (newScene){
-            case TEST:
+            case UNCONNECTED:
                 // Show the menu
                 cardLayout.show(mainPanel, "testConnect");
                 break;
-            
+            case CONNECTED:
+                // Show the menu
+                cardLayout.show(mainPanel, "testConnect");
+                break;
+            case LOGIN:
+                cardLayout.show(mainPanel, "loginScene");
+                break;
+            case SHOP:
+                cardLayout.show(mainPanel, "shopScene");
+                break;
         }
 
     }
-    
 
+    
+    
     /**
      * Retrieves the singleton instance.
      *

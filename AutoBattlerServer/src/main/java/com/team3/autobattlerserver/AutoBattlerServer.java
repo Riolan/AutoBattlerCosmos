@@ -4,19 +4,20 @@
 
 package com.team3.autobattlerserver;
 
+import com.team3.autobattlerserver.Client.ClientHandler;
 import java.io.IOException;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.lang.ClassNotFoundException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-        
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  *
  * @author Rio
+ * RIO SAYS HI
  */
 public class AutoBattlerServer {
     //static ServerSocket variable
@@ -24,12 +25,17 @@ public class AutoBattlerServer {
     //socket server port on which it will listen
     private static int port = 31228;
     
+    static Logger logger = Logger.getLogger(AutoBattlerServer.class.getName());
+
+    
     public AutoBattlerServer(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
     
 
     public void startServer() {
+        logger.log( Level.INFO, "Server started.");
+
         try {
             while (!serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
@@ -53,8 +59,18 @@ public class AutoBattlerServer {
         //create the socket server object
         ServerSocket serverSocket = new ServerSocket(port);
         AutoBattlerServer server = new AutoBattlerServer(serverSocket);
-        System.out.println("Starting Server.");
+        
+
+        Handler handlerObj = new ConsoleHandler();
+        handlerObj.setLevel(Level.ALL);
+        logger.addHandler(handlerObj);
+        logger.setLevel(Level.ALL);
+        logger.setUseParentHandlers(false);
+        
+        logger.log(Level.INFO, "Starting server...");
+
         server.startServer();
+        
     }
     
 }
