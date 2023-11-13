@@ -1,13 +1,13 @@
 package com.team3.autobattler.Game.Base;
 
 // Unit.java
-public abstract class Unit 
+public class Unit 
 {
     private UnitType type; // Use UnitType to store shared characteristics
     private int health;
     private int attack;
 
-    
+
     public Unit(int health, int attack, UnitType type)
     {
         this.health = health;
@@ -27,6 +27,11 @@ public abstract class Unit
     public UnitType getType() {
         return type;
     }
-    
+    public String getName() {
+        return type.getName();
+    }
+    public String getAbility() {
+        return type.getAbility();
+    }
     // ... other class members and methods ...
 }

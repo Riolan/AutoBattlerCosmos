@@ -1,6 +1,5 @@
 package com.team3.autobattler.Game.Tests;
 
-
 import com.team3.autobattler.Game.Base.Unit;
 import com.team3.autobattler.Game.Base.UnitType;
 

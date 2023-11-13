@@ -20,27 +20,14 @@ public class ShopScene extends javax.swing.JPanel {
      */
     public ShopScene() {
         initComponents();
-//        
-//        JPanel topShopPanel = new JPanel();
-//        JPanel bottomShopPanel = new JPanel();
-//        
-//        topShopPanel.setBackground(Color.red);
-//        bottomShopPanel.setBackground(Color.blue);
-//        
-//        
-//        JPanel clickToBuy = new JPanel();
-//        
-//        bottomShopPanel.setLayout(new GridLayout(1,2));
-//        clickToBuy.setLayout(new GridLayout(1,4));
-//        for (int i = 0; i < 4; i++) {
-//            clickToBuy.add(new JButton(String.valueOf(i)));
-//        }
-//        
-//        bottomShopPanel.add(clickToBuy);
-//        bottomShopPanel.add(new JPanel());
-//        add(topShopPanel);
-//        add(bottomShopPanel);
-    }
+        this.setSize(800,600);
+        
+        ImagePanel image_panel = new ImagePanel();
+   }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,16 +38,38 @@ public class ShopScene extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlRoot = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
-        setLayout(new java.awt.BorderLayout());
+        jButton1.setText("jButton1");
 
-        pnlRoot.setLayout(new javax.swing.BoxLayout(pnlRoot, javax.swing.BoxLayout.LINE_AXIS));
-        add(pnlRoot, java.awt.BorderLayout.CENTER);
+        jButton2.setText("jButton2");
+
+        jButton3.setText("jButton3");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(290, 290, 290)
+                .addComponent(jButton3)
+                .addContainerGap(721, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(jButton3)
+                .addContainerGap(364, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel pnlRoot;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }

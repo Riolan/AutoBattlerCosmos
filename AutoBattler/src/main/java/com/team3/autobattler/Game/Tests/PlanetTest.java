@@ -22,8 +22,8 @@ public class PlanetTest {
     @Before
     public void setUp() {
         // Create some planet types for testing
-        earthType = UnitFactory.getUnitType("Earth", "Terrestrial");
-        marsType = UnitFactory.getUnitType("Mars", "Martian");
+//        earthType = UnitFactory.getUnitType("Earth", "Terrestrial");
+//        marsType = UnitFactory.getUnitType("Mars", "Martian");
     }
 
     @Test
