@@ -38,7 +38,7 @@ public class SceneManager extends javax.swing.JFrame {
     //ShopScene shopScene;
     ImagePanel imagePanel;
     Shop testShop;
-
+    UnconnectedScene unconnectedScene;
 
     
     /**
@@ -102,8 +102,6 @@ public class SceneManager extends javax.swing.JFrame {
      * @param newScene 
      */
     public void changeScene(GameStates newScene) {
-
-        
         System.out.println("Change Scene " + newScene.toString());
         switch (newScene){
             case UNCONNECTED:
@@ -142,7 +140,7 @@ public class SceneManager extends javax.swing.JFrame {
                 //cardLayout.show(mainPanel, "loginScene");
                 break;
             case SHOP:
-                return shopScene;
+                return testShop;
         }
 
         // uhm not the best solution
