@@ -35,9 +35,9 @@ public class SceneManager extends javax.swing.JFrame {
     //ConnectToServer testConnect;
     //
     LoginScene loginScene;
-    ShopScene shopScene;
+    //ShopScene shopScene;
     ImagePanel imagePanel;
-
+    Shop testShop;
 
 
     
@@ -66,16 +66,17 @@ public class SceneManager extends javax.swing.JFrame {
         //testConnect = new ConnectToServer();
         //
         loginScene = new LoginScene();
-        shopScene = new ShopScene();
+        //shopScene = new ShopScene();
         imagePanel = new ImagePanel();
-        
+        testShop = new Shop();
         
         
         mainPanel.add(loginScene, "loginScene");
         //mainPanel.add(testConnect, "testConnect");
         mainPanel.add(testPane, "testPane");
-        mainPanel.add(shopScene, "shopScene");
+        //mainPanel.add(testShop, "shopScene");
         mainPanel.add(imagePanel, "imagePanel");
+        mainPanel.add(testShop, "testShop");
         //
         
         add(mainPanel);
@@ -111,7 +112,7 @@ public class SceneManager extends javax.swing.JFrame {
                 break;
            case CONNECTED:
                 // Show the menu
-                cardLayout.show(mainPanel, "imagePanel");
+                cardLayout.show(mainPanel, "testShop");
                 break;
                 //cardLayout.show(mainPanel, "testConnect");
                 //break;
@@ -120,7 +121,7 @@ public class SceneManager extends javax.swing.JFrame {
                 break;
             case SHOP:
                                 //cardLayout.show(mainPanel, "testConnect");
-                cardLayout.show(mainPanel, "shopScene");
+                cardLayout.show(mainPanel, "testShop");
                 //break;
         }
 

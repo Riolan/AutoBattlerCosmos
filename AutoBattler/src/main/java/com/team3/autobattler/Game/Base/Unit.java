@@ -7,7 +7,7 @@ public class Unit
     private int health;
     private int attack;
 
-    
+
     public Unit(int health, int attack, UnitType type)
     {
         this.health = health;
@@ -27,6 +27,11 @@ public class Unit
     public UnitType getType() {
         return type;
     }
-    
+    public String getName() {
+        return type.getName();
+    }
+    public String getAbility() {
+        return type.getAbility();
+    }
     // ... other class members and methods ...
 }
