@@ -122,7 +122,7 @@ public class ClientHandlerGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         System.out.println("What is in combo box: " + jComboBox1.getSelectedItem());
-        PacketElement packet = new GameStateChangePacket(GameStates.LOGIN); //new TestPacket("Pong!");
+        PacketElement packet = new GameStateChangePacket(GameStates.SHOP); //new TestPacket("Pong!");
         ClientHandler client = ClientHandler.clientHandlers.get(this.id);
         
         

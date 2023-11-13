@@ -82,25 +82,17 @@ public class LoginScene extends javax.swing.JPanel {
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
-     * Starts initial connection to Server.
+     * Used to start initial connection to Server.
      * @param ip
      * @param port 
      */
     private void connect(String ip, int port) {
         
-        // Connect to server
-        new Thread(() -> {
-            // call controller
-            boolean hasConnected = AutoBattler.socketHandler.connect(ip, port);            
-            System.out.println("Connection Thread Initialization Result: " + hasConnected);
-           
-        }).start();
+
     }
     
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        
-         connect("127.0.0.1", 31228);
         
         
     }//GEN-LAST:event_loginButtonActionPerformed

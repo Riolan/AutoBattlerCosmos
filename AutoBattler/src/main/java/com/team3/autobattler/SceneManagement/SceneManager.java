@@ -108,7 +108,7 @@ public class SceneManager extends javax.swing.JFrame {
         switch (newScene){
             case UNCONNECTED:
                 // Show the menu
-                cardLayout.show(mainPanel, "testConnect");
+                cardLayout.show(mainPanel, "unconnectedScene");
                 break;
            case CONNECTED:
                 // Show the menu
@@ -125,6 +125,28 @@ public class SceneManager extends javax.swing.JFrame {
                 //break;
         }
 
+    }
+    
+    
+    public javax.swing.JPanel getScene(GameStates scene) {
+        switch (scene){
+            case UNCONNECTED:
+                // Show the menu
+                //cardLayout.show(mainPanel, "testConnect");
+                return unconnectedScene;
+            case CONNECTED:
+                // Show the menu
+                //cardLayout.show(mainPanel, "testConnect");
+                break;
+            case LOGIN:
+                //cardLayout.show(mainPanel, "loginScene");
+                break;
+            case SHOP:
+                return shopScene;
+        }
+
+        // uhm not the best solution
+        return new JPanel();
     }
 
     

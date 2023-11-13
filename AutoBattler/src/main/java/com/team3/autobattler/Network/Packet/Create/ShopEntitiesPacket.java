@@ -13,21 +13,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Packet used to change the game state, primarily for changing scene and 
- * ensuring that the Client/Server are on the correct state.
+ * Packet used to request Shop Entities.
  * @author Rio
  */
-public class GameStateChangePacket implements PacketElement {
+public class ShopEntitiesPacket implements PacketElement {
     // Required ID for each packet
     private int id = PacketBuilder.SCENECHANGE.getId();
-    private GameStates gameState;
+    private boolean refreshShop;
 
     Field fld[] = this.getClass().getDeclaredFields();
 
-    public GameStateChangePacket(GameStates gameState) {
-        //
-        this.gameState = gameState;
-        
+    public ShopEntitiesPacket(boolean refreshShop) {        
+        // Request the server to send a refreshed list of the shop
+        // will return a new shop if it can, must first check the
+        // players cash to see if they can.
+        this.refreshShop = refreshShop;
         
         //
         for(Field x : fld) {

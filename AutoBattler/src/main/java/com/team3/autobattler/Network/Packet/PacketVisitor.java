@@ -14,4 +14,5 @@ import org.json.JSONObject;
 public interface PacketVisitor {
     JSONObject visit(TestPacket testingPacket);
     JSONObject visit(GameStateChangePacket testingPacket);
+    JSONObject visit(ShopEntitiesPacket testingPacket);
 }
