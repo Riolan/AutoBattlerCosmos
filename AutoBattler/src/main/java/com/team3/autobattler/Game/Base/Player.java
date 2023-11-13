@@ -4,27 +4,45 @@
  */
 package com.team3.autobattler.Game.Base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
- *
+ * Player singleton
  * @author colli
  */
 public class Player {
     
-   public Player() {
-        gold = 10;
-        health = 5;
-        turnNum = 1;
-        items = new Item[4];
-        units = new Unit[4];
+    private static Player player = null;
+
+    private int gold;
+    private int health;
+    private int turnNum;
+            
+    private List<Item> items;
+    private List<Unit> units;
+    
+    public Player(int gold, int health, int turn,  List<Unit> units) {
+        this.gold = gold;
+        this.health = health;
     }
    
-    
-    public int gold;
-    public int health;
-    public int turnNum;
-            
-    public Item[] items;
-    public Unit[] units;
+   public void setUnits(List<Unit> units) {
+       this.units = units;
+   }
+   
+   /**
+    * Player instance
+    * @return 
+    */
+   public static Player getPlayer() {
+        if (player == null) {
+            List<Unit> emptyList = new ArrayList<Unit>();
+            player = new Player(10, 5, 1, emptyList); 
+        }
+  
+        return player;
+    }
     
 }

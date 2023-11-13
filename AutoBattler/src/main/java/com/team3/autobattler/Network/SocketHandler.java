@@ -41,7 +41,7 @@ public class SocketHandler {
     Thread listener = null;
     
     // Associated information
-    Client client;
+    static Client client;
     
     public Client getClient() {
         return this.client;
@@ -58,6 +58,8 @@ public class SocketHandler {
      * @return 
      */
     public boolean connect(String ipAddress, int port) {
+        // should it be here?
+        client = new Client();
     
         try {
             socket = new Socket();
@@ -67,7 +69,7 @@ public class SocketHandler {
             System.out.println("Connect to: " + ipAddress + ":" + port + " On local port: " + socket.getLocalPort());
             
             // if able to connect
-            client = new Client();
+            //client = new Client();
             client.setGameState(GameStates.CONNECTED);
             
             
