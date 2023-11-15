@@ -1,16 +1,16 @@
-package com.team3.autobattler.Game.Base;
+package com.team3.autobattler.Game.Base.UnitA;
 
 // Unit.java
 
 import java.util.List;
-
-public abstract class Unit 
-{
-    private UnitType type; // Use UnitType to store shared characteristics
+/**
+ * Contains state unique for each unit.
+ * @author Curbow & Rio
+ */
+public class Unit {
+    private UnitType type;
     private int health;
     public int attack;
-    private List<? extends Unit> opponentTeam; // Reference to the opposing team
-
 
     public Unit(int health, int attack, UnitType type)
     {
@@ -32,16 +32,11 @@ public abstract class Unit
         return type;
     }
     
-    public void setOpponentTeam(List<? extends Unit> opponentTeam) {
-        this.opponentTeam = opponentTeam;
+    public String getName() {
+        return type.getName();
     }
 
-    // Method to get the opposing team
-    public List<? extends Unit> getOpponentTeam() {
-        return opponentTeam;
-    }
-
-// Add a method to handle taking damage
+    // Add a method to handle taking damage
     public void takeDamage(int damage) {
         health -= damage;
         if (health < 0) {

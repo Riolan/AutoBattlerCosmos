@@ -26,7 +26,7 @@ public class GameStateChangePacket implements PacketElement {
     Field fld[] = this.getClass().getDeclaredFields();
 
     public GameStateChangePacket(GameStates gameState) {
-        //
+        init();
         this.gameState = gameState;
         
         
@@ -40,6 +40,12 @@ public class GameStateChangePacket implements PacketElement {
             } 
         }
     }
+    
+    @Override
+    public void init() {
+        jsonObject.clear();
+    }
+    
     
     @Override
     public JSONObject getJsonObject() {

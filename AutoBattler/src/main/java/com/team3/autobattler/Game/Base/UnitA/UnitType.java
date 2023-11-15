@@ -1,4 +1,4 @@
-package com.team3.autobattlerserver.Game;
+package com.team3.autobattler.Game.Base.UnitA;
 
 import javax.swing.ImageIcon;
 
@@ -16,6 +16,7 @@ public class UnitType {
     private String ability;
     // icon
     private ImageIcon icon;
+    // priority
     
     
     public UnitType(String name, String ability) {

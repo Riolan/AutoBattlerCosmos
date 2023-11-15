@@ -115,6 +115,7 @@ public class ClientHandler implements Runnable {
      * @param packet 
      */
     public void sendData(PacketElement packet) { //throws MalformedPacketException {
+            if (packet == null) return;
             // Do not send data if not connected to server.
             if (client.getGameState().equals(GameStates.UNCONNECTED)) return;
             JSONObject data = packet.accept(visitor);

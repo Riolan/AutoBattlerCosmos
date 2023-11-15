@@ -6,46 +6,64 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this t
 package com.team3.autobattler.Game.Base;
 
 import com.team3.autobattler.Game.Factories.ItemFactory;
+import java.util.List;
 
 
 /**
- *
- 
-@author colli*/
-public class Player {
-        private static Player player = null;
-        private static Player computer = null;
-    private Player() {
-        gold = 10;
-        health = 5;
-        turnNum = 1;
-        items = new Item[4];
-        units = new Unit[4];
+ * Abstract out Player to Battler further
+ * divide Battler into Player and Opponent
+ * @author Rio, Collin
+ */
+public class Player extends Battler {
+    public static Player INSTANCE;
+
+    private int gold;
+
+    // Not really a neccessary component
+    // will return to later.
+    public Item[] items;
+    
+        
+    public Player() throws IllegalAccessException {
+        if (INSTANCE != null) {
+            throw new IllegalAccessException("You cannot construct an instance of the Player class. Please use the getInstance() function.");
+        }
+        
     }
 
     public static Player getPlayer() {
-        if (player == null) 
+        if (INSTANCE == null) 
         {
-            player = new Player(); 
+            try {
+                INSTANCE = new Player();
+            } catch (IllegalAccessException e) {
+                
+            }
         }
 
-        return player;
+        return INSTANCE;
     }
-    public static Player getComputer() {
-        if (computer == null) 
-        {
-            computer = new Player(); 
-        }
-
-        return computer;
-    }
-
-
-    private int gold;
-    private int health;
-    private int turnNum;
-
-    public Item[] items;
-    public Unit[] units;
+    
+//    /* Could be nullable */
+//    public List<Unit> getUnits() {
+//        if (units.size() <= 0) return null;
+//        return units;
+//    }
+//    
+//    /*  */
+//    public void setUnits(List<Unit> units) {
+//        this.units = units;
+//    }
+//    
+//    /* Could be nullable */
+//    public Unit getUnit(int index) {
+//        if (units.size() <= 0) return null;
+//        return units.get(index);
+//    }
+//    
+//    public void setUnits(int index, Unit unit) {
+//        this.units.set(index, unit);
+//        
+//    }
 
 }

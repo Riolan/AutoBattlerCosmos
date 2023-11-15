@@ -5,9 +5,16 @@
 package com.team3.autobattlerserver.Client;
 
 
+import com.team3.autobattlerserver.Game.GameBoard;
 import com.team3.autobattlerserver.Game.GameStates;
+import com.team3.autobattlerserver.Game.Troop;
+import com.team3.autobattlerserver.Game.Unit;
+import com.team3.autobattlerserver.Game.UnitFactory;
+import com.team3.autobattlerserver.Game.UnitType;
 import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.Packets.Create.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author riola
@@ -24,7 +31,7 @@ public class ClientHandlerGUI extends javax.swing.JFrame {
         this.id = id;
         jComboBox1.addItem("Test");
         jComboBox1.addItem("GameStateChange");
-        
+        jComboBox1.addItem("ShopEntities");
         
     }
     
@@ -57,7 +64,6 @@ public class ClientHandlerGUI extends javax.swing.JFrame {
 
         jLabel1.setText("jLabel1q");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -121,12 +127,33 @@ public class ClientHandlerGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        System.out.println("What is in combo box: " + jComboBox1.getSelectedItem());
-        PacketElement packet = new GameStateChangePacket(GameStates.SHOP); //new TestPacket("Pong!");
-        ClientHandler client = ClientHandler.clientHandlers.get(this.id);
+        String item = (String) jComboBox1.getSelectedItem();
+        
+        PacketElement packet = null;
+        GameBoard.getInstance();
+        
+        try {
+            switch (item) {
+                case "Test":
+                    packet = new TestPacket("Pong");
+                    break;
+                case "GameStateChange":
+                    packet = new GameStateChangePacket(GameStates.SHOP);
+                    break;
+                case "ShopEntities":
+                    Troop troop = new Troop();
+
+                    packet = new ShopEntitiesPacket(troop.getUnits(-1));
+                    System.out.println(troop.getUnits(-1));
+                    break;
+            }
+        } finally {
+            ClientHandler client = ClientHandler.clientHandlers.get(this.id);
+            client.sendData(packet);
+        }   
+       
         
         
-        client.sendData(packet);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

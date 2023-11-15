@@ -18,5 +18,6 @@ public interface PacketElement {
     
     // Necessary component of every packet, the output.        
     public JSONObject getJsonObject();
+    public void init();
     
 }

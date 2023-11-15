@@ -5,33 +5,24 @@
 package com.team3.autobattler.SceneManagement;
 
 import com.team3.autobattler.AutoBattler;
-import java.awt.Color;
-import javax.swing.JFrame;
-import javax.swing.*;
 import com.team3.autobattler.Game.Base.Player;
 import com.team3.autobattler.Game.Base.Item;
-import com.team3.autobattler.Game.Base.ItemType;
-import com.team3.autobattler.Game.Base.Unit;
-import com.team3.autobattler.Game.Base.UnitType;
+import com.team3.autobattler.Game.Base.UnitA.*;
 import com.team3.autobattler.Game.Factories.ItemFactory;
-import com.team3.autobattler.Game.Factories.UnitFactory;
+import com.team3.autobattler.Network.Packet.Create.TestPacket;
+import com.team3.autobattler.Network.Packet.PacketElement;
 /**
  *
  * @author colli
  */
 public class Shop extends javax.swing.JPanel {
-//    public Player player;
-//    public Player computer; //The computer.
+//    Don't care about items atm can implement later
+//    ItemFactory itemFactory = ItemFactory.getInstance();
+//    Item item = itemFactory.getItem();
     
-
     
-    ItemFactory iFactory = ItemFactory.getInstance();
-    Item itemf = iFactory.getItem();
-    UnitFactory uFactory = UnitFactory.getInstance();
-    Unit unitf = uFactory.getUnit();
     Player player = Player.getPlayer();
-    Player computer = Player.getComputer();
-    
+
 
     
     /**
@@ -39,9 +30,7 @@ public class Shop extends javax.swing.JPanel {
      */
     public Shop() {
         initComponents();
-
-        System.out.print("Random Item is: " + itemf.getName() + "\n");
-        System.out.print("Random Unit is: " + unitf.getName() + "\n");
+        
     }
 
     /**
@@ -140,6 +129,11 @@ public class Shop extends javax.swing.JPanel {
         });
 
         jButton11.setText("Change Scene");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -226,22 +220,22 @@ public class Shop extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-            player.units[0] = uFactory.getUnit();
+        Unit m_unit;
+        if ((m_unit = player.getUnit(0)) != null) {
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-            player.units[1] = uFactory.getUnit();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-            player.units[2] = uFactory.getUnit();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-            player.units[3] = uFactory.getUnit();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -250,7 +244,6 @@ public class Shop extends javax.swing.JPanel {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-            player.items[0] = iFactory.getItem();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -268,6 +261,13 @@ public class Shop extends javax.swing.JPanel {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        
+        PacketElement packet = new TestPacket("Ping!");
+        AutoBattler.socketHandler.sendData(packet);        
+    }//GEN-LAST:event_jButton11ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

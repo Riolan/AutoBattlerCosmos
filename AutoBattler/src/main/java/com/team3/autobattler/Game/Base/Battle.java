@@ -4,6 +4,7 @@
  */
 package com.team3.autobattler.Game.Base;
 
+import com.team3.autobattler.Game.Base.UnitA.Unit;
 /**
  *
  * @author curbo
@@ -12,23 +13,33 @@ package com.team3.autobattler.Game.Base;
 
 import java.util.List;
 
-public abstract class Battle {
-    protected List<? extends Unit> team1;
-    protected List<? extends Unit> team2;
+public class Battle {
+    protected List<Unit> player;
+    protected List<Unit> opponent;
 
-    public Battle(List<? extends Unit> team1, List<? extends Unit> team2) {
-        this.team1 = team1;
-        this.team2 = team2;
+    public Battle(List<Unit> team1, List<Unit> team2) {
+        this.player = team1;
+        this.opponent = team2;
     }
 
-    public abstract void startBattle();
+
+    public void startBattle() {
+        System.out.println("Starting battle.");
+        
+        
+        
+    };
 
     public boolean isTeam1Alive() {
-        return team1.stream().anyMatch(Unit::isAlive);
+        return player.stream().anyMatch(Unit::isAlive);
     }
 
     public boolean isTeam2Alive() {
-        return team2.stream().anyMatch(Unit::isAlive);
+        return opponent.stream().anyMatch(Unit::isAlive);
+    }
+    
+    public boolean winner() {
+        return isTeam1Alive();
     }
     
     public boolean isTeam1Winner() {

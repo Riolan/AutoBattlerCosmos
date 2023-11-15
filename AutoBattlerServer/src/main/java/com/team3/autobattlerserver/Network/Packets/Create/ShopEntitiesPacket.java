@@ -28,6 +28,7 @@ public class ShopEntitiesPacket implements PacketElement {
     
     
     public ShopEntitiesPacket(List<Unit> units) {
+        init();
         // Store the array of units into there I think this works properly?
         this.units = units;
         
@@ -44,6 +45,11 @@ public class ShopEntitiesPacket implements PacketElement {
                  System.out.println("-------\n" + e + "\n-------");
             } 
         }
+    }
+    
+    @Override
+    public void init() {
+        jsonObject.clear();
     }
     
     @Override

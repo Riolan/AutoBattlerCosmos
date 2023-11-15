@@ -27,8 +27,13 @@ public class TestPacket implements PacketElement {
      * as to demonstrate how a packet should be set up.
      * @param ping
      */
-    public TestPacket(String ping) {
-        this.pong = ping;
+    public TestPacket(String pong) {
+        init();
+        if (pong != "Pong") {
+            System.out.println("We want to respond with a Pong to the requested Ping o/");
+        }
+        
+        this.pong = pong;
         for(Field x : fld) {
             if (x.getName().equals("fld")) continue;
             try {
@@ -39,6 +44,11 @@ public class TestPacket implements PacketElement {
             
             
         }        
+    }
+    
+    @Override
+    public void init() {
+        jsonObject.clear();
     }
     
     @Override
