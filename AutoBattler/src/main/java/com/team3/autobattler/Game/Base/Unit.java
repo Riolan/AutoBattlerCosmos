@@ -1,11 +1,15 @@
 package com.team3.autobattler.Game.Base;
 
 // Unit.java
+
+import java.util.List;
+
 public abstract class Unit 
 {
     private UnitType type; // Use UnitType to store shared characteristics
     private int health;
-    private int attack;
+    public int attack;
+    private List<? extends Unit> opponentTeam; // Reference to the opposing team
 
     
     public Unit(int health, int attack, UnitType type)
@@ -28,7 +32,16 @@ public abstract class Unit
         return type;
     }
     
-    // Add a method to handle taking damage
+    public void setOpponentTeam(List<? extends Unit> opponentTeam) {
+        this.opponentTeam = opponentTeam;
+    }
+
+    // Method to get the opposing team
+    public List<? extends Unit> getOpponentTeam() {
+        return opponentTeam;
+    }
+
+// Add a method to handle taking damage
     public void takeDamage(int damage) {
         health -= damage;
         if (health < 0) {
@@ -41,4 +54,5 @@ public abstract class Unit
     }
     
     // ... other class members and methods ...
+
 }
