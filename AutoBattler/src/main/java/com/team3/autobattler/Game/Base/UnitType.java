@@ -9,11 +9,14 @@ public class UnitType {
         this.name = name;
         this.ability = ability;
     }
-    public String getName() {
+    
+     public String getName() {
         return name;
     }
 
     public String getAbility() {
         return ability;
     }
+
+    
 }

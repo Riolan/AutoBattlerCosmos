@@ -4,13 +4,11 @@ package com.team3.autobattler.Game.Factories;
 import com.team3.autobattler.Game.Base.Item;
 import com.team3.autobattler.Game.Base.Unit;
 import com.team3.autobattler.Game.Base.UnitType;
-
-// Unit factory
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+// Unit factory
 public class UnitFactory 
 {
 
@@ -60,8 +58,5 @@ public class UnitFactory
         }
         return result;
     }
-
-
-
+    
 }
-*/
