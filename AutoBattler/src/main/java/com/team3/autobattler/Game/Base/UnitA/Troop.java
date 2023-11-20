@@ -12,7 +12,7 @@ import java.util.List;
  * @author Rio
  */
 public class Troop {
-    private List<Unit> aggregate = new ArrayList<>();
+    public List<Unit> aggregate = new ArrayList<>();
     
     public void createUnit(int health, int attack, String name, String ability) {
         // Shared information from a UnitType

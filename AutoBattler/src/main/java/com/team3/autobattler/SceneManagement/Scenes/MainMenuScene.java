@@ -5,9 +5,13 @@
 package com.team3.autobattler.SceneManagement.Scenes;
 
 import com.team3.autobattler.AutoBattler;
+import com.team3.autobattler.Game.GameStates;
+import static com.team3.autobattler.Game.GameStates.SHOP;
 import com.team3.autobattler.Network.Packet.Create.SearchForGamePacket;
+import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
 import com.team3.autobattler.Network.Packet.Create.TestPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
+import com.team3.autobattler.SceneManagement.SceneManager;
 
 /**
  *
@@ -120,8 +124,15 @@ public class MainMenuScene extends javax.swing.JPanel {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
         
-        PacketElement packet = new SearchForGamePacket(true);
+//        PacketElement packet = new SearchForGamePacket(true);
+//        AutoBattler.socketHandler.sendData(packet);     
+
+        AutoBattler.sceneManager.changeScene(GameStates.SHOP);
+        
+        PacketElement packet = new ShopEntitiesPacket(true);
         AutoBattler.socketHandler.sendData(packet);     
+        
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

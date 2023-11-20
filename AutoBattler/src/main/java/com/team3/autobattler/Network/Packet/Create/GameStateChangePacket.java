@@ -20,6 +20,7 @@ import org.json.JSONObject;
 public class GameStateChangePacket implements PacketElement {
     // Required ID for each packet
     private int id = PacketBuilder.SCENECHANGE.getId();
+    // your variables
     private GameStates gameState;
 
     Field fld[] = this.getClass().getDeclaredFields();
@@ -27,6 +28,7 @@ public class GameStateChangePacket implements PacketElement {
     public GameStateChangePacket(GameStates gameState) {
         //
         init();
+        // set your variables
         this.gameState = gameState;
         
         
