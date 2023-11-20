@@ -51,4 +51,9 @@ public class TestPacket implements PacketElement {
     public JSONObject accept(PacketVisitor visitor) {
         return visitor.visit(this);
     }
+    
+    @Override
+    public void init() {
+        jsonObject.clear();
+    }
 }

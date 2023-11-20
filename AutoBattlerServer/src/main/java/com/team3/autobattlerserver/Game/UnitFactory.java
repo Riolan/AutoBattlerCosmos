@@ -24,11 +24,10 @@ public class UnitFactory {
     public static UnitType getUnitType(String name, String ability) {
         UnitType result = unitsTypes.get(name);
         if (result == null) {
-            
             result = new UnitType(name, ability);
             unitsTypes.put(name, result);
         }
-        System.out.println(unitsTypes);
+        //System.out.println("---- Unit Type Keys: " + unitsTypes.keySet());
         return result;
     }
 

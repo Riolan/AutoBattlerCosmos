@@ -40,6 +40,7 @@ public class SceneManager extends javax.swing.JFrame {
     ImagePanel imagePanel;
     Shop testShop;
     UnconnectedScene unconnectedScene;
+    MainMenuScene mainMenuScene;
 
     
     /**
@@ -63,23 +64,23 @@ public class SceneManager extends javax.swing.JFrame {
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
         
+        mainMenuScene = new MainMenuScene();
         unconnectedScene = new UnconnectedScene();
         testPane = new TestPane();
-        //testConnect = new ConnectToServer();
-        //
+
         loginScene = new LoginScene();
-        //shopScene = new ShopScene();
         imagePanel = new ImagePanel();
         testShop = new Shop();
         
         
         // This should be the first loaded scene.
-       // mainPanel.add(unconnectedScene, "unconnectedScene");
+        mainPanel.add(unconnectedScene, "unconnectedScene");
+        mainPanel.add(mainMenuScene, "mainMenuScene");
         mainPanel.add(loginScene, "loginScene");
-         mainPanel.add(unconnectedScene, "unconnectedScene");
+        mainPanel.add(unconnectedScene, "unconnectedScene");
         mainPanel.add(testPane, "testPane");
         mainPanel.add(imagePanel, "imagePanel");
-        mainPanel.add(testShop, "testShop");
+        //mainPanel.add(testShop, "testShop");
         
         
         add(mainPanel);
@@ -105,25 +106,29 @@ public class SceneManager extends javax.swing.JFrame {
      * @param newScene 
      */
     public void changeScene(GameStates newScene) {
-        System.out.println("Change Scene " + newScene.toString());
+        System.out.println("Change Scene plspls " + newScene.toString());
         switch (newScene){
             case UNCONNECTED:
                 // Show the menu
                 cardLayout.show(mainPanel, "unconnectedScene");
                 break;
+            case MAINMENU:
+                // Show the menu
+                System.out.println("\n\n\n\n\nplslpsl");
+                cardLayout.show(mainPanel, "mainMenuScene");
+                break;
            case CONNECTED:
                 // Show the menu
-                cardLayout.show(mainPanel, "testShop");
+                cardLayout.show(mainPanel, "testConnect");
                 break;
-                //cardLayout.show(mainPanel, "testConnect");
-                //break;
             case LOGIN:
                 cardLayout.show(mainPanel, "loginScene");
                 break;
             case SHOP:
                                 //cardLayout.show(mainPanel, "testConnect");
-                cardLayout.show(mainPanel, "testShop");
-                //break;
+                System.out.println("WHYYYYYYYYY");
+                //cardLayout.show(mainPanel, "testShop");
+                break;
         }
 
     }

@@ -51,7 +51,13 @@ public class AutoBattler {
         new AutoBattler();
         
         
-        // Hard coded for no reason
+        connect();
+        //}
+    }
+    
+    
+    public static void connect() {
+                // Hard coded for no reason
         String ip = "127.0.0.1";
         int port = 31228;
         
@@ -61,7 +67,7 @@ public class AutoBattler {
             new Thread(() -> {
                 // call controller
                 hasConnected = AutoBattler.socketHandler.connect(ip, port);            
-                System.out.println("Connection Thread Initialization Result: " + hasConnected);
+                System.out.println("Connection Thread ---- Initialization Result: " + hasConnected);
                 
                 // This might cause a memory leak not sure (?)
                 // I dont actually think it does
@@ -80,6 +86,7 @@ public class AutoBattler {
             }).start();
             
             
-        //}
     }
+    
+    
 }

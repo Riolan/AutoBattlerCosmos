@@ -26,6 +26,7 @@ public class GameStateChangePacket implements PacketElement {
 
     public GameStateChangePacket(GameStates gameState) {
         //
+        init();
         this.gameState = gameState;
         
         
@@ -49,5 +50,10 @@ public class GameStateChangePacket implements PacketElement {
     @Override
     public JSONObject accept(PacketVisitor visitor) {
         return visitor.visit(this);
+    }
+    
+        @Override
+    public void init() {
+        jsonObject.clear();
     }
 }

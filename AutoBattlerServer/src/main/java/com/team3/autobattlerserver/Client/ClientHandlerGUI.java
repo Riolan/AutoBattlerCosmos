@@ -5,12 +5,14 @@
 package com.team3.autobattlerserver.Client;
 
 
+import com.team3.autobattlerserver.Game.BattleLogic;
 import com.team3.autobattlerserver.Game.GameBoard;
 import com.team3.autobattlerserver.Game.GameStates;
 import com.team3.autobattlerserver.Game.Troop;
 import com.team3.autobattlerserver.Game.Unit;
 import com.team3.autobattlerserver.Game.UnitFactory;
 import com.team3.autobattlerserver.Game.UnitType;
+import com.team3.autobattlerserver.Game.Units.UnitReader;
 import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.Packets.Create.*;
 import java.util.ArrayList;
@@ -21,11 +23,11 @@ import java.util.List;
  */
 public class ClientHandlerGUI extends javax.swing.JFrame {
 
-    int id;
+    long id;
     /**
      * Creates new form ClientHandlerGUI
      */
-    public ClientHandlerGUI(int id) {
+    public ClientHandlerGUI(long id) {
         initComponents();
         
         this.id = id;
@@ -84,25 +86,25 @@ public class ClientHandlerGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -122,13 +124,13 @@ public class ClientHandlerGUI extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        jButton1.setText("Send " +(String) jComboBox1.getSelectedItem() + " Packet");
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
-        String item = (String) jComboBox1.getSelectedItem();
         
+        String item = (String) jComboBox1.getSelectedItem();
         PacketElement packet = null;
         GameBoard.getInstance();
         
@@ -144,7 +146,11 @@ public class ClientHandlerGUI extends javax.swing.JFrame {
                     Troop troop = new Troop();
 
                     packet = new ShopEntitiesPacket(troop.getUnits(-1));
-                    System.out.println(troop.getUnits(-1));
+                    
+                    BattleLogic x = new BattleLogic(troop.getUnits(-1), troop.getUnits(-2));
+                    
+                    
+                    System.out.println("troop.getUnits(-1):" + troop.getUnits(-1));
                     break;
             }
         } finally {
@@ -153,7 +159,7 @@ public class ClientHandlerGUI extends javax.swing.JFrame {
         }   
        
         
-        
+
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

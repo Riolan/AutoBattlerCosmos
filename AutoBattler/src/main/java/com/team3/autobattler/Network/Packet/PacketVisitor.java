@@ -12,7 +12,8 @@ import org.json.JSONObject;
  * @author Rio
  */
 public interface PacketVisitor {
-    JSONObject visit(TestPacket testingPacket);
-    JSONObject visit(GameStateChangePacket testingPacket);
-    JSONObject visit(ShopEntitiesPacket testingPacket);
+    JSONObject visit(TestPacket packet);
+    JSONObject visit(GameStateChangePacket packet);
+    JSONObject visit(ShopEntitiesPacket packet);
+    JSONObject visit(SearchForGamePacket packet);
 }

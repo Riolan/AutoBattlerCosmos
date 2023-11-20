@@ -39,6 +39,7 @@ public class SceneManager extends javax.swing.JFrame {
     ImagePanel imagePanel;
     Shop testShop;
     UnconnectedScene unconnectedScene;
+    MainMenuScene mainMenuScene;
 
     
     /**
@@ -65,7 +66,7 @@ public class SceneManager extends javax.swing.JFrame {
         unconnectedScene = new UnconnectedScene();
         testPane = new TestPane();
         //testConnect = new ConnectToServer();
-        //
+        mainMenuScene = new MainMenuScene();
         loginScene = new LoginScene();
         //shopScene = new ShopScene();
         imagePanel = new ImagePanel();
@@ -74,8 +75,9 @@ public class SceneManager extends javax.swing.JFrame {
         
         // This should be the first loaded scene.
        // mainPanel.add(unconnectedScene, "unconnectedScene");
+        mainPanel.add(mainMenuScene, "mainMenuScene");
         mainPanel.add(loginScene, "loginScene");
-         mainPanel.add(unconnectedScene, "unconnectedScene");
+        mainPanel.add(unconnectedScene, "unconnectedScene");
         mainPanel.add(testPane, "testPane");
         mainPanel.add(imagePanel, "imagePanel");
         mainPanel.add(testShop, "testShop");
@@ -109,6 +111,10 @@ public class SceneManager extends javax.swing.JFrame {
             case UNCONNECTED:
                 // Show the menu
                 cardLayout.show(mainPanel, "unconnectedScene");
+                break;
+            case MAINMENU:
+                // Show the menu
+                cardLayout.show(mainPanel, "mainMenuScene");
                 break;
            case CONNECTED:
                 // Show the menu

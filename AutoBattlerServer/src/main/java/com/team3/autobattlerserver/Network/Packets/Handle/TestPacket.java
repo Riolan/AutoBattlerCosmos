@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class TestPacket implements PacketHandler {
     
     @Override
-    public void execute(int aId, JSONObject inputBuffer) {
+    public void execute(long aId, JSONObject inputBuffer) {
                 
         System.out.println("execute: Client Id: " + aId);
 

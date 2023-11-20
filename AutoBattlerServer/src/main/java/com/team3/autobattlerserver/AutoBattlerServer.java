@@ -5,6 +5,7 @@
 package com.team3.autobattlerserver;
 
 import com.team3.autobattlerserver.Client.ClientHandler;
+import com.team3.autobattlerserver.Game.Matchmaker.ClientMatchmaker;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,13 +18,14 @@ import java.util.logging.Logger;
 /**
  *
  * @author Rio
- * RIO SAYS HI
  */
 public class AutoBattlerServer {
     //static ServerSocket variable
     private static ServerSocket serverSocket;
     //socket server port on which it will listen
     private static int port = 31228;
+    
+    public static ClientMatchmaker clientMatchmaker;
     
     static Logger logger = Logger.getLogger(AutoBattlerServer.class.getName());
 
@@ -60,6 +62,13 @@ public class AutoBattlerServer {
         ServerSocket serverSocket = new ServerSocket(port);
         AutoBattlerServer server = new AutoBattlerServer(serverSocket);
         
+        // Start maker execution thread.
+        try {
+            clientMatchmaker = new ClientMatchmaker();
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(AutoBattlerServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 
         Handler handlerObj = new ConsoleHandler();
         handlerObj.setLevel(Level.ALL);
@@ -70,6 +79,9 @@ public class AutoBattlerServer {
         logger.log(Level.INFO, "Starting server...");
 
         server.startServer();
+        
+        
+
         
     }
     

@@ -13,6 +13,8 @@ import com.team3.autobattlerserver.Network.PacketVisitorImpl;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.json.JSONObject;
 
@@ -23,7 +25,7 @@ import org.json.JSONObject;
 public class ClientHandler implements Runnable {
 
     // public to be accessible
-    public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
+    public static Map<Number, ClientHandler> clientHandlers = new HashMap<>();
     public static int clientAmt = 0;
     private Socket socket;
 
@@ -34,7 +36,6 @@ public class ClientHandler implements Runnable {
 
     ClientHandlerGUI clientGUI;
 
-    private int clientId;
     
     public ClientHandler(Socket socket) {
         try {
@@ -44,6 +45,15 @@ public class ClientHandler implements Runnable {
 
             // Create a new Client associated with this socket.
             this.client = new Client();
+            
+            this.client.user.setId(clientAmt);
+            
+            
+            
+            System.out.println("==================");
+            System.out.println("Client Id:" + this.client.user.getId());            
+            System.out.println("==================");
+
             
             // Set client gamestate to CONNECTED
             client.gameState = client.gameState.UNCONNECTED;
@@ -56,15 +66,15 @@ public class ClientHandler implements Runnable {
 
 
             // Client Handler List 
-            clientHandlers.add(this);
+            //clientHandlers.add(this);
+            clientHandlers.put(this.client.user.getId(), this);
             
-            this.clientId = clientAmt;
             clientAmt++;
             
             System.out.println("Added new ClientHandler to clientHandlers.");
 
             // Client GUI
-            clientGUI = new ClientHandlerGUI(this.clientId);
+            clientGUI = new ClientHandlerGUI(this.client.user.getId());
             clientGUI.changeLabel(socket.toString());
             clientGUI.setVisible(true);
 
@@ -98,7 +108,7 @@ public class ClientHandler implements Runnable {
                 // Strategy pattern for different algorithm based on input.
                 PacketHandler packet = packetHandlerFactory.make(packetId);
                 // Excute the packet (closer to handle)
-                packet.execute(this.clientId, jsonObject);
+                packet.execute(this.client.user.getId(), jsonObject);
 
             } catch (IOException e) {
                 
@@ -133,7 +143,7 @@ public class ClientHandler implements Runnable {
     }
     
     public void removeClientHandler() {
-        clientHandlers.remove(this);
+        clientHandlers.remove(this.client.user.getId());
     }
 
     

@@ -7,11 +7,13 @@ import java.util.List;
  * Contains state unique for each unit.
  * @author Curbow & Rio
  */
-public class Unit {
+public class Unit implements Comparable<Unit> {
     private UnitType type;
     private int health;
     public int attack;
-
+    
+    public int team = -1;
+    
     public Unit(int health, int attack, UnitType type)
     {
         this.health = health;
@@ -35,6 +37,7 @@ public class Unit {
     public String getName() {
         return type.getName();
     }
+    
 
     // Add a method to handle taking damage
     public void takeDamage(int damage) {
@@ -49,5 +52,8 @@ public class Unit {
     }
     
     // ... other class members and methods ...
-
+    
+    public int compareTo(Unit c) {
+        return Integer.compare(getAttack(), c.getAttack());
+    }
 }

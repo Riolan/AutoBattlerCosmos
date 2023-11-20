@@ -3,34 +3,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.team3.autobattler.Network.Packet.Create;
+
 import com.team3.autobattler.Network.Packet.PacketBuilder;
 import com.team3.autobattler.Network.Packet.PacketElement;
-import com.team3.autobattler.Network.Packet.PacketVisitor;
-import com.team3.autobattler.Game.GameStates;
 import static com.team3.autobattler.Network.Packet.PacketElement.jsonObject;
+import com.team3.autobattler.Network.Packet.PacketVisitor;
 import java.lang.reflect.Field;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Packet used to request Shop Entities.
+ *
  * @author Rio
  */
-public class ShopEntitiesPacket implements PacketElement {
+public class SearchForGamePacket implements PacketElement {
     // Required ID for each packet
-    private int id = PacketBuilder.SHOP.getId();
-    private boolean refreshShop;
-
+    private int id = PacketBuilder.SEARCHFORGAME.getId();
+    private boolean doSearchForGame;
+    
     Field fld[] = this.getClass().getDeclaredFields();
 
-    public ShopEntitiesPacket(boolean refreshShop) {  
+    public SearchForGamePacket(boolean doSearchForGame) {  
         init();
-        // Request the server to send a refreshed list of the shop
-        // will return a new shop if it can, must first check the
-        // players cash to see if they can.
-        this.refreshShop = refreshShop;
+        this.doSearchForGame = doSearchForGame;
         
-        //
         for(Field x : fld) {
             if (x.getName().equals("fld")) continue;
             try {

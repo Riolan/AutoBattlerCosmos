@@ -71,7 +71,7 @@ public class SocketHandler {
             // if able to connect
             //client = new Client();
             client.setGameState(GameStates.CONNECTED);
-            
+            client.setGameState(GameStates.MAINMENU);
             
             // Set up input and output streams
             dataInputStream = new DataInputStream(socket.getInputStream());
@@ -89,6 +89,7 @@ public class SocketHandler {
             return true;
         } catch (IOException e) {
             System.out.println("Socket Handler Connect Error: " + e.getMessage());
+            client.setGameState(GameStates.UNCONNECTED);
             return false;
         }
     }
@@ -130,6 +131,8 @@ public class SocketHandler {
                 // Disable loop
                 isRunning = false;
                 System.out.println("Error has occured in SocketHandler listen: " + e.getMessage());
+                AutoBattler.connect();
+                client.setGameState(GameStates.UNCONNECTED);
             }
         }
         
