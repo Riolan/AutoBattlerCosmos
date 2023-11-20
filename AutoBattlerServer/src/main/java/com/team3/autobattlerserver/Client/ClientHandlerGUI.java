@@ -147,7 +147,7 @@ public class ClientHandlerGUI extends javax.swing.JFrame {
 
                     packet = new ShopEntitiesPacket(troop.getUnits(-1));
                     
-                    BattleLogic x = new BattleLogic(troop.getUnits(-1), troop.getUnits(-2));
+//                    BattleLogic x = new BattleLogic(troop.getUnits(-1), troop.getUnits(-2));
                     
                     
                     System.out.println("troop.getUnits(-1):" + troop.getUnits(-1));

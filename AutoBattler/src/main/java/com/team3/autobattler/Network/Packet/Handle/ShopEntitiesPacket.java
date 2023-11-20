@@ -8,6 +8,7 @@ import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.PacketHandler;
 import com.team3.autobattler.SceneManagement.SceneManager;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -42,7 +43,7 @@ public class ShopEntitiesPacket implements PacketHandler {
             
             javax.swing.JPanel shopScene = sceneManager.getScene(GameStates.SHOP);
             // shopScene.setUnits();
-            
+            JSONArray units = response.getJSONArray("units");
             // Update Panel with new information, not sure if this is the correct way to do it yet
             // .validate
             // .repaint
