@@ -50,7 +50,7 @@ public class UnitReader {
                 int health = l.getInt("health");
                 int attack = l.getInt("attack");
                 Field field = UnitReader.class.getDeclaredField("values");
-                UnitType type = UnitFactory.getUnitType(name, name + " Ability");
+                UnitType type = UnitFactory.getUnitType(name, name + " Ability", 0);  //messed with this
 
                 Unit newUnit = new Unit(attack, health, type);
 

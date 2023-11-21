@@ -35,6 +35,9 @@ public class Unit {
     public String getName() {
         return type.getName();
     }
+    public int getCost() {
+        return type.getCost();
+    }
 
     // Add a method to handle taking damage
     public void takeDamage(int damage) {

@@ -18,11 +18,11 @@ public class UnitFactory {
     private UnitFactory() {} 
     
     
-    public static UnitType getUnitType(String name, String ability) {
+    public static UnitType getUnitType(String name, String ability, int cost) {
         UnitType result = unitsTypes.get(name);
         if (result == null) {
             System.out.println("---- a new unittype is added");
-            result = new UnitType(name, ability);
+            result = new UnitType(name, ability, cost);
         }
         System.out.println("---- REUSING!!!");
         return result;

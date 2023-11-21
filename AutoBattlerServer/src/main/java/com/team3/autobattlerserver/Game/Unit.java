@@ -37,6 +37,9 @@ public class Unit implements Comparable<Unit> {
     public String getName() {
         return type.getName();
     }
+    public int getCost() {
+        return type.getCost();
+    }
     
 
     // Add a method to handle taking damage

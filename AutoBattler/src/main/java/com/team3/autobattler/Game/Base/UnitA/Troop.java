@@ -14,9 +14,9 @@ import java.util.List;
 public class Troop {
     public List<Unit> aggregate = new ArrayList<>();
     
-    public void createUnit(int health, int attack, String name, String ability) {
+    public void createUnit(int health, int attack, String name, String ability, int cost) {
         // Shared information from a UnitType
-        UnitType type = UnitFactory.getUnitType(name, ability);
+        UnitType type = UnitFactory.getUnitType(name, ability, cost);
         // Specific information for each unit
         Unit unit = new Unit(health, attack, type);
         // add unit to troop aggregate (collection of units)

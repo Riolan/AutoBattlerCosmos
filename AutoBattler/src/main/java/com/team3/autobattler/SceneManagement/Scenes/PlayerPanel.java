@@ -4,25 +4,22 @@
  */
 package com.team3.autobattler.SceneManagement.Scenes;
 
-import com.team3.autobattler.Game.Base.Player;
 import com.team3.autobattler.Game.Base.UnitA.Unit;
-import java.util.List;
 
 /**
  *
  * @author Rio
  */
-public class BuyPanel extends javax.swing.JPanel {
-        Player player = Player.getPlayer();
-        Unit unit;
+public class PlayerPanel extends javax.swing.JPanel {
+
     /**
      * Creates new form BuyPanel
      */
-    public BuyPanel(Unit unit) {
+    public PlayerPanel(Unit unit) {
         initComponents();
-        this.unit = unit;
+
         unitNameLabel.setText( unit.getName());
-        unitStatsLabel.setText(unit.getHealth() + " " + unit.getAttack() + " " +unit.getCost());
+        unitStatsLabel.setText(unit.getHealth() + " " + unit.getAttack());
     }
 
     /**
@@ -54,39 +51,9 @@ public class BuyPanel extends javax.swing.JPanel {
         jLabel4.setText("jLabel4");
         add(jLabel4);
 
-        buyButton.setText("Purchase Unit");
-        buyButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buyButtonActionPerformed(evt);
-            }
-        });
+        buyButton.setText("Sell Unit");
         add(buyButton);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
-        // TODO add your handling code here:
-        // Validate player has enough gold to buy unit
-        int size;
-
-        List<Unit> units = player.getUnits();
-        if (units == null) {
-            size = 0;
-        }
-        else
-        {
-            size = units.size();
-        }
-    if (size < 4) {
-        if (player.subtractGold(unit.getCost())) {
-            player.addUnit(unit);
-            System.out.println("You spent " + unit.getCost());
-        }
-    } else 
-        {
-            System.out.println("You have the max party size.");
-        }
-        
-    }//GEN-LAST:event_buyButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

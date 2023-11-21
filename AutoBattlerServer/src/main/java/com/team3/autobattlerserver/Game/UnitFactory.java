@@ -21,10 +21,10 @@ public class UnitFactory {
     private UnitFactory() {} 
     
     
-    public static UnitType getUnitType(String name, String ability) {
+    public static UnitType getUnitType(String name, String ability, int cost) {
         UnitType result = unitsTypes.get(name);
         if (result == null) {
-            result = new UnitType(name, ability);
+            result = new UnitType(name, ability, cost);
             unitsTypes.put(name, result);
         }
         //System.out.println("---- Unit Type Keys: " + unitsTypes.keySet());

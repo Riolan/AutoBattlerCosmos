@@ -23,7 +23,7 @@ public class Troop {
         
         // Shared information from a UnitType
         UnitType type = UnitFactory.getUnitType(newUnit.getName(),
-                newUnit.getName());
+                newUnit.getName(), newUnit.getCost());
         // Specific information for each unit
         Unit unit = new Unit(newUnit.getHealth(),
                 newUnit.getHealth(), 
@@ -54,12 +54,12 @@ public class Troop {
     }
     
     
-    public void createUnit(int client_uuid, int health, int attack, String name, String ability) {
+    public void createUnit(int client_uuid, int health, int attack, String name, String ability, int cost) {
         
         //System.out.println("New unit associated with: " + client_uuid);
         
         // Shared information from a UnitType
-        UnitType type = UnitFactory.getUnitType(name, ability);
+        UnitType type = UnitFactory.getUnitType(name, ability, cost);
         // Specific information for each unit
         Unit unit = new Unit(health, attack, type);
         // add unit to troop aggregate (collection of units)

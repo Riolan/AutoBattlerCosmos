@@ -16,20 +16,23 @@ public class UnitType {
     private String ability;
     // icon
     private ImageIcon icon;
+    private int cost;
     
-    
-    public UnitType(String name, String ability) {
+    public UnitType(String name, String ability, int cost) {
         this.name = name;
         this.ability = ability;
+        this.cost = cost;
     }
     
      public String getName() {
         return name;
     }
-
+     
     public String getAbility() {
         return ability;
     }
-
+    public int getCost() {
+        return cost;
+    }
     
 }

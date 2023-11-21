@@ -5,7 +5,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this t
 */
 package com.team3.autobattler.Game.Base;
 
+import com.team3.autobattler.Game.Base.UnitA.Unit;
 import com.team3.autobattler.Game.Factories.ItemFactory;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,8 +18,8 @@ import java.util.List;
  */
 public class Player extends Battler {
     public static Player INSTANCE;
-
-    private int gold;
+    
+    private int gold = 10;
 
     // Not really a neccessary component
     // will return to later.
@@ -43,27 +45,41 @@ public class Player extends Battler {
 
         return INSTANCE;
     }
+    private List<Unit> units = new ArrayList<Unit>();
+          /* Could be nullable */
+    public void addUnit(Unit unit) {
+        units.add(unit);
+    }
     
-//    /* Could be nullable */
-//    public List<Unit> getUnits() {
-//        if (units.size() <= 0) return null;
-//        return units;
-//    }
-//    
-//    /*  */
-//    public void setUnits(List<Unit> units) {
-//        this.units = units;
-//    }
-//    
-//    /* Could be nullable */
-//    public Unit getUnit(int index) {
-//        if (units.size() <= 0) return null;
-//        return units.get(index);
-//    }
-//    
-//    public void setUnits(int index, Unit unit) {
-//        this.units.set(index, unit);
-//        
-//    }
-
+    /* Could be nullable */
+    public List<Unit> getUnits() {
+        if (units.size() <= 0) return null;
+        return units;
+    }
+    
+    /*  */
+    public void setUnits(List<Unit> units) {
+        this.units = units;
+    }
+    
+    /* Could be nullable */
+    public Unit getUnit(int index) {
+        if (units.size() <= 0) return null;
+        return units.get(index);
+    }
+    
+    public void setUnits(int index, Unit unit) {
+        this.units.set(index, unit);
+        
+    }
+    public int getGold() {
+        return gold;
+    }
+    public boolean subtractGold(int cost) {
+        if (gold - cost < 0) {
+        return false;
+        }
+        gold = gold-cost;
+        return true;
+    }
 }
