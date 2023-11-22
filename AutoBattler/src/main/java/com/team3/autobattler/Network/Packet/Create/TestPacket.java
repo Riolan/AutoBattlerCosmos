@@ -28,7 +28,6 @@ public class TestPacket implements PacketElement {
      * @param ping
      */
     public TestPacket(String ping) {
-        init();
         this.ping = ping;
         for(Field x : fld) {
             if (x.getName().equals("fld")) continue;

@@ -6,9 +6,6 @@ package com.team3.autobattler.SceneManagement.Scenes;
 
 import com.team3.autobattler.Game.Base.Player;
 import com.team3.autobattler.Game.Base.UnitA.Unit;
-import com.team3.autobattler.Game.GameStates;
-import com.team3.autobattler.SceneManagement.SceneManager;
-import com.team3.autobattler.SceneManagement.Shop;
 import java.util.List;
 
 /**
@@ -43,7 +40,6 @@ public class BuyPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         buyButton = new javax.swing.JButton();
 
-        setBorder(new javax.swing.border.MatteBorder(null));
         setLayout(new java.awt.GridLayout(5, 1));
 
         unitNameLabel.setText("jLabel1");
@@ -75,19 +71,18 @@ public class BuyPanel extends javax.swing.JPanel {
         List<Unit> units = player.getUnits();
         if (units == null) {
             size = 0;
-        } else {
+        }
+        else
+        {
             size = units.size();
         }
-        
-        if (size < 4) {
-            if (player.subtractGold(unit.getCost())) {
-                player.addUnit(unit);
-                System.out.println("You spent " + unit.getCost());
-                SceneManager parent = SceneManager.getInstance();
-                Shop shop = (Shop) parent.getScene(GameStates.SHOP);
-                shop.handlePlayerPanel();
-            }
-        } else  {
+    if (size < 4) {
+        if (player.subtractGold(unit.getCost())) {
+            player.addUnit(unit);
+            System.out.println("You spent " + unit.getCost());
+        }
+    } else 
+        {
             System.out.println("You have the max party size.");
         }
         

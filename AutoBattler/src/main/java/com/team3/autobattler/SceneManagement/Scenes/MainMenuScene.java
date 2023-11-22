@@ -5,12 +5,7 @@
 package com.team3.autobattler.SceneManagement.Scenes;
 
 import com.team3.autobattler.AutoBattler;
-import com.team3.autobattler.Game.Base.Player;
 import com.team3.autobattler.Game.GameStates;
-import static com.team3.autobattler.Game.GameStates.SHOP;
-import com.team3.autobattler.Network.Client;
-import com.team3.autobattler.Network.Packet.Create.*;
-import com.team3.autobattler.Network.Packet.Create.SearchForGamePacket;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;

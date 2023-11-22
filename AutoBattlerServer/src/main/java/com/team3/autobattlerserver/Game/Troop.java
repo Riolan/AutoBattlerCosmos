@@ -45,6 +45,7 @@ public class Troop {
             list_.add(unit);
             aggregate.put(client_uuid, list_);
         }
+        //System.out.println("List of Units for client: " + client_uuid + " units: " + aggregate.get(client_uuid));
     }
     
     
@@ -55,7 +56,7 @@ public class Troop {
     
     public void createUnit(int client_uuid, int health, int attack, String name, String ability, int cost) {
         
-        System.out.println("New unit associated with: " + client_uuid);
+        //System.out.println("New unit associated with: " + client_uuid);
         
         // Shared information from a UnitType
         UnitType type = UnitFactory.getUnitType(name, ability, cost);
