@@ -283,7 +283,7 @@ public class Shop extends javax.swing.JPanel {
     }//GEN-LAST:event_changeSceneButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        AutoBattler.socketHandler.getClient().bypassGameState((GameStates) jComboBox1.getSelectedItem());
+        AutoBattler.socketHandler.getClient().bypassGameState(GameStates.valueOf(jComboBox1.getSelectedItem().toString()));
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 

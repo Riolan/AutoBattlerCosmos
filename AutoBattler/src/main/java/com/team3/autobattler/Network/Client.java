@@ -67,9 +67,14 @@ public class Client implements Serializable {
     }
     
     // temporary function to switch to any game state for testing purposes
-    public void bypassGameState(GameStates gameState) {
-        this.gameState = gameState;
-        //observable.setGameState(gameState);
+    public boolean bypassGameState(GameStates gameState) {
+        System.out.println("bypassGameState Set game state: " + gameState);
+        
+        // Update the observerables game state
+        // this automatically notifies observers
+        this.observable.setGameState(gameState);
+        return true;
+
     }
 
     
