@@ -68,14 +68,14 @@ public class SocketHandler {
             socket.connect(new InetSocketAddress(ipAddress, port), TIMEOUT);
             System.out.println("Connect to: " + ipAddress + ":" + port + " On local port: " + socket.getLocalPort());
             
+            // Set up input and output streams
+            dataInputStream = new DataInputStream(socket.getInputStream());
+            dataOutputStream = new DataOutputStream(socket.getOutputStream());
+            
             // if able to connect
             //client = new Client();
             client.setGameState(GameStates.CONNECTED);
             client.setGameState(GameStates.MAINMENU);
-            
-            // Set up input and output streams
-            dataInputStream = new DataInputStream(socket.getInputStream());
-            dataOutputStream = new DataOutputStream(socket.getOutputStream());
             
             // Close listener (old)
             if (listener != null && listener.isAlive()) {

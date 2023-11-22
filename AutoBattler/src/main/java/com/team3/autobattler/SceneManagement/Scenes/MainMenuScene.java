@@ -8,6 +8,7 @@ import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
 import static com.team3.autobattler.Game.GameStates.SHOP;
 import com.team3.autobattler.Network.Packet.Create.SearchForGamePacket;
+import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
 import com.team3.autobattler.Network.Packet.Create.TestPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
@@ -139,7 +140,10 @@ public class MainMenuScene extends javax.swing.JPanel {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         //SceneManager.getInstance().changeScene(GameStates.TESTPANE);
-        Client.getInstance().setGameState(GameStates.GAMESEARCH);
+        //Client.getInstance().setGameState(GameStates.GAMESEARCH);
+        PacketElement packetTest = new GameStateChangePacket(GameStates.GAMESEARCH);
+        AutoBattler.socketHandler.sendData(packetTest);
+        //System.out.println("set state" + Client.getInstance().getGameState());
         PacketElement packet = new SearchForGamePacket(true);
         AutoBattler.socketHandler.sendData(packet);     
 
