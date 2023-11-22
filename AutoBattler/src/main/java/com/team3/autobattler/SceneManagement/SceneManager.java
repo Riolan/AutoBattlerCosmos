@@ -4,6 +4,7 @@
  */
 package com.team3.autobattler.SceneManagement;
 
+import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStateObservable;
 import com.team3.autobattler.Game.GameStateObserver;
 import com.team3.autobattler.Game.GameStates;
@@ -14,6 +15,7 @@ import java.awt.CardLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,8 +35,6 @@ public class SceneManager extends javax.swing.JFrame {
     JPanel mainPanel;    
     
     TestPane testPane;
-    //ConnectToServer testConnect;
-    //
     LaunchScene launchScene;
     LoginScene loginScene;
     SignUpScene signUpScene;
@@ -57,23 +57,22 @@ public class SceneManager extends javax.swing.JFrame {
         if (INSTANCE != null) {
             throw new IllegalAccessException("You cannot construct an instance of the SceneManager class. Please use the getInstance() function.");
         }
-        
-        System.out.println(new File("res/icon.png"));
+
         try {
-            this.setIconImage(ImageIO.read(new File("res/icon.png")));
-        } catch (IOException ex) {
+            this.setIconImage(new ImageIcon(SceneManager.class.getResource("/icon.png")).getImage());
+        } catch (java.lang.NullPointerException ex) {
             Logger.getLogger(SceneManager.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         this.setTitle("Auto Battler: Cosmos");
         
-        System.out.println("Starting Scene Manager");
+        Logger.getLogger(SceneManager.class.getName()).log(Level.INFO, "--Starting Scene Manager");
+
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
         
         unconnectedScene = new UnconnectedScene();
         testPane = new TestPane();
-        //testConnect = new ConnectToServer();
         mainMenuScene = new MainMenuScene();
         launchScene = new LaunchScene();
         loginScene = new LoginScene();
@@ -89,7 +88,6 @@ public class SceneManager extends javax.swing.JFrame {
         
         
         // This should be the first loaded scene.
-       // mainPanel.add(unconnectedScene, "unconnectedScene");
         mainPanel.add(mainMenuScene, "mainMenuScene");
         mainPanel.add(launchScene, "launchScene");
         mainPanel.add(loginScene, "loginScene");
@@ -122,81 +120,48 @@ public class SceneManager extends javax.swing.JFrame {
     }
 
     /**
-     * Ok, this is pretty bad implementation. Would like to set up an
-     * observer so it just updates when gameState is updated. It is literally
-     * based on the game state so.....
      * @param newScene 
      */
     public void changeScene(GameStates newScene) {
         System.out.println("Change Scene " + newScene.toString());
         switch (newScene){
-            case UNCONNECTED:
-                // Show the menu
+            case UNCONNECTED -> // Show the menu
                 cardLayout.show(mainPanel, "unconnectedScene");
-                break;
-            case LAUNCH:
-                cardLayout.show(mainPanel, "launchScene");
-                break;
-            case MAINMENU:
-                // Show the menu
+            case MAINMENU -> // Show the menu
                 cardLayout.show(mainPanel, "mainMenuScene");
-                break;
-            case CONNECTED:
-                // Show the menu
+           case CONNECTED -> // Show the menu
                 cardLayout.show(mainPanel, "testShop");
-                break;
-                //cardLayout.show(mainPanel, "testConnect");
-                //break;
-            case LOGIN:
-                cardLayout.show(mainPanel, "loginScene");
-                break;
-            case SIGNUP:
-                cardLayout.show(mainPanel, "signUpScene");
-                break;
-            case GAMESEARCH:
-                cardLayout.show(mainPanel, "gameSearchScene");
-                break;
-            case ENDGAME:
-                cardLayout.show(mainPanel, "endGameScene");
-                break;
-            case ENDROUND:
-                cardLayout.show(mainPanel, "endRoundScene");
-                break;
-            case PLAYOUTROUND:
-                cardLayout.show(mainPanel, "playOutRoundScene");
-                break;
-            case STARTROUND:
-                cardLayout.show(mainPanel, "startRoundScene");
-                break;
-            case SHOP:
-                                //cardLayout.show(mainPanel, "testConnect");
+            case LOGIN -> cardLayout.show(mainPanel, "loginScene");
+            case SIGNUP -> cardLayout.show(mainPanel, "signUpScene");
+            case GAMESEARCH -> cardLayout.show(mainPanel, "gameSearchScene");
+            case INGAME -> cardLayout.show(mainPanel, "inGameScene");
+            case ENDGAME -> cardLayout.show(mainPanel, "endGameScene");
+            case ENDROUND -> cardLayout.show(mainPanel, "endRoundScene");
+            case PLAYOUTROUND -> cardLayout.show(mainPanel, "playOutRoundScene");
+            case STARTROUND -> cardLayout.show(mainPanel, "startRoundScene");
+            case SHOP -> //cardLayout.show(mainPanel, "testConnect");
                 cardLayout.show(mainPanel, "testShop");
-                break;
-            case TESTPANE:
-                cardLayout.show(mainPanel, "testPane");
+            case TESTPANE -> cardLayout.show(mainPanel, "testPane");
         }
-
+        //cardLayout.show(mainPanel, "testConnect");
+        //break;
+        
     }
     
     
     public javax.swing.JPanel getScene(GameStates scene) {
         switch (scene){
-            case UNCONNECTED:
-                // Show the menu
-                //cardLayout.show(mainPanel, "testConnect");
+            case UNCONNECTED -> {
                 return unconnectedScene;
-            case CONNECTED:
-                // Show the menu
-                //cardLayout.show(mainPanel, "testConnect");
-                //return testConnect;
-            case LOGIN:
-                //cardLayout.show(mainPanel, "loginScene");
+            }
+            case CONNECTED, LOGIN -> {
                 return loginScene;
-            case SHOP:
+            }
+            case SHOP -> {
                 return testShop;
+            }
         }
 
-        // uhm not the best solution
         return new JPanel();
     }
 
@@ -205,8 +170,7 @@ public class SceneManager extends javax.swing.JFrame {
     /**
      * Retrieves the singleton instance.
      *
-     * @return
-     *          The singleton instance.
+     * @return The singleton instance.
      */
     public static SceneManager getInstance() {
         if (INSTANCE == null) {

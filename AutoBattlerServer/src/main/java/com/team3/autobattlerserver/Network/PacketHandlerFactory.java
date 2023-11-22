@@ -5,18 +5,20 @@
 package com.team3.autobattlerserver.Network;
 
 import com.team3.autobattlerserver.Network.Packets.Handle.*;
+import com.team3.autobattlerserver.Network.PacketBuilder;
 
 /**
  *
- * @author riola
+ * @author Rio
  */
 public class PacketHandlerFactory {
     public PacketHandler make(int packetId) {
-        switch (packetId) {
-            case 0: return new TestPacket();
-            case 1: return new GameStateChangePacket();
-            case 2: return new ShopEntitiesPacket();
-            case 3: return new SearchForGamePacket();
+        switch (PacketBuilder.values()[packetId]) {
+            case TEST: return new TestPacket();
+            case SCENECHANGE: return new GameStateChangePacket();
+            case SHOP: return new ShopEntitiesPacket();
+            case SEARCHFORGAME: return new SearchForGamePacket();
+            case STARTGAME: return new StartGamePacket();
             default: return new TestPacket();
         }
     }    

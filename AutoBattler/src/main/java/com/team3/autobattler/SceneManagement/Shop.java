@@ -20,6 +20,8 @@ import java.util.List;
 
 import com.team3.autobattler.SceneManagement.Scenes.PlayerPanel;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -34,6 +36,8 @@ public class Shop extends javax.swing.JPanel {
 //    Item item = itemFactory.getItem();
     
     
+    final int MAX_UNITS = 5;
+    Troop aTroop = new Troop();
     Player player = Player.getPlayer();
     List<PlayerPanel> listOfPlayerPanels = new ArrayList<PlayerPanel>();
     List<BuyPanel> listOfBuyPanels = new ArrayList<BuyPanel>();
@@ -45,38 +49,67 @@ public class Shop extends javax.swing.JPanel {
     public Shop() {
         initComponents();
         
+    }
+    
+    public void handlePlayerPanel() {
+        playerPanel.removeAll();
+        listOfPlayerPanels.clear();
         
-      
+        Unit unit;
         
+        //int count =  player.getUnits().size();
+        for (int i = 0; i < MAX_UNITS; i++) {
+            if ((unit = player.getUnit(i)) != null) listOfPlayerPanels.add(new PlayerPanel(unit));
+            else {
+                listOfPlayerPanels.add(new PlayerPanel());
+            }
+        }
         
-      
-        
-        
+        updatePlayerPanels();
+        validate();
     }
     
     
-    
+    /**
+     * Takes in a Packets Array Data.
+     * @param units 
+     */
     public void recieveData(JSONArray units) {
-        System.out.println(units);
-        JSONObject unit = (JSONObject)units.get(0);
-        System.out.println(unit);
+        // Remove old input
+        buyPanel.removeAll();
+        listOfBuyPanels.clear();
+        
+        // Log info
+        Logger.getLogger(SceneManager.class.getName()).log(Level.INFO, "Shop Scene recieved data.");
 
-        int health = unit.getInt("health");
-        int attack = unit.getInt("attack");
-        String name = unit.getString("name");
-        int cost = unit.getInt("cost");
-        String ability = "idc";
-        Troop w = new Troop();
-        w.createUnit(health, attack, name, ability, cost);
-        
-        listOfBuyPanels.add(new BuyPanel(w.aggregate.get(0)));
-        listOfBuyPanels.add(new BuyPanel(w.aggregate.get(0)));
-        listOfBuyPanels.add(new BuyPanel(w.aggregate.get(0)));
-        listOfBuyPanels.add(new BuyPanel(w.aggregate.get(0)));
-        
-        
+        // Loop through each recieved
+        for (int i = 0; i < units.length(); i++) {
+            JSONObject unit = (JSONObject)units.get(i);
+            String name = unit.getString("name");
+            int health = unit.getInt("health");
+            int attack = unit.getInt("attack");
+            int cost = unit.getInt("cost");
+            String ability = "N/A";
+            
+            // Troop logic seems kinda silly imo
+            aTroop.createUnit(-1, health, attack, name, ability, cost);
+            Logger.getLogger(SceneManager.class.getName()).log(Level.INFO, aTroop.aggregate.toString());
+            listOfBuyPanels.add(new BuyPanel( aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1)));
+        }
+        handlePlayerPanel();
+        // update panel
+        updateBuyPanels();
+    }
+    
+    public void updatePlayerPanels() {
+        for (PlayerPanel panel : listOfPlayerPanels) {
+            playerPanel.add(panel);
+        }
+        validate();
+    }
+    private void updateBuyPanels() {
         for (BuyPanel panel : listOfBuyPanels ) {
-            cardGroup.add(panel);
+            buyPanel.add(panel);
         }
         validate();
     }
@@ -125,16 +158,13 @@ public class Shop extends javax.swing.JPanel {
         cardGroup.setBackground(new java.awt.Color(204, 255, 204));
         cardGroup.setLayout(new java.awt.GridLayout(1, 5));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 122, Short.MAX_VALUE)
-        );
+        playerPanel.setBackground(new java.awt.Color(204, 255, 102));
+        playerPanel.setPreferredSize(new java.awt.Dimension(200, 219));
+        playerPanel.setLayout(new java.awt.GridLayout());
+
+        buyPanel.setBackground(new java.awt.Color(102, 255, 102));
+        buyPanel.setPreferredSize(new java.awt.Dimension(100, 122));
+        buyPanel.setLayout(new java.awt.GridLayout());
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new GameStates[] { GameStates.LAUNCH, GameStates.LOGIN, GameStates.SIGNUP, GameStates.MAINMENU, GameStates.SHOP, GameStates.GAMESEARCH, GameStates.STARTROUND, GameStates.PLAYOUTROUND, GameStates.ENDROUND, GameStates.ENDGAME }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -147,18 +177,6 @@ public class Shop extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(canvas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(canvas3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(378, 378, 378)
-                .addComponent(jButton9)
-                .addGap(18, 18, 18)
-                .addComponent(jButton10)
-                .addContainerGap(353, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +197,7 @@ public class Shop extends javax.swing.JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(160, 160, 160)
                     .addComponent(canvas4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(740, Short.MAX_VALUE)))
+                    .addContainerGap(840, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,6 +257,7 @@ public class Shop extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel buyPanel;
     private java.awt.Canvas canvas1;
     private java.awt.Canvas canvas2;
     private java.awt.Canvas canvas3;

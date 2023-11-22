@@ -4,6 +4,13 @@
  */
 package com.team3.autobattlerserver.Network.Packets.Handle;
 
+//import com.team3.autobattlerserver.AutoBattlerServer;
+//import com.team3.autobattlerserver.Game.;
+//import com.team3.autobattlerserver.Game.GameStates;
+//import com.team3.autobattlerserver.Game.MyGameState;
+import com.team3.autobattlerserver.Client.Client;
+import com.team3.autobattlerserver.Client.ClientHandler;
+import com.team3.autobattlerserver.Game.GameStates;
 import com.team3.autobattlerserver.AutoBattlerServer;
 import com.team3.autobattlerserver.Game.GameStates;
 import com.team3.autobattlerserver.Game.MyGameState;
@@ -28,8 +35,6 @@ public class GameStateChangePacket implements PacketHandler {
     public void execute(long aId, JSONObject inputBuffer) {
         
         System.out.println("execute: Client Id: " + aId);
-
-        System.out.println("GameStateChangePacket, Recieved: " + inputBuffer);
 
         System.out.println("GameStateChangePacket, Recieved: " + inputBuffer);
         GameStates newState = inputBuffer.getEnum(GameStates.class, "gameState");
