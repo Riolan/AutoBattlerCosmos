@@ -129,49 +129,27 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
     public void changeScene(GameStates newScene) {
         System.out.println("Change Scene " + newScene.toString());
         switch (newScene){
-            case UNCONNECTED: // Show the menu
+            case UNCONNECTED -> // Show the menu
                 cardLayout.show(mainPanel, "unconnectedScene");
-            case MAINMENU:
-                // Show the menu
+            case MAINMENU -> // Show the menu
                 cardLayout.show(mainPanel, "mainMenuScene");
-           
-           case CONNECTED: // Show the menu
+           case CONNECTED -> // Show the menu
                 cardLayout.show(mainPanel, "testShop");
-                break;
-                //cardLayout.show(mainPanel, "testConnect");
-                //break;
-            case LOGIN:
-                cardLayout.show(mainPanel, "loginScene");
-                break;
-            case SIGNUP:
-                cardLayout.show(mainPanel, "signUpScene");
-                break;
-            case GAMESEARCH:
-                cardLayout.show(mainPanel, "gameSearchScene");
-                break;
-            case INGAME:
-                cardLayout.show(mainPanel, "inGameScene");
-                break;
-            case ENDGAME:
-                cardLayout.show(mainPanel, "endGameScene");
-                break;
-            case ENDROUND:
-                cardLayout.show(mainPanel, "endRoundScene");
-                break;
-            case PLAYOUTROUND:
-                cardLayout.show(mainPanel, "playOutRoundScene");
-                break;
-            case STARTROUND:
-                cardLayout.show(mainPanel, "startRoundScene");
-                break;
-            case SHOP:
-                                //cardLayout.show(mainPanel, "testConnect");
+            case LOGIN -> cardLayout.show(mainPanel, "loginScene");
+            case SIGNUP -> cardLayout.show(mainPanel, "signUpScene");
+            case GAMESEARCH -> cardLayout.show(mainPanel, "gameSearchScene");
+            case INGAME -> cardLayout.show(mainPanel, "inGameScene");
+            case ENDGAME -> cardLayout.show(mainPanel, "endGameScene");
+            case ENDROUND -> cardLayout.show(mainPanel, "endRoundScene");
+            case PLAYOUTROUND -> cardLayout.show(mainPanel, "playOutRoundScene");
+            case STARTROUND -> cardLayout.show(mainPanel, "startRoundScene");
+            case SHOP -> //cardLayout.show(mainPanel, "testConnect");
                 cardLayout.show(mainPanel, "testShop");
-                break;
-            case TESTPANE:
-                cardLayout.show(mainPanel, "testPane");
+            case TESTPANE -> cardLayout.show(mainPanel, "testPane");
         }
-
+        //cardLayout.show(mainPanel, "testConnect");
+        //break;
+        
     }
     
     
