@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class Troop {
     //private List<Unit> aggregate = new ArrayList<>();
-    private static Map<Integer, List<Unit>> aggregate = new HashMap();
+    public static Map<Integer, List<Unit>> aggregate = new HashMap();
     
     public void createUnit(int client_uuid, Unit newUnit) {
         
@@ -26,7 +26,7 @@ public class Troop {
                 newUnit.getName(), newUnit.getCost());
         // Specific information for each unit
         Unit unit = new Unit(newUnit.getHealth(),
-                newUnit.getHealth(), 
+                newUnit.getAttack(), 
                 newUnit.getType());
        
         // add unit to troop aggregate (collection of units)

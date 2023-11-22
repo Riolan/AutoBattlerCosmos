@@ -46,9 +46,7 @@ public class GameStateChangePacket implements PacketHandler {
         client.setGameState(newState);
         System.out.println("A4 client Game state:" + client.getGameState());
 
-        PacketElement packet = null;
-
-        packet = new com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket(client.getGameState());
+        PacketElement packet = new com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket(client.getGameState());
         clientHandler.sendData(packet);
     }
     

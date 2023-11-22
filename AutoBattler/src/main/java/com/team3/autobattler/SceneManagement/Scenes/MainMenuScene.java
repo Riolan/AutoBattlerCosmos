@@ -13,14 +13,11 @@ import com.team3.autobattler.Network.Packet.Create.*;
 import com.team3.autobattler.Network.Packet.Create.SearchForGamePacket;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
-import com.team3.autobattler.Network.Packet.Create.TestPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
-import com.team3.autobattler.Network.Client;
-import com.team3.autobattler.SceneManagement.SceneManager;
 
 /**
  *
- * @author Rio
+ * @author pzex
  */
 public class MainMenuScene extends javax.swing.JPanel {
 
@@ -40,139 +37,136 @@ public class MainMenuScene extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        MiddlePanel = new javax.swing.JPanel();
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        playButton = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jPanel4 = new javax.swing.JPanel();
+        startGameButton = new javax.swing.JButton();
+        logOutButton = new javax.swing.JButton();
+        planet1 = new javax.swing.JLabel();
+        planet2 = new javax.swing.JLabel();
+        planet3 = new javax.swing.JLabel();
+        currency = new javax.swing.JLabel();
+        items = new javax.swing.JLabel();
+        planet4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
-        setLayout(new java.awt.CardLayout());
-
-        jPanel1.setLayout(new java.awt.GridLayout(0, 3));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2);
-
-        MiddlePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto Battler: \nCosmos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(204, 102, 255))); // NOI18N
-        MiddlePanel.setLayout(new javax.swing.BoxLayout(MiddlePanel, javax.swing.BoxLayout.Y_AXIS));
-
-        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jSplitPane1.setTopComponent(jPanel3);
-
-        jPanel5.setLayout(new java.awt.GridLayout(2, 1));
-
-        playButton.setBackground(new java.awt.Color(255, 102, 255));
-        playButton.setFont(new java.awt.Font("Serif", 0, 48)); // NOI18N
-        playButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        playButton.setText("Play");
-        playButton.setToolTipText("");
-        playButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        playButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                playButtonMouseClicked(evt);
-            }
-        });
-        jPanel5.add(playButton);
-
-        jToggleButton1.setText("*SearchForGame (Should not be here)");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        startGameButton.setText("Start Game");
+        startGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                startGameButtonActionPerformed(evt);
             }
         });
-        jPanel5.add(jToggleButton1);
 
-        jSplitPane1.setRightComponent(jPanel5);
+        logOutButton.setText("Log Out");
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButtonActionPerformed(evt);
+            }
+        });
 
-        MiddlePanel.add(jSplitPane1);
+        planet1.setText("planet1");
 
-        jPanel1.add(MiddlePanel);
-        MiddlePanel.getAccessibleContext().setAccessibleName("MiddlePanel");
+        planet2.setText("planet2");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        planet3.setText("planet3");
+
+        currency.setText("currency");
+
+        items.setText("items");
+
+        planet4.setText("planet4");
+
+        jLabel1.setText("welcome, *insert username*");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new GameStates[] { GameStates.LAUNCH, GameStates.LOGIN, GameStates.SIGNUP, GameStates.MAINMENU, GameStates.SHOP, GameStates.GAMESEARCH, GameStates.STARTROUND, GameStates.PLAYOUTROUND, GameStates.ENDROUND, GameStates.ENDGAME }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(currency)
+                .addGap(40, 40, 40)
+                .addComponent(items)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logOutButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(startGameButton)
+                        .addGap(335, 335, 335))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(305, 305, 305))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(planet1)
+                .addGap(148, 148, 148)
+                .addComponent(planet2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addComponent(planet3)
+                .addGap(116, 116, 116)
+                .addComponent(planet4)
+                .addGap(93, 93, 93))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logOutButton)
+                    .addComponent(currency)
+                    .addComponent(items)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(84, 84, 84)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(planet1)
+                    .addComponent(planet2)
+                    .addComponent(planet3)
+                    .addComponent(planet4))
+                .addGap(110, 110, 110)
+                .addComponent(startGameButton)
+                .addGap(99, 99, 99))
         );
-
-        jPanel1.add(jPanel4);
-
-        add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        
-//        PacketElement packet = new SearchForGamePacket(true);
-//        AutoBattler.socketHandler.sendData(packet);     
+    private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
+        PacketElement statePacket = new GameStateChangePacket(GameStates.LOGIN);
+        AutoBattler.socketHandler.sendData(statePacket);   
+    }//GEN-LAST:event_logOutButtonActionPerformed
 
-        AutoBattler.sceneManager.changeScene(GameStates.SHOP);
-        
-        PacketElement packet = new ShopEntitiesPacket(true);
-        AutoBattler.socketHandler.sendData(packet);     
-        
-        
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
+        PacketElement statePacket = new GameStateChangePacket(GameStates.LOGIN);
+        AutoBattler.socketHandler.sendData(statePacket);
+        PacketElement shopPacket = new ShopEntitiesPacket(true);
+        AutoBattler.socketHandler.sendData(shopPacket);   
+    }//GEN-LAST:event_startGameButtonActionPerformed
 
-    private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseClicked
-        // TODO add your handling code here:
-        //SceneManager.getInstance().changeScene(GameStates.TESTPANE);
-        //Client.getInstance().setGameState(GameStates.GAMESEARCH);
-        PacketElement packetTest = new GameStateChangePacket(GameStates.GAMESEARCH);
-        AutoBattler.socketHandler.sendData(packetTest);
-        //System.out.println("set state" + Client.getInstance().getGameState());
-        PacketElement packet = new SearchForGamePacket(true);
-        AutoBattler.socketHandler.sendData(packet);     
-
-        //AutoBattler.socketHandler.getClient().setGameState(SHOP);
-        //PacketElement packet = new StartGamePacket();
-        //SceneManager.getInstance().changeScene(GameStates.TESTPANE);
-        //Client.getInstance().setGameState(GameStates.GAMESEARCH);
-        //PacketElement packet = new SearchForGamePacket(true);
-        //AutoBattler.socketHandler.sendData(packet);     
-    }//GEN-LAST:event_playButtonMouseClicked
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        AutoBattler.socketHandler.getClient().bypassGameState((GameStates) jComboBox1.getSelectedItem());
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel MiddlePanel;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JLabel playButton;
+    private javax.swing.JLabel currency;
+    private javax.swing.JLabel items;
+    private javax.swing.JComboBox<GameStates> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton logOutButton;
+    private javax.swing.JLabel planet1;
+    private javax.swing.JLabel planet2;
+    private javax.swing.JLabel planet3;
+    private javax.swing.JLabel planet4;
+    private javax.swing.JButton startGameButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -76,7 +76,7 @@ public class SocketHandler {
             
             
             client.setGameState(GameStates.CONNECTED);
-            client.setGameState(GameStates.MAINMENU);
+            client.setGameState(GameStates.LAUNCH);
             
             
             

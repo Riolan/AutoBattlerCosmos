@@ -5,11 +5,8 @@
 package com.team3.autobattler.Network.Packet.Handle;
 
 import com.team3.autobattler.AutoBattler;
-import com.team3.autobattler.Game.GameStateObservable;
 import com.team3.autobattler.Game.GameStates;
-import com.team3.autobattler.Game.MyGameState;
 import com.team3.autobattler.Network.Packet.PacketHandler;
-import com.team3.autobattler.Network.SocketHandler;
 import org.json.JSONObject;
 
 /**

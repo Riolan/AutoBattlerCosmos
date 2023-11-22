@@ -28,17 +28,17 @@ import javax.swing.JPanel;
  * https://stackoverflow.com/questions/3718435/refresh-jframe-after-adding-new-components
  * @author riola
  */
-public class SceneManager extends javax.swing.JFrame implements GameStateObserver {
+public class SceneManager extends javax.swing.JFrame {
     
     public static SceneManager INSTANCE;
     CardLayout cardLayout;
     JPanel mainPanel;    
     
     TestPane testPane;
+    LaunchScene launchScene;
     LoginScene loginScene;
     SignUpScene signUpScene;
     GameSearchScene gameSearchScene;
-    InGameScene inGameScene;
     EndGameScene endGameScene;
     EndRoundScene endRoundScene;
     PlayOutRoundScene playOutRoundScene;
@@ -74,10 +74,10 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
         unconnectedScene = new UnconnectedScene();
         testPane = new TestPane();
         mainMenuScene = new MainMenuScene();
+        launchScene = new LaunchScene();
         loginScene = new LoginScene();
         signUpScene = new SignUpScene();
         gameSearchScene = new GameSearchScene();
-        inGameScene = new InGameScene();
         endGameScene = new EndGameScene();
         endRoundScene = new EndRoundScene();
         playOutRoundScene = new PlayOutRoundScene();
@@ -89,10 +89,10 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
         
         // This should be the first loaded scene.
         mainPanel.add(mainMenuScene, "mainMenuScene");
+        mainPanel.add(launchScene, "launchScene");
         mainPanel.add(loginScene, "loginScene");
         mainPanel.add(signUpScene, "signUpScene");
         mainPanel.add(gameSearchScene, "gameSearchScene");
-        mainPanel.add(inGameScene, "inGameScene");
         mainPanel.add(endGameScene, "endGameScene");
         mainPanel.add(endRoundScene, "endRoundScene");
         mainPanel.add(playOutRoundScene, "playOutRoundScene");
@@ -119,10 +119,6 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
         
     }
 
-    @Override
-    public void update(Object o) {
-        changeScene((GameStates)o);
-    }
     /**
      * @param newScene 
      */
