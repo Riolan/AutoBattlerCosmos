@@ -34,6 +34,7 @@ public class ShopEntitiesPacket implements PacketHandler {
         System.out.println("--troop.getUnits(-1):" + troop.getUnits(-1));
         ClientHandler client = ClientHandler.clientHandlers.get(aId);
         client.sendData(packet);
+        System.out.println("current gamestate" + client.getClient().getGameState());
 
     }
 }

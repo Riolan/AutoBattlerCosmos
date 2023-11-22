@@ -22,14 +22,14 @@ public class MyGameState implements GameStateObserver {
     }
     
     public void setState(GameStates newState) {
-        // May need validation later.
+        // May need validation later. :)
+        if (newState == this.gameState) return;
         this.gameState = newState;
         // change scene
         SceneManager.getInstance().changeScene(newState);
-        // send to server packet with new state
         if (newState == GameStates.UNCONNECTED) return;
         PacketElement packet = new GameStateChangePacket(newState);
-        AutoBattler.socketHandler.sendData(packet);  
+        AutoBattler.socketHandler.sendData(packet);
     }
     
     

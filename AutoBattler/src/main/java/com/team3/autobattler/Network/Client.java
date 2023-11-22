@@ -49,6 +49,7 @@ public class Client implements Serializable {
      * @return 
      */
     public boolean setGameState(GameStates gameState) {
+        System.out.println("set game state");
         if (getGameState().canChangeGameState(this.getGameState(), gameState)) {
             this.gameState.setState(gameState);
             return true;
@@ -57,8 +58,10 @@ public class Client implements Serializable {
     }
     
     public static Client getInstance() {
+        System.out.println("get instance");
         if (INSTANCE == null) {
             INSTANCE = new Client();
+
         }
         return INSTANCE;
     }
