@@ -164,11 +164,6 @@ public class ClientHandler implements Runnable {
         clientHandlers.remove(this.client.user.getId());
     }
     
-    public Client getClient() {
-        return client;
-    }
-
-    
     
     /**
      * 

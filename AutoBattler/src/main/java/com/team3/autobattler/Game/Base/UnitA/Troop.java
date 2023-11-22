@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class Troop {
     //public List<Unit> aggregate = new ArrayList<>();
-    private static Map<Integer, List<Unit>> aggregate = new HashMap();
+    public static Map<Integer, List<Unit>> aggregate = new HashMap();
 
         public void createUnit(int client_uuid, Unit newUnit) {
         

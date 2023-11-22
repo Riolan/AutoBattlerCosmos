@@ -129,13 +129,13 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
     public void changeScene(GameStates newScene) {
         System.out.println("Change Scene " + newScene.toString());
         switch (newScene){
-            case UNCONNECTED -> // Show the menu
+            case UNCONNECTED: // Show the menu
                 cardLayout.show(mainPanel, "unconnectedScene");
-            case MAINMENU -> {
+            case MAINMENU:
                 // Show the menu
                 cardLayout.show(mainPanel, "mainMenuScene");
-            }
-           case CONNECTED -> // Show the menu
+           
+           case CONNECTED: // Show the menu
                 cardLayout.show(mainPanel, "testShop");
                 break;
                 //cardLayout.show(mainPanel, "testConnect");
