@@ -22,9 +22,20 @@ public class Client implements Serializable, GameStateObservable {
     private List<Unit> units;
     private List<GameStateObserver> observers = new ArrayList<>();
     
+    
     public Client() {
         this.user = new User();
     }
+    
+    
+    public List<Unit> getUnits() {
+        return units;
+    }
+    
+    void setUnits(List<Unit> units) {
+        this.units = units;
+    }
+    
     
     public int getCurrency() {
         return currency;

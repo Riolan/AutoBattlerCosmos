@@ -25,7 +25,6 @@ public class MyGameState implements GameStateObserver {
         // May need validation later. :)
         if (newState == this.gameState) return;
         this.gameState = newState;
-        // change scene
         SceneManager.getInstance().changeScene(newState);
         if (newState == GameStates.UNCONNECTED) return;
     } 

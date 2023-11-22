@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 /**
  *
- * @author Rio
+ * @author riola
 */
 public interface PacketHandler {
     // The collection of bytes which make up 
