@@ -13,11 +13,12 @@ import com.team3.autobattler.Network.Packet.PacketHandler;
  */
 public class PacketHandlerFactory {
     public PacketHandler make(int packetId) {
-        switch (packetId) {
-            case 0: return new TestPacket();
-            case 1: return new GameStateChangePacket();
-            case 2: return new ShopEntitiesPacket();
-            default: return new TestPacket();
-        }
+        return switch (PacketBuilder.values()[packetId]) {
+            case TEST -> new TestPacket();
+            case SCENECHANGE -> new GameStateChangePacket();
+            case SHOP -> new ShopEntitiesPacket();
+            default -> new TestPacket();
+        }; //case SEARCHFORGAME: return new SearchForGamePacket();
+        //case STARTGAME: return new StartGamePacket();
     }    
 }

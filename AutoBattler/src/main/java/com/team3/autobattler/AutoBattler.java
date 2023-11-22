@@ -72,7 +72,8 @@ public class AutoBattler {
                 // This might cause a memory leak not sure (?)
                 // I dont actually think it does
                 while (!hasConnected) {
-                    socketHandler.getClient().setGameState(GameStates.UNCONNECTED);
+                    socketHandler.getClient().bypassGameState(GameStates.UNCONNECTED);
+                    //socketHandler.getClient().setGameState(GameStates.UNCONNECTED);
                     my.unconnectedLabel.setText("Socket Handler Connect Error: Connection refused: no further information");
                     hasConnected = AutoBattler.socketHandler.connect(ip, port);
                     // Every 3 seconds try to connect to the server with the same ip & port
