@@ -36,34 +36,27 @@ public class LaunchScene extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
-        setLayout(null);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Auto Battler Cosmos");
-        add(jLabel1);
-        jLabel1.setBounds(410, 160, 116, 15);
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/team3/autobattler/SceneManagement/Scenes/SceneImages/playButton.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
-        add(jLabel2);
-        jLabel2.setBounds(419, 361, 100, 100);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 361, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new GameStates[] { GameStates.LAUNCH, GameStates.LOGIN, GameStates.SIGNUP, GameStates.MAINMENU, GameStates.SHOP, GameStates.GAMESEARCH, GameStates.STARTROUND, GameStates.PLAYOUTROUND, GameStates.ENDROUND, GameStates.ENDGAME }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        add(jComboBox1);
-        jComboBox1.setBounds(765, 6, 129, 21);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/team3/autobattler/SceneManagement/Scenes/SceneImages/spaceBackground.jpeg"))); // NOI18N
-        add(jLabel4);
-        jLabel4.setBounds(-10, 0, 910, 610);
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 6, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 910, 610));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -78,7 +71,7 @@ public class LaunchScene extends javax.swing.JPanel {
     
     // jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new GameStates[] { GameStates.LAUNCH, GameStates.LOGIN, GameStates.SIGNUP, GameStates.MAINMENU, GameStates.SHOP, GameStates.GAMESEARCH, GameStates.STARTROUND, GameStates.PLAYOUTROUND, GameStates.ENDROUND, GameStates.ENDGAME }));
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<GameStates> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
