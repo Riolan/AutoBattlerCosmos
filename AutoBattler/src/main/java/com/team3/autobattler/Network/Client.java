@@ -14,19 +14,17 @@ import java.io.Serializable;
  * @author Rio
  */
 public class Client implements Serializable {
-    public static Client INSTANCE;
     static User user;
     
 
     // Client's Game State
-    MyGameState gameState;
+    GameStates gameState = GameStates.UNCONNECTED;
     // Observer changes with Client's Game State
     GameStateObservable observable; 
             
     public Client() {
         observable = new GameStateObservable();
-        gameState = new MyGameState();
-        observable.addObserver(gameState);
+        observable.addObserver(new MyGameState(gameState));
         
     }
     
@@ -39,7 +37,7 @@ public class Client implements Serializable {
     }
     
     public GameStates getGameState() {
-        return gameState.getState();
+        return gameState;
     }
     
 
@@ -49,22 +47,18 @@ public class Client implements Serializable {
      * @return 
      */
     public boolean setGameState(GameStates gameState) {
-        System.out.println("set game state");
+        System.out.println("set game state" + gameState);
         if (getGameState().canChangeGameState(this.getGameState(), gameState)) {
-            this.gameState.setState(gameState);
+            this.gameState = gameState;
+            observable.setGameState(gameState);
             return true;
         }
         return false;
     }
     
-    public static Client getInstance() {
-        System.out.println("get instance");
-        if (INSTANCE == null) {
-            INSTANCE = new Client();
-
-        }
-        return INSTANCE;
+    // temporary function to switch to any game state for testing purposes
+    public void bypassGameState(GameStates gameState) {
+        this.gameState = gameState;
+        observable.setGameState(gameState);
     }
-    
-    
 }

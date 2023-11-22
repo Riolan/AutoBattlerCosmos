@@ -75,7 +75,7 @@ public class SocketHandler {
             // if able to connect
             //client = new Client();
             client.setGameState(GameStates.CONNECTED);
-            client.setGameState(GameStates.MAINMENU);
+            client.setGameState(GameStates.LAUNCH);
             
             // Close listener (old)
             if (listener != null && listener.isAlive()) {

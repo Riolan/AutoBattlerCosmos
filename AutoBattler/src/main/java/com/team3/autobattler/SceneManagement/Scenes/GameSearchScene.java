@@ -4,7 +4,10 @@
  */
 package com.team3.autobattler.SceneManagement.Scenes;
 
+import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
+import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
+import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.SceneManagement.SceneManager;
 
 /**
@@ -31,6 +34,7 @@ public class GameSearchScene extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Searching for opponent...");
 
@@ -41,38 +45,57 @@ public class GameSearchScene extends javax.swing.JPanel {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new GameStates[] { GameStates.LAUNCH, GameStates.LOGIN, GameStates.SIGNUP, GameStates.MAINMENU, GameStates.SHOP, GameStates.GAMESEARCH, GameStates.STARTROUND, GameStates.PLAYOUTROUND, GameStates.ENDROUND, GameStates.ENDGAME }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(377, Short.MAX_VALUE)
+                .addGap(398, 398, 398)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(383, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addContainerGap(376, Short.MAX_VALUE))
+                        .addGap(371, 371, 371))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(260, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addGap(143, 143, 143)
                 .addComponent(jButton1)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SceneManager.getInstance().changeScene(GameStates.STARTROUND);
+        PacketElement statePacket = new GameStateChangePacket(GameStates.STARTROUND);
+        AutoBattler.socketHandler.sendData(statePacket);   
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        AutoBattler.socketHandler.getClient().bypassGameState((GameStates) jComboBox1.getSelectedItem());
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<GameStates> jComboBox1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

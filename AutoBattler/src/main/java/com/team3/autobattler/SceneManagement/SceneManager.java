@@ -26,7 +26,7 @@ import javax.swing.JPanel;
  * https://stackoverflow.com/questions/3718435/refresh-jframe-after-adding-new-components
  * @author riola
  */
-public class SceneManager extends javax.swing.JFrame implements GameStateObserver {
+public class SceneManager extends javax.swing.JFrame {
     
     public static SceneManager INSTANCE;
     CardLayout cardLayout;
@@ -35,10 +35,10 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
     TestPane testPane;
     //ConnectToServer testConnect;
     //
+    LaunchScene launchScene;
     LoginScene loginScene;
     SignUpScene signUpScene;
     GameSearchScene gameSearchScene;
-    InGameScene inGameScene;
     EndGameScene endGameScene;
     EndRoundScene endRoundScene;
     PlayOutRoundScene playOutRoundScene;
@@ -75,10 +75,10 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
         testPane = new TestPane();
         //testConnect = new ConnectToServer();
         mainMenuScene = new MainMenuScene();
+        launchScene = new LaunchScene();
         loginScene = new LoginScene();
         signUpScene = new SignUpScene();
         gameSearchScene = new GameSearchScene();
-        inGameScene = new InGameScene();
         endGameScene = new EndGameScene();
         endRoundScene = new EndRoundScene();
         playOutRoundScene = new PlayOutRoundScene();
@@ -91,10 +91,10 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
         // This should be the first loaded scene.
        // mainPanel.add(unconnectedScene, "unconnectedScene");
         mainPanel.add(mainMenuScene, "mainMenuScene");
+        mainPanel.add(launchScene, "launchScene");
         mainPanel.add(loginScene, "loginScene");
         mainPanel.add(signUpScene, "signUpScene");
         mainPanel.add(gameSearchScene, "gameSearchScene");
-        mainPanel.add(inGameScene, "inGameScene");
         mainPanel.add(endGameScene, "endGameScene");
         mainPanel.add(endRoundScene, "endRoundScene");
         mainPanel.add(playOutRoundScene, "playOutRoundScene");
@@ -121,10 +121,6 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
         
     }
 
-    @Override
-    public void update(Object o) {
-        changeScene((GameStates)o);
-    }
     /**
      * Ok, this is pretty bad implementation. Would like to set up an
      * observer so it just updates when gameState is updated. It is literally
@@ -138,11 +134,14 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
                 // Show the menu
                 cardLayout.show(mainPanel, "unconnectedScene");
                 break;
+            case LAUNCH:
+                cardLayout.show(mainPanel, "launchScene");
+                break;
             case MAINMENU:
                 // Show the menu
                 cardLayout.show(mainPanel, "mainMenuScene");
                 break;
-           case CONNECTED:
+            case CONNECTED:
                 // Show the menu
                 cardLayout.show(mainPanel, "testShop");
                 break;
@@ -156,9 +155,6 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
                 break;
             case GAMESEARCH:
                 cardLayout.show(mainPanel, "gameSearchScene");
-                break;
-            case INGAME:
-                cardLayout.show(mainPanel, "inGameScene");
                 break;
             case ENDGAME:
                 cardLayout.show(mainPanel, "endGameScene");

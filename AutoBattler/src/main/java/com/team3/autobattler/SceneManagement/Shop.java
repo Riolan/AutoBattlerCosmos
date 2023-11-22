@@ -9,6 +9,9 @@ import com.team3.autobattler.Game.Base.Player;
 import com.team3.autobattler.Game.Base.Item;
 import com.team3.autobattler.Game.Base.UnitA.*;
 import com.team3.autobattler.Game.Factories.ItemFactory;
+import com.team3.autobattler.Game.GameStates;
+import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
+import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
 import com.team3.autobattler.Network.Packet.Create.TestPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.SceneManagement.Scenes.BuyPanel;
@@ -93,9 +96,10 @@ public class Shop extends javax.swing.JPanel {
         canvas4 = new java.awt.Canvas();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        changeSceneButton = new javax.swing.JButton();
         cardGroup = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jButton9.setText("Reroll");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -111,10 +115,10 @@ public class Shop extends javax.swing.JPanel {
             }
         });
 
-        jButton11.setText("Change Scene");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        changeSceneButton.setText("Change Scene");
+        changeSceneButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                changeSceneButtonActionPerformed(evt);
             }
         });
 
@@ -131,6 +135,13 @@ public class Shop extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 122, Short.MAX_VALUE)
         );
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new GameStates[] { GameStates.LAUNCH, GameStates.LOGIN, GameStates.SIGNUP, GameStates.MAINMENU, GameStates.SHOP, GameStates.GAMESEARCH, GameStates.STARTROUND, GameStates.PLAYOUTROUND, GameStates.ENDROUND, GameStates.ENDGAME }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -151,17 +162,19 @@ public class Shop extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(cardGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton11)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(changeSceneButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(160, 160, 160)
@@ -181,9 +194,15 @@ public class Shop extends javax.swing.JPanel {
                             .addComponent(canvas2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(80, 80, 80))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton11)
-                        .addGap(49, 49, 49)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(changeSceneButton)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
                         .addComponent(cardGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)))
@@ -207,12 +226,16 @@ public class Shop extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void changeSceneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeSceneButtonActionPerformed
         // TODO add your handling code here:
         
-        PacketElement packet = new TestPacket("Ping!");
-        AutoBattler.socketHandler.sendData(packet);        
-    }//GEN-LAST:event_jButton11ActionPerformed
+        PacketElement statePacket = new GameStateChangePacket(GameStates.GAMESEARCH);
+        AutoBattler.socketHandler.sendData(statePacket);    
+    }//GEN-LAST:event_changeSceneButtonActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        AutoBattler.socketHandler.getClient().bypassGameState((GameStates) jComboBox1.getSelectedItem());
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -221,9 +244,10 @@ public class Shop extends javax.swing.JPanel {
     private java.awt.Canvas canvas3;
     private java.awt.Canvas canvas4;
     private javax.swing.JPanel cardGroup;
+    private javax.swing.JButton changeSceneButton;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox<GameStates> jComboBox1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.team3.autobattler.SceneManagement.Scenes;
+import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
-import com.team3.autobattler.SceneManagement.SceneManager;
+import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
+import com.team3.autobattler.Network.Packet.PacketElement;
 /**
  *
  * @author pzex
@@ -35,6 +37,7 @@ public class SignUpScene extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         usernameErrorMsg = new javax.swing.JLabel();
         passwordErrorMsg = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Sign Up");
 
@@ -71,6 +74,13 @@ public class SignUpScene extends javax.swing.JPanel {
 
         jLabel3.setText("Password:");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new GameStates[] { GameStates.LAUNCH, GameStates.LOGIN, GameStates.SIGNUP, GameStates.MAINMENU, GameStates.SHOP, GameStates.GAMESEARCH, GameStates.STARTROUND, GameStates.PLAYOUTROUND, GameStates.ENDROUND, GameStates.ENDGAME }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,12 +110,17 @@ public class SignUpScene extends javax.swing.JPanel {
                         .addGap(422, 422, 422))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(signUpButton)
-                        .addGap(408, 408, 408))))
+                        .addGap(408, 408, 408))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
+                .addContainerGap()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105)
                 .addComponent(jLabel1)
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -137,7 +152,8 @@ public class SignUpScene extends javax.swing.JPanel {
         String passwordVal = new String(password.getPassword());
         
         if(usernameVal.length() >= 1 && passwordVal.length() >= 8) {
-            SceneManager.getInstance().changeScene(GameStates.MAINMENU);
+            PacketElement statePacket = new GameStateChangePacket(GameStates.MAINMENU);
+            AutoBattler.socketHandler.sendData(statePacket);
         }
         if(usernameVal.length() < 1) {
             usernameErrorMsg.setText("Please enter a username");
@@ -161,8 +177,13 @@ public class SignUpScene extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordKeyTyped
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        AutoBattler.socketHandler.getClient().bypassGameState((GameStates) jComboBox1.getSelectedItem());
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<GameStates> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

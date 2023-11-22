@@ -23,8 +23,7 @@ public class Battle{
         this.playerOne = playerOneHandler.getClient();
         this.playerTwo = playerTwoHandler.getClient();
         
-        playerOne.setGameState(GameStates.INGAME);
-        playerTwo.setGameState(GameStates.INGAME);
+
         
         
         
