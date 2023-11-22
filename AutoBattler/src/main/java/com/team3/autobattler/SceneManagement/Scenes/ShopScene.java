@@ -53,16 +53,16 @@ public class ShopScene extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(290, 290, 290)
+                .addGap(409, 409, 409)
                 .addComponent(jButton3)
-                .addContainerGap(721, Short.MAX_VALUE))
+                .addContainerGap(413, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
+                .addGap(277, 277, 277)
                 .addComponent(jButton3)
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

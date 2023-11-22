@@ -8,6 +8,7 @@ import com.team3.autobattler.Game.GameStateObservable;
 import com.team3.autobattler.Game.GameStateObserver;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Game.MyGameState;
+import com.team3.autobattler.Network.Client;
 import com.team3.autobattler.SceneManagement.Scenes.*;
 import java.awt.CardLayout;
 import java.awt.Image;
@@ -25,7 +26,7 @@ import javax.swing.JPanel;
  * https://stackoverflow.com/questions/3718435/refresh-jframe-after-adding-new-components
  * @author riola
  */
-public class SceneManager extends javax.swing.JFrame {
+public class SceneManager extends javax.swing.JFrame implements GameStateObserver {
     
     public static SceneManager INSTANCE;
     CardLayout cardLayout;
@@ -35,6 +36,13 @@ public class SceneManager extends javax.swing.JFrame {
     //ConnectToServer testConnect;
     //
     LoginScene loginScene;
+    SignUpScene signUpScene;
+    GameSearchScene gameSearchScene;
+    InGameScene inGameScene;
+    EndGameScene endGameScene;
+    EndRoundScene endRoundScene;
+    PlayOutRoundScene playOutRoundScene;
+    StartRoundScene startRoundScene;
     //ShopScene shopScene;
     ImagePanel imagePanel;
     Shop testShop;
@@ -68,6 +76,13 @@ public class SceneManager extends javax.swing.JFrame {
         //testConnect = new ConnectToServer();
         mainMenuScene = new MainMenuScene();
         loginScene = new LoginScene();
+        signUpScene = new SignUpScene();
+        gameSearchScene = new GameSearchScene();
+        inGameScene = new InGameScene();
+        endGameScene = new EndGameScene();
+        endRoundScene = new EndRoundScene();
+        playOutRoundScene = new PlayOutRoundScene();
+        startRoundScene = new StartRoundScene();
         //shopScene = new ShopScene();
         imagePanel = new ImagePanel();
         testShop = new Shop();
@@ -77,6 +92,13 @@ public class SceneManager extends javax.swing.JFrame {
        // mainPanel.add(unconnectedScene, "unconnectedScene");
         mainPanel.add(mainMenuScene, "mainMenuScene");
         mainPanel.add(loginScene, "loginScene");
+        mainPanel.add(signUpScene, "signUpScene");
+        mainPanel.add(gameSearchScene, "gameSearchScene");
+        mainPanel.add(inGameScene, "inGameScene");
+        mainPanel.add(endGameScene, "endGameScene");
+        mainPanel.add(endRoundScene, "endRoundScene");
+        mainPanel.add(playOutRoundScene, "playOutRoundScene");
+        mainPanel.add(startRoundScene, "startRoundScene");
         mainPanel.add(unconnectedScene, "unconnectedScene");
         mainPanel.add(testPane, "testPane");
         mainPanel.add(imagePanel, "imagePanel");
@@ -99,6 +121,10 @@ public class SceneManager extends javax.swing.JFrame {
         
     }
 
+    @Override
+    public void update(Object o) {
+        changeScene((GameStates)o);
+    }
     /**
      * Ok, this is pretty bad implementation. Would like to set up an
      * observer so it just updates when gameState is updated. It is literally
@@ -125,10 +151,33 @@ public class SceneManager extends javax.swing.JFrame {
             case LOGIN:
                 cardLayout.show(mainPanel, "loginScene");
                 break;
+            case SIGNUP:
+                cardLayout.show(mainPanel, "signUpScene");
+                break;
+            case GAMESEARCH:
+                cardLayout.show(mainPanel, "gameSearchScene");
+                break;
+            case INGAME:
+                cardLayout.show(mainPanel, "inGameScene");
+                break;
+            case ENDGAME:
+                cardLayout.show(mainPanel, "endGameScene");
+                break;
+            case ENDROUND:
+                cardLayout.show(mainPanel, "endRoundScene");
+                break;
+            case PLAYOUTROUND:
+                cardLayout.show(mainPanel, "playOutRoundScene");
+                break;
+            case STARTROUND:
+                cardLayout.show(mainPanel, "startRoundScene");
+                break;
             case SHOP:
                                 //cardLayout.show(mainPanel, "testConnect");
                 cardLayout.show(mainPanel, "testShop");
-                //break;
+                break;
+            case TESTPANE:
+                cardLayout.show(mainPanel, "testPane");
         }
 
     }

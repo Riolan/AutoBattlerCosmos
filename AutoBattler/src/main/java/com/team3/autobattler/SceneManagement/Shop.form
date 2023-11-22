@@ -28,7 +28,7 @@
               <Component id="jButton9" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton10" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="353" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -53,7 +53,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                   <Component id="canvas4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="413" max="32767" attributes="0"/>
+                  <EmptySpace pref="740" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -76,7 +76,7 @@
                       <Component id="jButton11" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="259" max="32767" attributes="0"/>
+                      <EmptySpace pref="236" max="32767" attributes="0"/>
                       <Component id="cardGroup" min="-2" pref="111" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>

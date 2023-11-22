@@ -27,7 +27,8 @@ public enum GameStates {
     PLAYOUTROUND(Arrays.asList(new GameStates[]{})),
     SHOP(Arrays.asList(new GameStates[]{})),
     STARTROUND(Arrays.asList(new GameStates[]{})),
-    CONNECTED(Arrays.asList(new GameStates[]{}));
+    CONNECTED(Arrays.asList(new GameStates[]{})),
+    TESTPANE(Arrays.asList(new GameStates[]{}));
 
     private List<GameStates> validStates = new LinkedList<GameStates>();
 

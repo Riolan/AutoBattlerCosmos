@@ -35,7 +35,7 @@ public abstract class Battler {
         return units.get(index);
     }
     
-    public void setUnits(int index, Unit unit) {
+    public void setUnit(int index, Unit unit) {
         this.units.set(index, unit);
         
     }
