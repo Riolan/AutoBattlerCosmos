@@ -127,9 +127,6 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
     
     
     /**
-     * Ok, this is pretty bad implementation. Would like to set up an
-     * observer so it just updates when gameState is updated. It is literally
-     * based on the game state so.....
      * @param newScene 
      */
     public void changeScene(GameStates newScene) {

@@ -4,20 +4,23 @@
  */
 package com.team3.autobattler.Game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Hi 
+ * NewsAgency
  * @author Rio
  */
 public class GameStateObservable {
     private GameStates gameState;
-    private GameStateObserver observer;
+    private List<GameStateObserver> observers = new ArrayList<>();
     
     /**
      * 
      * @param observer 
      */
     public void addObserver(GameStateObserver observer) {
-        this.observer = observer;
+        this.observers.add(observer);
     }
     
     /**
@@ -25,7 +28,7 @@ public class GameStateObservable {
      * @param observer 
      */
     public void removeObserver(GameStateObserver observer) {
-        this.observer = null;
+        this.observers.add(observer);
     }
     
     /**
@@ -34,15 +37,11 @@ public class GameStateObservable {
      */
     public void setGameState(GameStates gameState) {
         // validation might be placed here
-        if (observer.equals(null)) {
-            // Throw error, no observer is defined.
-            return;
-        }
-        
-        System.out.println("Observer gamestate change:" + gameState);
         this.gameState = gameState;
-        observer.update(gameState);
+        
+        System.out.println("Observer gamestate change: " + gameState);
+        for (GameStateObserver observer : this.observers) {
+            observer.update(gameState);
+        }
     }
-    
-    
 }

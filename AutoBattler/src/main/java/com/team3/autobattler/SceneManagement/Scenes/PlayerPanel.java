@@ -13,8 +13,15 @@ import com.team3.autobattler.Game.Base.UnitA.Unit;
 public class PlayerPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form BuyPanel
+     * Creates new form PlayerPanel
      */
+    public PlayerPanel() {
+        initComponents();
+
+        unitNameLabel.setText( "Buy units.");
+        unitStatsLabel.setText("");
+    }
+    
     public PlayerPanel(Unit unit) {
         initComponents();
 

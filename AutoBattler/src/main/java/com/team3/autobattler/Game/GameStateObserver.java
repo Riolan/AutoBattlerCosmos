@@ -5,7 +5,7 @@
 package com.team3.autobattler.Game;
 
 /**
- *
+ * Channel
  * @author Rio
  */
 public interface GameStateObserver {

@@ -5,9 +5,13 @@
 package com.team3.autobattler.Network;
 
 import com.team3.autobattler.Game.GameStateObservable;
+import com.team3.autobattler.Game.GameStateObserver;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Game.MyGameState;
+import com.team3.autobattler.SceneManagement.SceneManager;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,12 +25,17 @@ public class Client implements Serializable {
     GameStates gameState = GameStates.UNCONNECTED;
     // Observer changes with Client's Game State
     GameStateObservable observable; 
+    
             
     public Client() {
         observable = new GameStateObservable();
-        observable.addObserver(new MyGameState(gameState));
-        
+        observable.addObserver(new MyGameState(this.gameState));
+        observable.addObserver(SceneManager.getInstance());
     }
+    
+    
+    
+    
     
     public User getUser() {
         return user;
@@ -47,10 +56,11 @@ public class Client implements Serializable {
      * @return 
      */
     public boolean setGameState(GameStates gameState) {
-        System.out.println("set game state" + gameState);
+        System.out.println("Set game state: " + gameState);
         if (getGameState().canChangeGameState(this.getGameState(), gameState)) {
-            this.gameState = gameState;
-            observable.setGameState(gameState);
+            // Update the observerables game state
+            // this automatically notifies observers
+            this.observable.setGameState(gameState);
             return true;
         }
         return false;
@@ -59,6 +69,9 @@ public class Client implements Serializable {
     // temporary function to switch to any game state for testing purposes
     public void bypassGameState(GameStates gameState) {
         this.gameState = gameState;
-        observable.setGameState(gameState);
+        //observable.setGameState(gameState);
     }
+
+    
+    
 }

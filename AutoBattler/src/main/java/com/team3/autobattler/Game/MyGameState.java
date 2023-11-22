@@ -21,11 +21,12 @@ public class MyGameState implements GameStateObserver {
         this.setState((GameStates) o);
     }
     
+    // Standard setter and getter
     public void setState(GameStates newState) {
-        // May need validation later. :)
-        if (newState == this.gameState) return;
         this.gameState = newState;
-        SceneManager.getInstance().changeScene(newState);
-        if (newState == GameStates.UNCONNECTED) return;
-    } 
+    }
+    
+    public GameStates getState() {
+        return gameState;
+    }
 }

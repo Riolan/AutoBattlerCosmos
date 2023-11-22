@@ -20,7 +20,7 @@ public class GameBoard {
         this.troop = new Troop();
         
         // Add units to the troop
-        troop.createUnit(5, 5, "Earth", "Earth Ability", 5);
+        //troop.createUnit(5, 5, "Earth", "Earth Ability", 5);
         
     }
     
