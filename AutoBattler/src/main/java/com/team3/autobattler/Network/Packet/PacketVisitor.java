@@ -16,4 +16,5 @@ public interface PacketVisitor {
     JSONObject visit(GameStateChangePacket packet);
     JSONObject visit(ShopEntitiesPacket packet);
     JSONObject visit(SearchForGamePacket packet);
+    JSONObject visit(StartGamePacket packet);
 }

@@ -18,20 +18,9 @@ public class Client implements Serializable {
     int currency;
     private List<Unit> units;
     
-    
     public Client() {
         this.user = new User();
     }
-    
-    
-    public List<Unit> getUnits() {
-        return units;
-    }
-    
-    void setUnits(List<Unit> units) {
-        this.units = units;
-    }
-    
     
     public int getCurrency() {
         return currency;

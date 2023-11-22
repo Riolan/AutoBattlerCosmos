@@ -5,12 +5,11 @@
 package com.team3.autobattler.Network.Packet;
 
 /**
- *  This should be under a shared repo for both the server and client.
- *  Later to be used as a set way for keep track of discrete packets
- * @author riola
+ * Used as a set way for keep track of discrete packets (Should be shared.)
+ * @author Rio
  */
 public enum PacketBuilder {
-    TEST(0), SCENECHANGE(1), SHOP(2), SEARCHFORGAME(3);
+    TEST(0), SCENECHANGE(1), SHOP(2), SEARCHFORGAME(3), STARTGAME(4);
     
     private final int id;
     

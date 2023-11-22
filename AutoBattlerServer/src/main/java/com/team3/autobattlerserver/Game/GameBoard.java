@@ -22,23 +22,17 @@ public class GameBoard {
             throw new IllegalAccessException("You cannot construct an instance of the GameBoard class. Please use the getInstance() function.");
         }
         this.troop = new Troop();
-        
-        //System.out.println("Adding units to troop");
-  
-        /* Custom way to add units
-        
-        uhhhhhhhhhhhh something may be off 
-        the the memlocation is the same so like if called again???
-        IT IS NOT YUAYYY
-        
-        
-        */
+
+        /* Custom way to add units  */
 //        UnitReader unitReader = new UnitReader();
 //        //System.out.println(UnitReader.values);
 //        //System.out.println("================");
 //        troop.createUnit(-1, UnitReader.values.get(0));
 //        troop.createUnit(-1, UnitReader.values.get(0));
         //System.out.println("================");
+       
+        
+        
         /* 
            Add units to the troop
            intrinsic - state that naturally belongs to the 'FlyWeight' object and 
@@ -51,6 +45,7 @@ public class GameBoard {
             extrinsic - state that belongs to the context of the object (external) 
             or unique to that instance
         */
+        
         
         // Units extrensic types are: associated client, health, attack
         

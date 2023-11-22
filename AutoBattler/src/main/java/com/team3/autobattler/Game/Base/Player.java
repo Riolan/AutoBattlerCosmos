@@ -18,7 +18,8 @@ import java.util.List;
  */
 public class Player extends Battler {
     public static Player INSTANCE;
-    
+    private List<Unit> units = new ArrayList<Unit>();
+
     private int gold = 10;
 
     // Not really a neccessary component
@@ -30,6 +31,7 @@ public class Player extends Battler {
         if (INSTANCE != null) {
             throw new IllegalAccessException("You cannot construct an instance of the Player class. Please use the getInstance() function.");
         }
+
         
     }
 
@@ -45,7 +47,6 @@ public class Player extends Battler {
 
         return INSTANCE;
     }
-    private List<Unit> units = new ArrayList<Unit>();
           /* Could be nullable */
     public void addUnit(Unit unit) {
         units.add(unit);
@@ -64,7 +65,7 @@ public class Player extends Battler {
     
     /* Could be nullable */
     public Unit getUnit(int index) {
-        if (units.size() <= 0) return null;
+        if (units.size() < index+1) return null;
         return units.get(index);
     }
     

@@ -5,9 +5,11 @@
 package com.team3.autobattler.SceneManagement.Scenes;
 
 import com.team3.autobattler.AutoBattler;
+import com.team3.autobattler.Game.Base.Player;
 import com.team3.autobattler.Game.GameStates;
 import static com.team3.autobattler.Game.GameStates.SHOP;
-import com.team3.autobattler.Network.Packet.Create.SearchForGamePacket;
+import com.team3.autobattler.Network.Client;
+import com.team3.autobattler.Network.Packet.Create.*;
 import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
 import com.team3.autobattler.Network.Packet.Create.TestPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
@@ -41,7 +43,7 @@ public class MainMenuScene extends javax.swing.JPanel {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        playButton = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jPanel4 = new javax.swing.JPanel();
 
@@ -82,15 +84,20 @@ public class MainMenuScene extends javax.swing.JPanel {
 
         jPanel5.setLayout(new java.awt.GridLayout(2, 1));
 
-        jLabel1.setText("Search For Game");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        playButton.setBackground(new java.awt.Color(255, 102, 255));
+        playButton.setFont(new java.awt.Font("Serif", 0, 48)); // NOI18N
+        playButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        playButton.setText("Play");
+        playButton.setToolTipText("");
+        playButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        playButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                playButtonMouseClicked(evt);
             }
         });
-        jPanel5.add(jLabel1);
+        jPanel5.add(playButton);
 
-        jToggleButton1.setText("jToggleButton1");
+        jToggleButton1.setText("*SearchForGame (Should not be here)");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -135,18 +142,17 @@ public class MainMenuScene extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseClicked
         // TODO add your handling code here:
 
-        PacketElement packet = new SearchForGamePacket(true);
+        AutoBattler.socketHandler.getClient().setGameState(SHOP);
+        PacketElement packet = new StartGamePacket();
         AutoBattler.socketHandler.sendData(packet);     
-
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_playButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MiddlePanel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -154,5 +160,6 @@ public class MainMenuScene extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel playButton;
     // End of variables declaration//GEN-END:variables
 }

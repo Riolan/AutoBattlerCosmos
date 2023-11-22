@@ -100,6 +100,7 @@ public class ClientHandler implements Runnable {
 
                 jsonObject = new JSONObject(message);
 
+                // Testing purposes
                 clientGUI.jTextPane1.setText(clientGUI.jTextPane1.getText() + jsonObject.toString(2) + '\n');
 
                 int packetId = jsonObject.getInt("id");
@@ -109,7 +110,8 @@ public class ClientHandler implements Runnable {
                 PacketHandler packet = packetHandlerFactory.make(packetId);
                 // Excute the packet (closer to handle)
                 packet.execute(this.client.user.getId(), jsonObject);
-
+                // Testing purposes
+                clientGUI.clientState.setText(client.getGameState().name());
             } catch (IOException e) {
                 
                 System.out.println("Client " + socket.toString() + " has disconnected: " + e.getMessage());
@@ -118,6 +120,18 @@ public class ClientHandler implements Runnable {
             }
         }
     }
+    
+    
+    public Client getClient() {
+        return client;
+    }
+    
+    
+    
+    
+    
+    
+    
 
     private PacketVisitor visitor = new PacketVisitorImpl();
     /**

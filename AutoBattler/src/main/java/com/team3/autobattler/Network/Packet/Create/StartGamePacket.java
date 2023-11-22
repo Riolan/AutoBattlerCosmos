@@ -15,21 +15,21 @@ import org.json.JSONObject;
  * Another test packet using visitor dp
  * @author Rio
  */
-public class TestPacket implements PacketElement {
+public class StartGamePacket implements PacketElement {
     // Required ID for each packet
-    private int id = PacketBuilder.TEST.getId();
-    private String ping;
+    private int id = PacketBuilder.STARTGAME.getId();
     
     Field fld[] = this.getClass().getDeclaredFields();
     
     /**
      * This is a test packer which is used to ensure viability as well
      * as to demonstrate how a packet should be set up.
-     * @param ping
+     * 
      */
-    public TestPacket(String ping) {
+    public StartGamePacket() {
         init();
-        this.ping = ping;
+        
+        
         for(Field x : fld) {
             if (x.getName().equals("fld")) continue;
             try {
