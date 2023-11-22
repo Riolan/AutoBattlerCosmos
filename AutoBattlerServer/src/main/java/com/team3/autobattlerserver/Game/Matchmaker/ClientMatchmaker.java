@@ -5,6 +5,7 @@
 package com.team3.autobattlerserver.Game.Matchmaker;
 
 import com.team3.autobattlerserver.Client.ClientHandler;
+import com.team3.autobattlerserver.Game.Battle;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -38,11 +39,20 @@ public class ClientMatchmaker {
             public void run() {
                 Date x = new Date();
                 System.out.println(x + " - " + clientQueue);
+                
+                if (clientQueue.size() >= 2) {
+                    System.out.println("match found");
+                    for (int i = 0; i < clientQueue.size() / 2; i++ ) {
+                        ClientHandler playerOne = clientQueue.remove();
+                        ClientHandler playerTwo = clientQueue.remove();
+                        new Battle(playerOne, playerTwo);
+                    }
+                    
+                }
             }
         }, 0, 5, TimeUnit.SECONDS);
         
     }
-    
     
     /**
      * Retrieves the singleton instance.
@@ -67,4 +77,7 @@ public class ClientMatchmaker {
         clientQueue.add(newClient);
     }
     
+    public void removeClient(ClientHandler client) {
+        clientQueue.remove(client);
+    }
 }

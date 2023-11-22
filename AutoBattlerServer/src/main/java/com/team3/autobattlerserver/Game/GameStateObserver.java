@@ -12,7 +12,7 @@ public interface GameStateObserver {
     /**
      * This function is invoked when the state of 
      * GameStateObservable changes.
-     * @param o 
+     * @param o
      */
     public void update(Object o);
 }
