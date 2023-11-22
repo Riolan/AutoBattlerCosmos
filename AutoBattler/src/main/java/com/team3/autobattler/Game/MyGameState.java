@@ -22,7 +22,7 @@ public class MyGameState implements GameStateObserver {
     }
     
     public void setState(GameStates newState) {
-        // May need validation later.
+        // May need validation later. :)
         if (newState == this.gameState) return;
         this.gameState = newState;
         SceneManager.getInstance().changeScene(newState);
