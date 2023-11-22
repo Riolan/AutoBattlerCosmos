@@ -41,4 +41,10 @@ public class PacketVisitorImpl implements PacketVisitor {
         JSONObject data = packet.getJsonObject();
         return data;
     }
+
+    @Override
+    public JSONObject visit(LoginPacket packet) {
+        JSONObject data = packet.getJsonObject();
+        return data;
+    }
 }

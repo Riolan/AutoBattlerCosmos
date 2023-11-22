@@ -10,7 +10,7 @@ package com.team3.autobattler.Network.Packet;
  * @author riola
  */
 public enum PacketBuilder {
-    TEST(0), SCENECHANGE(1), SHOP(2), SEARCHFORGAME(3), STARTGAME(4);
+    TEST(0), SCENECHANGE(1), SHOP(2), SEARCHFORGAME(3), STARTGAME(4), LOGIN(5);
     
     private final int id;
     

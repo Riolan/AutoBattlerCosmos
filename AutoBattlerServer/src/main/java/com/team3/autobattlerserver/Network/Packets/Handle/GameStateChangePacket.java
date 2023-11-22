@@ -28,9 +28,6 @@ public class GameStateChangePacket implements PacketHandler {
     public void execute(long aId, JSONObject inputBuffer) {
         
         System.out.println("execute: Client Id: " + aId);
-
-        System.out.println("GameStateChangePacket, Recieved: " + inputBuffer);
-
         System.out.println("GameStateChangePacket, Recieved: " + inputBuffer);
         GameStates newState = inputBuffer.getEnum(GameStates.class, "gameState");
         ClientHandler clientHandler = ClientHandler.clientHandlers.get(aId);

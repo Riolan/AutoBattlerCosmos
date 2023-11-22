@@ -22,19 +22,20 @@ public class Client implements Serializable {
     
 
     // Client's Game State
-    GameStates gameState = GameStates.UNCONNECTED;
+    MyGameState gameState = new MyGameState(GameStates.UNCONNECTED);
     // Observer changes with Client's Game State
     GameStateObservable observable; 
     
             
     public Client() {
         observable = new GameStateObservable();
-        observable.addObserver(new MyGameState(this.gameState));
+        observable.addObserver(gameState);
         observable.addObserver(SceneManager.getInstance());
+        
+        setGameState(GameStates.UNCONNECTED);
+        
+        
     }
-    
-    
-    
     
     
     public User getUser() {
@@ -45,7 +46,7 @@ public class Client implements Serializable {
         this.user = user;
     }
     
-    public GameStates getGameState() {
+    public MyGameState getGameState() {
         return gameState;
     }
     
@@ -57,7 +58,9 @@ public class Client implements Serializable {
      */
     public boolean setGameState(GameStates gameState) {
         System.out.println("Set game state: " + gameState);
-        if (getGameState().canChangeGameState(this.getGameState(), gameState)) {
+        // ew clean this up
+        if (getGameState().getState().canChangeGameState(this.getGameState().getState()
+                , gameState)) {
             // Update the observerables game state
             // this automatically notifies observers
             this.observable.setGameState(gameState);

@@ -33,6 +33,12 @@ public class SocketHandler {
     final int TIMEOUT = 4000; // 4 Second timeout
     
     
+    
+    public SocketHandler() {
+    
+        client = new Client();
+    }
+    
     // Stream
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
@@ -57,10 +63,8 @@ public class SocketHandler {
      * @param port
      * @return 
      */
-    public boolean connect(String ipAddress, int port) {
-        // should it be here?
-        client = new Client();
-    
+    public boolean connect(String ipAddress, int port, StringBuilder output) {
+        output.setLength(0);
         try {
             socket = new Socket();
             
@@ -73,9 +77,8 @@ public class SocketHandler {
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             
             // if able to connect
-            //client = new Client();
             client.setGameState(GameStates.CONNECTED);
-            client.setGameState(GameStates.LAUNCH);
+            client.bypassGameState(GameStates.LOGIN);
             
             // Close listener (old)
             if (listener != null && listener.isAlive()) {
@@ -88,8 +91,8 @@ public class SocketHandler {
         
             return true;
         } catch (IOException e) {
+            output.append(e.getMessage());
             System.out.println("Socket Handler Connect Error: " + e.getMessage());
-            client.setGameState(GameStates.UNCONNECTED);
             return false;
         }
     }
@@ -165,7 +168,9 @@ public class SocketHandler {
      */
     public void sendData(PacketElement packet) { //throws MalformedPacketException {
             // Do not send data if not connected to server.
-            if (client.getGameState().equals(GameStates.UNCONNECTED)) return;
+
+            
+            if (client.getGameState().getState().equals(GameStates.UNCONNECTED)) return;
             JSONObject data = packet.accept(visitor);
             
             // Not a reasonable check atm, but example for later

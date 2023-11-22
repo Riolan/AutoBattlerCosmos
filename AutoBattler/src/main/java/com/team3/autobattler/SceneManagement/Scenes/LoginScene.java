@@ -149,8 +149,10 @@ public class LoginScene extends javax.swing.JPanel {
 
         String usernameVal = username.getText();
         String passwordVal = new String(password.getPassword());
-        
+        System.out.println("Clicked!");
+
         if(usernameVal.length() >= 1 && passwordVal.length() >= 8) {
+            System.out.println("INTO HERE");
             PacketElement statePacket = new GameStateChangePacket(GameStates.MAINMENU);
             AutoBattler.socketHandler.sendData(statePacket);
         }
