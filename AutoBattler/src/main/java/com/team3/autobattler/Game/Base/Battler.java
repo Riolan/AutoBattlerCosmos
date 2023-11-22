@@ -19,28 +19,26 @@ public abstract class Battler {
     Troop troop;
 
     
-//    private List<Unit> units;
-//    
-//    
-//    /* Could be nullable */
-//    public List<Unit> getUnits() {
-//        if (units.size() <= 0) return null;
-//        return units;
-//    }
-//    
-//    /*  */
-//    public void setUnits(List<Unit> units) {
-//        this.units = units;
-//    }
-//    
-//    /* Could be nullable */
-//    public Unit getUnit(int index) {
-//        if (units.size() <= 0) return null;
-//        return units.get(index);
-//    }
-//    
-//    public void setUnits(int index, Unit unit) {
-//        this.units.set(index, unit);
-//        
-//    }
+    
+    /* Could be nullable */
+    public List<Unit> getUnits() {
+        if (units.size() <= 0) return null;
+        return units;
+    }
+    
+    /*  */
+    public void setUnits(List<Unit> units) {
+        this.units = units;
+    }
+    
+    /* Could be nullable */
+    public Unit getUnit(int index) {
+        if (units.size() <= 0) return null;
+        return units.get(index);
+    }
+    
+    public void setUnit(int index, Unit unit) {
+        this.units.set(index, unit);
+        
+    }
 }

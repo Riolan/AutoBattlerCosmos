@@ -35,9 +35,6 @@ public class LoginScene extends javax.swing.JPanel {
         passwordField = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
-        jSeparator1 = new javax.swing.JSeparator();
 
         setLayout(new java.awt.GridLayout(3, 3));
 
@@ -61,7 +58,7 @@ public class LoginScene extends javax.swing.JPanel {
 
         add(jPanel2);
 
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -69,10 +66,7 @@ public class LoginScene extends javax.swing.JPanel {
                 loginButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(loginButton, java.awt.BorderLayout.CENTER);
-        jPanel3.add(filler2, java.awt.BorderLayout.LINE_END);
-        jPanel3.add(filler3, java.awt.BorderLayout.LINE_START);
-        jPanel3.add(jSeparator1, java.awt.BorderLayout.PAGE_START);
+        jPanel3.add(loginButton);
 
         add(jPanel3);
     }// </editor-fold>//GEN-END:initComponents
@@ -99,13 +93,10 @@ public class LoginScene extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.Box.Filler filler2;
-    private javax.swing.Box.Filler filler3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton loginButton;
     protected javax.swing.JPasswordField passwordField;
     protected javax.swing.JTextField usernameField;

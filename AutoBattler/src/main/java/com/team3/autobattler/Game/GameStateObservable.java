@@ -41,6 +41,7 @@ public class GameStateObservable {
         
         System.out.println("Observer gamestate change:" + gameState);
         this.gameState = gameState;
+        observer.update(gameState);
     }
     
     

@@ -8,38 +8,11 @@ package com.team3.autobattlerserver.Game;
  * Hi 
  * @author Rio
  */
-public class GameStateObservable {
-    private GameStates gameState;
-    private GameStateObserver observer;
-    
-    /**
-     * 
-     * @param observer 
-     */
-    public void addObserver(GameStateObserver observer) {
-        this.observer = observer;
-    }
-    
-    /**
-     * 
-     * @param observer 
-     */
-    public void removeObserver(GameStateObserver observer) {
-        this.observer = null;
-    }
-    
-    /**
-     * 
-     * @param gameState 
-     */
-    public void setGameState(GameStates gameState) {
-        // validation might be placed here
-        if (observer.equals(null)) {
-            // Throw error, no observer is defined.
-            return;
-        }
-        this.gameState = gameState;
-    }
-    
+public interface GameStateObservable {
+    public void addObserver(GameStateObserver observer);
+   
+    public void removeObserver(GameStateObserver observer);
+
+    public void notifyObservers();
     
 }

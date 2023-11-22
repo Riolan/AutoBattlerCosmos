@@ -14,6 +14,7 @@ import java.io.Serializable;
  * @author Rio
  */
 public class Client implements Serializable {
+    public static Client INSTANCE;
     static User user;
     
 
@@ -53,6 +54,13 @@ public class Client implements Serializable {
             return true;
         }
         return false;
+    }
+    
+    public static Client getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Client();
+        }
+        return INSTANCE;
     }
     
     

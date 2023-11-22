@@ -5,6 +5,7 @@
 package com.team3.autobattlerserver.Client;
 
 import com.team3.autobattlerserver.Game.GameStates;
+import com.team3.autobattlerserver.Game.Matchmaker.ClientMatchmaker;
 import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.PacketHandler;
 import com.team3.autobattlerserver.Network.PacketHandlerFactory;
@@ -115,6 +116,9 @@ public class ClientHandler implements Runnable {
             } catch (IOException e) {
                 
                 System.out.println("Client " + socket.toString() + " has disconnected: " + e.getMessage());
+                ClientMatchmaker matchmaker = ClientMatchmaker.getInstance();
+                matchmaker.removeClient(this);
+                
                 closeEverything(socket, inputstream, outputstream);
                 break;
             }
@@ -158,6 +162,10 @@ public class ClientHandler implements Runnable {
     
     public void removeClientHandler() {
         clientHandlers.remove(this.client.user.getId());
+    }
+    
+    public Client getClient() {
+        return client;
     }
 
     
