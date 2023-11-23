@@ -10,6 +10,7 @@ import com.team3.autobattler.Game.Base.Item;
 import com.team3.autobattler.Game.Base.UnitA.*;
 import com.team3.autobattler.Game.Factories.ItemFactory;
 import com.team3.autobattler.Game.GameStates;
+import com.team3.autobattler.Network.Packet.Create.BuyUnitsPacket;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
 import com.team3.autobattler.Network.Packet.Create.TestPacket;
@@ -21,6 +22,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.team3.autobattler.SceneManagement.Scenes.PlayerPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,20 +46,14 @@ public class Shop extends javax.swing.JPanel {
     List<PlayerPanel> listOfPlayerPanels = new ArrayList<PlayerPanel>();
     List<BuyPanel> listOfBuyPanels = new ArrayList<BuyPanel>();
     
+    byte attemptedBuy = 0b0000;
     
     /**
      * Creates new form Shop
      */
     public Shop() {
         initComponents();
-        
-        
-      
-        
-        
-      
-        
-        
+
     }
     
     
@@ -85,13 +82,35 @@ public class Shop extends javax.swing.JPanel {
             // Troop logic seems kinda silly imo
             aTroop.createUnit(-1, health, attack, name, ability, cost);
             Logger.getLogger(SceneManager.class.getName()).log(Level.INFO, aTroop.aggregate.toString());
-            listOfBuyPanels.add(new BuyPanel( aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1), count));
+            
+            BuyPanel aBuy = new BuyPanel( aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1));
+            aBuy.buyButton.addActionListener(new buyButtonListener(count));
+            
+            listOfBuyPanels.add(aBuy);
             count = (byte) (count << 0x1);   
         }
         handlePlayerPanel();
         // update panel
         updateBuyPanels();
     }
+    
+    
+    private class buyButtonListener implements ActionListener {                                          
+        byte count = 0;
+        
+        public buyButtonListener(byte count) {
+            this.count = count;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            attemptedBuy += count;
+            String s1 = String.format("%8s", Integer.toBinaryString(attemptedBuy & 0xFF)).replace(' ', '0');
+            System.out.println("Attempted buy is now: " + s1);
+        }
+        
+    }                 
+    
     
     
      public void handlePlayerPanel() {
@@ -147,6 +166,7 @@ public class Shop extends javax.swing.JPanel {
         buyPanel = new javax.swing.JPanel();
         playerPanel = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        endShop = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 255));
 
@@ -196,6 +216,13 @@ public class Shop extends javax.swing.JPanel {
             }
         });
 
+        endShop.setText("End Shop");
+        endShop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endShopActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -226,9 +253,12 @@ public class Shop extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(playerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 216, Short.MAX_VALUE)))
+                                    .addComponent(playerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(buyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(62, 62, 62)
+                                        .addComponent(endShop, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 45, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -254,9 +284,15 @@ public class Shop extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(changeSceneButton)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(endShop, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(canvas3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(canvas2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -292,6 +328,14 @@ public class Shop extends javax.swing.JPanel {
         AutoBattler.socketHandler.getClient().bypassGameState(GameStates.valueOf(jComboBox1.getSelectedItem().toString()));
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void endShopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endShopActionPerformed
+        // TODO add your handling code here:
+        
+        // Send out info about attemptedBuy
+        PacketElement statePacket = new BuyUnitsPacket(attemptedBuy);
+        AutoBattler.socketHandler.sendData(statePacket);    
+    }//GEN-LAST:event_endShopActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buyPanel;
@@ -300,6 +344,7 @@ public class Shop extends javax.swing.JPanel {
     private java.awt.Canvas canvas3;
     private java.awt.Canvas canvas4;
     private javax.swing.JButton changeSceneButton;
+    private javax.swing.JButton endShop;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
