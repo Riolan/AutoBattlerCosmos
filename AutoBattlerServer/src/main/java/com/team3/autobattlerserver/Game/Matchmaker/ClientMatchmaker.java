@@ -6,6 +6,9 @@ package com.team3.autobattlerserver.Game.Matchmaker;
 
 import com.team3.autobattlerserver.Client.ClientHandler;
 import com.team3.autobattlerserver.Game.Battle;
+import com.team3.autobattlerserver.Game.GameStates;
+import com.team3.autobattlerserver.Network.PacketElement;
+import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -45,6 +48,7 @@ public class ClientMatchmaker {
                     for (int i = 0; i < clientQueue.size() / 2; i++ ) {
                         ClientHandler playerOne = clientQueue.remove();
                         ClientHandler playerTwo = clientQueue.remove();
+
                         new Battle(playerOne, playerTwo);
                     }
                     

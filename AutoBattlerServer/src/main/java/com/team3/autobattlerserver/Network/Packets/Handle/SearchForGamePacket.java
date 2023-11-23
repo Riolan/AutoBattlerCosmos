@@ -17,6 +17,7 @@ public class SearchForGamePacket implements PacketHandler {
     
     @Override
     public void execute(long aId, JSONObject response) {
+        System.out.println("check");
        
         System.out.println("execute: Client Id: " + aId);
         System.out.println("SearchForGamePacket: " + response);
@@ -27,6 +28,7 @@ public class SearchForGamePacket implements PacketHandler {
             // put into matc
             ClientMatchmaker matchmaker = ClientMatchmaker.getInstance();
             matchmaker.addClient(ClientHandler.clientHandlers.get(aId));
+            System.out.println("client added");
         }
         
 

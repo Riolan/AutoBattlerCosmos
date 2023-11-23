@@ -47,7 +47,7 @@ public class ShopEntitiesPacket implements PacketHandler {
             JSONArray units = response.getJSONArray("units");
             // Update Panel with new information, not sure if this is the correct way to do it yet
             //sceneManager.changeScene(GameStates.SHOP);
-            shopScene.recieveData(units);
+            shopScene.receiveData(units);
             shopScene.validate();
         //}
 

@@ -5,6 +5,7 @@
 package com.team3.autobattlerserver.Network.Packets.Handle;
 
 import com.team3.autobattlerserver.Client.Client;
+import com.team3.autobattlerserver.Client.User;
 import com.team3.autobattlerserver.Client.ClientHandler;
 import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.PacketHandler;
@@ -36,7 +37,11 @@ public class LoginPacket implements PacketHandler {
             clientHandler.sendData(packet);
             return;
         }
-
+        
+        User user = new User(username, password);
+        user.setId(client.getUser().getId());
+        client.setUser(user);
+        
         PacketElement packet = new com.team3.autobattlerserver.Network.Packets.Create.LoginPacket(true, username);
         clientHandler.sendData(packet);
     }

@@ -156,6 +156,9 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
             case UNCONNECTED -> {
                 return unconnectedScene;
             }
+            case LAUNCH -> {
+                return launchScene;
+            }
             case LOGIN -> {
                 return loginScene;
             }
@@ -164,6 +167,24 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
             }
             case MAINMENU -> {
                 return mainMenuScene;
+            }
+            case SIGNUP -> {
+                return signUpScene;
+            }
+            case GAMESEARCH -> {
+                return gameSearchScene;
+            }
+            case ENDGAME -> {
+                return endGameScene;
+            }
+            case ENDROUND -> {
+                return endRoundScene;
+            }
+            case PLAYOUTROUND -> {
+                return playOutRoundScene;
+            }
+            case STARTROUND -> {
+                return startRoundScene;
             }
         }
 
