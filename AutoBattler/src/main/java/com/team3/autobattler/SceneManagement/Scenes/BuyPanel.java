@@ -18,11 +18,11 @@ public class BuyPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyPanel
      */
-    public BuyPanel(Unit unit, byte bit) {
+    public BuyPanel(Unit unit) {
         initComponents();
         this.unit = unit;
         unitNameLabel.setText( unit.getName());
-        unitStatsLabel.setText(unit.getHealth() + " " + unit.getAttack() + " " +unit.getCost() + "==" + bit);
+        unitStatsLabel.setText(unit.getHealth() + " " + unit.getAttack() + " " +unit.getCost());
     }
 
     /**
@@ -90,7 +90,7 @@ public class BuyPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buyButton;
+    public javax.swing.JButton buyButton;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel unitNameLabel;
