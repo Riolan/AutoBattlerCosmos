@@ -5,11 +5,12 @@
 package com.team3.autobattler.Network.Packet;
 
 import com.team3.autobattler.Network.Packet.Handle.*;
+import static com.team3.autobattler.Network.Packet.PacketBuilder.SHOP;
 import com.team3.autobattler.Network.Packet.PacketHandler;
 
 /**
  *
- * @author riola
+ * @author Rio
  */
 public class PacketHandlerFactory {
     public PacketHandler make(int packetId) {
@@ -17,6 +18,7 @@ public class PacketHandlerFactory {
             case TEST -> new TestPacket();
             case SCENECHANGE -> new GameStateChangePacket();
             case SHOP -> new ShopEntitiesPacket();
+            case LOGIN -> new LoginPacket();
             default -> new TestPacket();
         }; //case SEARCHFORGAME: return new SearchForGamePacket();
         //case STARTGAME: return new StartGamePacket();

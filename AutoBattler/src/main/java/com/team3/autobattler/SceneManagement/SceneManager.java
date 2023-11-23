@@ -146,24 +146,25 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
             case SHOP -> cardLayout.show(mainPanel, "testShop");
             case TESTPANE -> cardLayout.show(mainPanel, "testPane");
         } 
+        // Validate the scene
+        getScene(newScene).validate();
     }
     
     
     public javax.swing.JPanel getScene(GameStates scene) {
         switch (scene){
-            case UNCONNECTED:
-                // Show the menu
-                //cardLayout.show(mainPanel, "testConnect");
+            case UNCONNECTED -> {
                 return unconnectedScene;
-            case CONNECTED:
-                // Show the menu
-                //cardLayout.show(mainPanel, "testConnect");
-                //return testConnect;
-            case LOGIN:
-                //cardLayout.show(mainPanel, "loginScene");
+            }
+            case LOGIN -> {
                 return loginScene;
-            case SHOP:
+            }
+            case SHOP -> {
                 return testShop;
+            }
+            case MAINMENU -> {
+                return mainMenuScene;
+            }
         }
 
         // uhm not the best solution

@@ -37,9 +37,9 @@ public class ClientMatchmaker {
         ses.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                Date x = new Date();
-                System.out.println(x + " - " + clientQueue);
-                
+//                Date x = new Date();
+//                System.out.println(x + " - " + clientQueue);
+//                
                 if (clientQueue.size() >= 2) {
                     System.out.println("match found");
                     for (int i = 0; i < clientQueue.size() / 2; i++ ) {

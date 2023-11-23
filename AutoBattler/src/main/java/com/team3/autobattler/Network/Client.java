@@ -28,6 +28,7 @@ public class Client implements Serializable {
     
             
     public Client() {
+        user = new User();
         observable = new GameStateObservable();
         observable.addObserver(gameState);
         observable.addObserver(SceneManager.getInstance());

@@ -35,7 +35,6 @@ public class SocketHandler {
     
     
     public SocketHandler() {
-    
         client = new Client();
     }
     
@@ -78,7 +77,7 @@ public class SocketHandler {
             
             // if able to connect
             client.setGameState(GameStates.CONNECTED);
-            client.bypassGameState(GameStates.LOGIN);
+            client.setGameState(GameStates.LOGIN);
             
             // Close listener (old)
             if (listener != null && listener.isAlive()) {
