@@ -18,4 +18,6 @@ public interface PacketVisitor {
     JSONObject visit(SearchForGamePacket packet);
 
     public JSONObject visit(LoginPacket packet);
+
+    public JSONObject visit(StartGamePacket aThis);
 }

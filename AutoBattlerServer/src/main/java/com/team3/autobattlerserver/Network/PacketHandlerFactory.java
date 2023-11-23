@@ -8,7 +8,7 @@ import com.team3.autobattlerserver.Network.Packets.Handle.*;
 
 /**
  *
- * @author riola
+ * @author Rio
  */
 public class PacketHandlerFactory {
     public PacketHandler make(int packetId) {
@@ -16,8 +16,9 @@ public class PacketHandlerFactory {
             case TEST -> new TestPacket();
             case SCENECHANGE -> new GameStateChangePacket();
             case SHOP -> new ShopEntitiesPacket();
+            case STARTGAME -> new StartGamePacket();
             case LOGIN -> new LoginPacket();
             default -> new TestPacket();
-        }; //case : return new SearchForGamePacket();
+        }; 
     }    
 }

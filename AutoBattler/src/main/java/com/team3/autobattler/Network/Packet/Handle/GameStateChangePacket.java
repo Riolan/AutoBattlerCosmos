@@ -7,6 +7,8 @@ package com.team3.autobattler.Network.Packet.Handle;
 import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.PacketHandler;
+import com.team3.autobattler.SceneManagement.SceneManager;
+import com.team3.autobattler.SceneManagement.Scenes.MainMenuScene;
 import org.json.JSONObject;
 
 /**
@@ -26,14 +28,23 @@ public class GameStateChangePacket implements PacketHandler {
         System.out.println("GameStateChangePacket, Recieved: " + inputBuffer);
         
         GameStates newState = inputBuffer.getEnum(GameStates.class, "gameState");
-//        
-//     
-//        if (canChangeState) 
-        
-        AutoBattler.socketHandler.getClient().setGameState(newState);
 
+        AutoBattler.socketHandler.getClient().setGameState(newState);
+        
+        
+        if (newState == GameStates.MAINMENU ) {
+            MainMenuScene mainMenu = (MainMenuScene)SceneManager.getInstance().getScene(GameStates.MAINMENU);
+            
+            String username = AutoBattler.socketHandler.getClient().getUser().getUsername();
+            if (username != null) {
+                mainMenu.welcomeUser.setText("Welcome, " + username);
+            } else {
+                mainMenu.welcomeUser.setText("SOMETHING WENT WRONG");
+
+            }
+        }
     }
-    
-    
+            
+
     
 }

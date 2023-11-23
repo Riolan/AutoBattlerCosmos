@@ -11,6 +11,7 @@ import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.Network.Packet.PacketHandler;
 import com.team3.autobattler.SceneManagement.SceneManager;
 import com.team3.autobattler.SceneManagement.Scenes.LoginScene;
+import com.team3.autobattler.SceneManagement.Scenes.MainMenuScene;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -40,7 +41,6 @@ public class LoginPacket implements PacketHandler {
         } else {
             LoginScene loginScene = (LoginScene)SceneManager.getInstance().getScene(GameStates.LOGIN);
             loginScene.loginSuccess.setText("Failed to login");
-            
             
         }
         

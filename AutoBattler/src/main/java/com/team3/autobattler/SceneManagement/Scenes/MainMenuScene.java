@@ -8,6 +8,7 @@ import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
+import com.team3.autobattler.Network.Packet.Create.StartGamePacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 
 /**
@@ -40,7 +41,7 @@ public class MainMenuScene extends javax.swing.JPanel {
         currency = new javax.swing.JLabel();
         items = new javax.swing.JLabel();
         planet4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        welcomeUser = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         startGameButton.setText("Start Game");
@@ -69,9 +70,9 @@ public class MainMenuScene extends javax.swing.JPanel {
 
         planet4.setText("planet4");
 
-        jLabel1.setText("welcome, *insert username*");
+        welcomeUser.setText("welcome, *insert username*");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new GameStates[] { GameStates.LAUNCH, GameStates.LOGIN, GameStates.SIGNUP, GameStates.MAINMENU, GameStates.SHOP, GameStates.GAMESEARCH, GameStates.STARTROUND, GameStates.PLAYOUTROUND, GameStates.ENDROUND, GameStates.ENDGAME }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -99,7 +100,7 @@ public class MainMenuScene extends javax.swing.JPanel {
                         .addComponent(startGameButton)
                         .addGap(335, 335, 335))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(welcomeUser)
                         .addGap(305, 305, 305))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(88, 88, 88)
@@ -122,7 +123,7 @@ public class MainMenuScene extends javax.swing.JPanel {
                     .addComponent(items)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84)
-                .addComponent(jLabel1)
+                .addComponent(welcomeUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(planet1)
@@ -141,10 +142,11 @@ public class MainMenuScene extends javax.swing.JPanel {
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
-        PacketElement statePacket = new GameStateChangePacket(GameStates.LOGIN);
-        AutoBattler.socketHandler.sendData(statePacket);
-        PacketElement shopPacket = new ShopEntitiesPacket(true);
-        AutoBattler.socketHandler.sendData(shopPacket);   
+        // Start Game Packet
+//PacketElement statePacket = new GameStateChangePacket(GameStates.SHOP);
+//        AutoBattler.socketHandler.sendData(statePacket);
+        PacketElement startGame = new StartGamePacket(true);
+        AutoBattler.socketHandler.sendData(startGame);   
     }//GEN-LAST:event_startGameButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -155,13 +157,13 @@ public class MainMenuScene extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel currency;
     private javax.swing.JLabel items;
-    private javax.swing.JComboBox<GameStates> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JLabel planet1;
     private javax.swing.JLabel planet2;
     private javax.swing.JLabel planet3;
     private javax.swing.JLabel planet4;
     private javax.swing.JButton startGameButton;
+    public javax.swing.JLabel welcomeUser;
     // End of variables declaration//GEN-END:variables
 }
