@@ -18,11 +18,11 @@ public class BuyPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyPanel
      */
-    public BuyPanel(Unit unit) {
+    public BuyPanel(Unit unit, byte bit) {
         initComponents();
         this.unit = unit;
         unitNameLabel.setText( unit.getName());
-        unitStatsLabel.setText(unit.getHealth() + " " + unit.getAttack() + " " +unit.getCost());
+        unitStatsLabel.setText(unit.getHealth() + " " + unit.getAttack() + " " +unit.getCost() + "==" + bit);
     }
 
     /**

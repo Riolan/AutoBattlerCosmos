@@ -17,9 +17,15 @@ import java.util.ArrayList;
  */
 public class Client implements Serializable, GameStateObservable {
     User user;
+    
+    private boolean inGame = false;
+
     GameStates gameState; 
     int currency;
-    private List<Unit> units;
+    private List<Unit> possibleShopUnits;
+    
+    
+    
     private List<GameStateObserver> observers = new ArrayList<>();
     
     
@@ -29,11 +35,11 @@ public class Client implements Serializable, GameStateObservable {
     
     
     public List<Unit> getUnits() {
-        return units;
+        return possibleShopUnits;
     }
     
-    void setUnits(List<Unit> units) {
-        this.units = units;
+    public void setUnits(List<Unit> units) {
+        this.possibleShopUnits = units;
     }
     
     
@@ -44,6 +50,16 @@ public class Client implements Serializable, GameStateObservable {
     void setCurrency(int currency) {
         this.currency = currency;
     }
+    
+        
+    public boolean getInGame() {
+        return inGame;
+    }
+    
+    public void setInGame(boolean inGame) {
+        this.inGame = inGame;
+    }
+    
     
     
     public User getUser() {

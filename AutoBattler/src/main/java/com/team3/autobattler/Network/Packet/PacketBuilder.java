@@ -13,7 +13,7 @@ import java.util.Map;
  * @author Rio
  */
 public enum PacketBuilder {
-    TEST(0), SCENECHANGE(1), SHOP(2), SEARCHFORGAME(3), STARTGAME(4), LOGIN(5);
+    TEST(0), SCENECHANGE(1), SHOP(2), SEARCHFORGAME(3), STARTGAME(4), LOGIN(5), BUYUNITS(6);
     
     private final int id;
     private static Map<Integer, PacketBuilder> map = new HashMap<Integer, PacketBuilder>();

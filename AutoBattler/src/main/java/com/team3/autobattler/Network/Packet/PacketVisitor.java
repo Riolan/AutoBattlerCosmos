@@ -20,4 +20,6 @@ public interface PacketVisitor {
     public JSONObject visit(LoginPacket packet);
 
     public JSONObject visit(StartGamePacket aThis);
+
+    public JSONObject visit(BuyUnitsPacket aThis);
 }

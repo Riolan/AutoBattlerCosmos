@@ -17,6 +17,10 @@ public class GameBoard {
     Troop troop;
 
     
+    public Troop getTroop() {
+        return troop;
+    }
+    
     public GameBoard() throws IllegalAccessException {
         if (INSTANCE != null) {
             throw new IllegalAccessException("You cannot construct an instance of the GameBoard class. Please use the getInstance() function.");

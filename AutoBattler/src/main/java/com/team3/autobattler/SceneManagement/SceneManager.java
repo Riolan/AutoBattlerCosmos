@@ -4,6 +4,7 @@
  */
 package com.team3.autobattler.SceneManagement;
 
+import com.team3.autobattler.SceneManagement.Scenes.Shop;
 import com.team3.autobattler.Game.GameStateObservable;
 import com.team3.autobattler.Game.GameStateObserver;
 import com.team3.autobattler.Game.GameStates;
