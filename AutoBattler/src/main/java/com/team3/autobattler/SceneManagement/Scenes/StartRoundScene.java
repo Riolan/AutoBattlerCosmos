@@ -7,6 +7,7 @@ package com.team3.autobattler.SceneManagement.Scenes;
 import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
+import com.team3.autobattler.Network.Packet.Create.StartBattlePacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.SceneManagement.SceneManager;
 import java.util.logging.Level;
@@ -167,7 +168,9 @@ public class StartRoundScene extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PacketElement statePacket = new GameStateChangePacket(GameStates.PLAYOUTROUND);
-        AutoBattler.socketHandler.sendData(statePacket);   
+        AutoBattler.socketHandler.sendData(statePacket);
+        PacketElement battlePacket = new StartBattlePacket(true);
+        AutoBattler.socketHandler.sendData(battlePacket);   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

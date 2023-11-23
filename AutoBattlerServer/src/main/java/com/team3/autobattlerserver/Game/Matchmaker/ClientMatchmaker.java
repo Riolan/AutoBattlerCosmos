@@ -10,7 +10,10 @@ import com.team3.autobattlerserver.Game.GameStates;
 import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.concurrent.Executors;
@@ -28,6 +31,8 @@ public class ClientMatchmaker {
     public static ClientMatchmaker INSTANCE;
 
     private static Queue<ClientHandler> clientQueue = new LinkedList<>();
+    public static Map<Number, Battle> matches = new HashMap<>();
+    public static int matchCounter = 0;
 
     Timer timer = new Timer();
     
@@ -49,7 +54,9 @@ public class ClientMatchmaker {
                         ClientHandler playerOne = clientQueue.remove();
                         ClientHandler playerTwo = clientQueue.remove();
 
-                        new Battle(playerOne, playerTwo);
+                        Battle battle = new Battle(playerOne, playerTwo, matchCounter);
+                        matches.put(battle.getId(), battle);
+                        matchCounter++;
                     }
                     
                 }

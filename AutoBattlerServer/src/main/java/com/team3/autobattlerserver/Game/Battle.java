@@ -20,12 +20,18 @@ public class Battle{
     private Client playerTwo;
     private int id;
     
-    public Battle(ClientHandler playerOneHandler, ClientHandler playerTwoHandler) {
+    public Battle(ClientHandler playerOneHandler, ClientHandler playerTwoHandler, int id) {
         System.out.println("battle entered");
+        this.id = id;
         this.playerOneHandler = playerOneHandler;
         this.playerTwoHandler = playerTwoHandler;
         this.playerOne = playerOneHandler.getClient();
         this.playerTwo = playerTwoHandler.getClient();
+        
+        playerOne.setInBattle(true);
+        playerTwo.setInBattle(true);
+        playerOne.setBattleId(id);
+        playerTwo.setBattleId(id);
         
         PacketElement packet1 = new OpponentPacket(playerTwo);
         PacketElement packet2 = new OpponentPacket(playerOne);
@@ -41,7 +47,21 @@ public class Battle{
     }
     
     public void doBattle() {
-        
+        if (playerOne.getGameState() == GameStates.PLAYOUTROUND && playerTwo.getGameState() == GameStates.PLAYOUTROUND) {
+            System.out.println("doBattle");
+            BattleLogic battleLogic = new BattleLogic(playerOne.getUnits(), playerTwo.getUnits());
+        }
     }
     
+    public Client getPlayerOne() {
+        return playerOne;
+    }
+    
+    public Client getPlayerTwo() {
+        return playerTwo;
+    }
+    
+    public int getId() {
+        return id;
+    }
 }
