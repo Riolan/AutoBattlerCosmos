@@ -58,7 +58,6 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
             throw new IllegalAccessException("You cannot construct an instance of the SceneManager class. Please use the getInstance() function.");
         }
         
-        System.out.println(new File("res/icon.png"));
         try {
             this.setIconImage(new ImageIcon(SceneManager.class.getResource("/icon.png")).getImage());
         } catch (java.lang.NullPointerException ex) {
