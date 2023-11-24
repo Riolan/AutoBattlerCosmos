@@ -21,7 +21,7 @@
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="username" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace pref="226" max="32767" attributes="0"/>
+              <EmptySpace pref="222" max="32767" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="password" min="-2" pref="100" max="-2" attributes="0"/>
@@ -74,7 +74,7 @@
                   <Component id="passwordErrorMsg" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="usernameErrorMsg" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="157" max="32767" attributes="0"/>
+              <EmptySpace pref="149" max="32767" attributes="0"/>
               <Component id="signUpButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
           </Group>

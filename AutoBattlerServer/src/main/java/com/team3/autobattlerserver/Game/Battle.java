@@ -50,6 +50,7 @@ public class Battle{
         if (playerOne.getGameState() == GameStates.PLAYOUTROUND && playerTwo.getGameState() == GameStates.PLAYOUTROUND) {
             System.out.println("doBattle");
             BattleLogic battleLogic = new BattleLogic(playerOne.getUnits(), playerTwo.getUnits());
+            System.out.println(battleLogic.getSequence());
         }
     }
     

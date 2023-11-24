@@ -32,6 +32,11 @@ public class BattleLogic {
     public record Pair<K, V>(K key, V value) {
     // intentionally empty
     }
+    
+    public record ActionRecord(String action, Unit unit, int value) {
+        
+    }
+            
 
 
     List<Integer> attack = new ArrayList<>();
@@ -39,6 +44,8 @@ public class BattleLogic {
     List<Integer> idx = new ArrayList<>();
     List<Integer> teams = new ArrayList<>();
     List<Pair<Integer, Integer>> priority = new ArrayList<>();
+    List<ActionRecord> sequence = new ArrayList<>();
+    private String victor = null;
 
     public BattleLogic(List<Unit> playerOneUnits, List<Unit> playerTwoUnits) {
         System.out.println("playerOneUnits playerOneUnits : " + playerOneUnits);
@@ -231,38 +238,56 @@ public class BattleLogic {
                 int damage2 = team2Attacker.getAttack();
 
                 team2Attacker.takeDamage(damage1);
+                sequence.add(new ActionRecord("attack", team1Attacker, damage1));
+                sequence.add(new ActionRecord("health", team2Attacker, -damage1));
+                
                 team1Attacker.takeDamage(damage2);
+                sequence.add(new ActionRecord("attack", team2Attacker, damage2));
+                sequence.add(new ActionRecord("health", team1Attacker, -damage2));
 
                 // If a unit's health is zero or less, it's defeated, and the next unit takes its place
                 if (!team1Attacker.isAlive()) {
+                    sequence.add(new ActionRecord("defeat", team1Attacker, 1));
                     team1AttackerIndex++;
                 }
                 if (!team2Attacker.isAlive()) {
+                    sequence.add(new ActionRecord("defeat", team2Attacker, 1));
                     team2AttackerIndex++;
                 }
             } else {
                 // If a unit is defeated, move to the next unit in the slot
                 if (!team1Attacker.isAlive()) {
+                    sequence.add(new ActionRecord("defeat", team1Attacker, 1));
                     team1AttackerIndex++;
                 }
                 if (!team2Attacker.isAlive()) {
+                    sequence.add(new ActionRecord("defeat", team1Attacker, 1));
                     team2AttackerIndex++;
                 }
             }
         }
         
         if (isTeam1Alive()) {
+            victor = "Team1";
             System.out.println("Team 1 won");
         } else if (isTeam2Alive()) {
+            victor = "Team2";
             System.out.println("Team 2 won");
         } else {
+            victor = "Draw";
             System.out.println("Draw");
         }
         
         return true;
     }
     
+    public List<ActionRecord> getSequence() {
+        return sequence;
+    }
     
+    public String getVictor() {
+        return victor;
+    }
     
     
 }
