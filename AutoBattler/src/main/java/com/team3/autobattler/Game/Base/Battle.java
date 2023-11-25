@@ -14,12 +14,14 @@ import com.team3.autobattler.Game.Base.UnitA.Unit;
 import java.util.List;
 
 public class Battle {
+    private int id;
     protected List<Unit> player;
     protected List<Unit> opponent;
 
-    public Battle(List<Unit> team1, List<Unit> team2) {
+    public Battle(List<Unit> team1, List<Unit> team2, int id) {
         this.player = team1;
         this.opponent = team2;
+        this.id = id;
     }
 
 
@@ -29,6 +31,10 @@ public class Battle {
         
         
     };
+    
+    public int getId() {
+        return this.id;
+    }
 
     public boolean isTeam1Alive() {
         return player.stream().anyMatch(Unit::isAlive);

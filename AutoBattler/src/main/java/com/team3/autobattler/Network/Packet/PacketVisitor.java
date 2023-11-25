@@ -16,10 +16,12 @@ public interface PacketVisitor {
     JSONObject visit(GameStateChangePacket packet);
     JSONObject visit(ShopEntitiesPacket packet);
     JSONObject visit(SearchForGamePacket packet);
+    JSONObject visit(StartBattlePacket packet);
 
     public JSONObject visit(LoginPacket packet);
 
     public JSONObject visit(StartGamePacket aThis);
 
     public JSONObject visit(BuyUnitsPacket aThis);
+    
 }

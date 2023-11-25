@@ -19,6 +19,8 @@ public class Client implements Serializable, GameStateObservable {
     User user;
     
     private boolean inGame = false;
+    private boolean inBattle = false;
+    private int battleId = -1;
 
     GameStates gameState; 
     int currency;
@@ -60,6 +62,20 @@ public class Client implements Serializable, GameStateObservable {
         this.inGame = inGame;
     }
     
+    public boolean getInBattle() {
+        return inBattle;
+    }
+    
+    public void setInBattle(boolean inBattle) {
+        this.inBattle = inBattle;
+    }
+    public int getBattleId() {
+        return battleId;
+    }
+    
+    public void setBattleId(int battleId) {
+        this.battleId = battleId;
+    }
     
     
     public User getUser() {

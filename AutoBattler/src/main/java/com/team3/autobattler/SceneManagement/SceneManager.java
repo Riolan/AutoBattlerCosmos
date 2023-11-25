@@ -39,17 +39,16 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
     LaunchScene launchScene;
     LoginScene loginScene;
     SignUpScene signUpScene;
+    MainMenuScene mainMenuScene;
+    Shop shopScene;
     GameSearchScene gameSearchScene;
-    EndGameScene endGameScene;
-    EndRoundScene endRoundScene;
-    PlayOutRoundScene playOutRoundScene;
     StartRoundScene startRoundScene;
+    PlayOutRoundScene playOutRoundScene;
+    EndRoundScene endRoundScene;
+    EndGameScene endGameScene;
     //ShopScene shopScene;
     ImagePanel imagePanel;
-    Shop testShop;
     UnconnectedScene unconnectedScene;
-    MainMenuScene mainMenuScene;
-
     
     /**
      * Creates new form SceneManager
@@ -74,33 +73,35 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
         
         unconnectedScene = new UnconnectedScene();
         testPane = new TestPane();
-        mainMenuScene = new MainMenuScene();
         launchScene = new LaunchScene();
         loginScene = new LoginScene();
         signUpScene = new SignUpScene();
+        mainMenuScene = new MainMenuScene();
+        shopScene = new Shop();
         gameSearchScene = new GameSearchScene();
-        endGameScene = new EndGameScene();
-        endRoundScene = new EndRoundScene();
-        playOutRoundScene = new PlayOutRoundScene();
         startRoundScene = new StartRoundScene();
+        playOutRoundScene = new PlayOutRoundScene();
+        endRoundScene = new EndRoundScene();
+        endGameScene = new EndGameScene();
         imagePanel = new ImagePanel();
-        testShop = new Shop();
+        
         
         
         mainPanel.add(unconnectedScene, "unconnectedScene");
-        mainPanel.add(mainMenuScene, "mainMenuScene");
         mainPanel.add(launchScene, "launchScene");
         mainPanel.add(loginScene, "loginScene");
         mainPanel.add(signUpScene, "signUpScene");
+        mainPanel.add(mainMenuScene, "mainMenuScene");
+        mainPanel.add(shopScene, "shopScene");
         mainPanel.add(gameSearchScene, "gameSearchScene");
-        mainPanel.add(endGameScene, "endGameScene");
-        mainPanel.add(endRoundScene, "endRoundScene");
-        mainPanel.add(playOutRoundScene, "playOutRoundScene");
         mainPanel.add(startRoundScene, "startRoundScene");
+        mainPanel.add(playOutRoundScene, "playOutRoundScene");
+        mainPanel.add(endRoundScene, "endRoundScene");
+        mainPanel.add(endGameScene, "endGameScene");
         mainPanel.add(unconnectedScene, "unconnectedScene");
         mainPanel.add(testPane, "testPane");
         mainPanel.add(imagePanel, "imagePanel");
-        mainPanel.add(testShop, "testShop");
+        
         
         
         add(mainPanel);
@@ -133,17 +134,17 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
         System.out.println("Change Scene " + newScene.toString());
         switch (newScene){
             case UNCONNECTED -> cardLayout.show(mainPanel, "unconnectedScene");
-            case LAUNCH -> cardLayout.show(mainPanel, "launchScene");
-            case MAINMENU -> cardLayout.show(mainPanel, "mainMenuScene");
             case CONNECTED -> cardLayout.show(mainPanel, "testShop");
+            case LAUNCH -> cardLayout.show(mainPanel, "launchScene");
             case LOGIN -> cardLayout.show(mainPanel, "loginScene");
             case SIGNUP -> cardLayout.show(mainPanel, "signUpScene");
+            case MAINMENU -> cardLayout.show(mainPanel, "mainMenuScene");
+            case SHOP -> cardLayout.show(mainPanel, "shopScene");
             case GAMESEARCH -> cardLayout.show(mainPanel, "gameSearchScene");
-            case ENDGAME -> cardLayout.show(mainPanel, "endGameScene");
-            case ENDROUND -> cardLayout.show(mainPanel, "endRoundScene");
-            case PLAYOUTROUND -> cardLayout.show(mainPanel, "playOutRoundScene");
             case STARTROUND -> cardLayout.show(mainPanel, "startRoundScene");
-            case SHOP -> cardLayout.show(mainPanel, "testShop");
+            case PLAYOUTROUND -> cardLayout.show(mainPanel, "playOutRoundScene");
+            case ENDROUND -> cardLayout.show(mainPanel, "endRoundScene");
+            case ENDGAME -> cardLayout.show(mainPanel, "endGameScene");
             case TESTPANE -> cardLayout.show(mainPanel, "testPane");
         } 
         // Validate the scene
@@ -156,14 +157,35 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
             case UNCONNECTED -> {
                 return unconnectedScene;
             }
+            case LAUNCH -> {
+                return launchScene;
+            }
             case LOGIN -> {
                 return loginScene;
             }
-            case SHOP -> {
-                return testShop;
+            case SIGNUP -> {
+                return signUpScene;
             }
             case MAINMENU -> {
                 return mainMenuScene;
+            }
+            case SHOP -> {
+                return shopScene;
+            }
+            case GAMESEARCH -> {
+                return gameSearchScene;
+            }
+            case STARTROUND -> {
+                return startRoundScene;
+            }
+            case PLAYOUTROUND -> {
+                return playOutRoundScene;
+            }
+            case ENDROUND -> {
+                return endRoundScene;
+            }
+            case ENDGAME -> {
+                return endGameScene;
             }
         }
 

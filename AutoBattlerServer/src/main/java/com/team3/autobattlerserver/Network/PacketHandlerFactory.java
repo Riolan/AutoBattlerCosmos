@@ -16,10 +16,11 @@ public class PacketHandlerFactory {
             case TEST -> new TestPacket();
             case SCENECHANGE -> new GameStateChangePacket();
             case SHOP -> new ShopEntitiesPacket();
+            case SEARCHFORGAME -> new SearchForGamePacket();
             case STARTGAME -> new StartGamePacket();
             case LOGIN -> new LoginPacket();
-            case BUYUNITS -> new BuyUnitsPacket();          
-            case SEARCHFORGAME -> new SearchForGamePacket();
+            case BUYUNITS -> new BuyUnitsPacket();         
+            case STARTBATTLE -> new StartBattlePacket();
             default -> new TestPacket();
         }; 
     }    

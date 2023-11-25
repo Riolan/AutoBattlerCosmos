@@ -20,6 +20,7 @@ public class PacketHandlerFactory {
             case SCENECHANGE -> new GameStateChangePacket();
             case SHOP -> new ShopEntitiesPacket();
             case LOGIN -> new LoginPacket();
+            case OPPONENT -> new OpponentPacket();
             default -> new TestPacket();
         }; //case SEARCHFORGAME: return new SearchForGamePacket();
         //case STARTGAME: return new StartGamePacket();

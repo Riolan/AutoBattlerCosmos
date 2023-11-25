@@ -12,6 +12,7 @@ import com.team3.autobattler.Game.Factories.ItemFactory;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.Create.BuyUnitsPacket;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
+import com.team3.autobattler.Network.Packet.Create.SearchForGamePacket;
 import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
 import com.team3.autobattler.Network.Packet.Create.TestPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
@@ -171,7 +172,7 @@ public class Shop extends javax.swing.JPanel {
     }
     
     
-    public void recieveData(JSONArray units) {
+    public void receiveData(JSONArray units) {
         // Remove old input
         buyPanel.removeAll();
         listOfBuyPanels.clear();
@@ -665,7 +666,9 @@ public class Shop extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         PacketElement statePacket = new GameStateChangePacket(GameStates.GAMESEARCH);
-        AutoBattler.socketHandler.sendData(statePacket);    
+        AutoBattler.socketHandler.sendData(statePacket);   
+        PacketElement searchPacket = new SearchForGamePacket(true);
+        AutoBattler.socketHandler.sendData(searchPacket);
     }//GEN-LAST:event_changeSceneButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

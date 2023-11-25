@@ -96,7 +96,7 @@ public class MainMenuScene extends javax.swing.JPanel {
                 .addComponent(planet1)
                 .addGap(148, 148, 148)
                 .addComponent(planet2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
                 .addComponent(planet3)
                 .addGap(116, 116, 116)
                 .addComponent(planet4)
@@ -132,7 +132,7 @@ public class MainMenuScene extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(welcomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(planet1)
                     .addComponent(planet2)
@@ -155,6 +155,8 @@ public class MainMenuScene extends javax.swing.JPanel {
 //        AutoBattler.socketHandler.sendData(statePacket);
         PacketElement startGame = new StartGamePacket(true);
         AutoBattler.socketHandler.sendData(startGame);   
+        PacketElement statePacket = new GameStateChangePacket(GameStates.SHOP);
+        AutoBattler.socketHandler.sendData(statePacket);
     }//GEN-LAST:event_startGameButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
