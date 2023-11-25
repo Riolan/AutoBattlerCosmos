@@ -81,6 +81,7 @@ public class BuyUnitsPacket implements PacketHandler {
         
         // End shop button was pressed
         PacketElement packet = new GameStateChangePacket(GameStates.GAMESEARCH);
+        clientHandler.getClient().setGameState(GameStates.GAMESEARCH);
         clientHandler.sendData(packet);
         
         

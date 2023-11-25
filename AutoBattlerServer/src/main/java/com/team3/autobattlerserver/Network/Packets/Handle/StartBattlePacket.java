@@ -29,7 +29,7 @@ public class StartBattlePacket implements PacketHandler {
             ClientHandler clientHandler = ClientHandler.clientHandlers.get(aId);
             Client client = clientHandler.getClient();
             Battle battle = ClientMatchmaker.matches.get(client.getBattleId());
-            battle.doBattle();
+            battle.doBattle(client);
         }
         
 

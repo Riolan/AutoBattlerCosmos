@@ -33,9 +33,7 @@ public class BattleLogic {
     // intentionally empty
     }
     
-    public record ActionRecord(String action, Unit unit, int value) {
-        
-    }
+    public record ActionRecord(String action, String team, int position, int value) {}
             
 
 
@@ -238,30 +236,31 @@ public class BattleLogic {
                 int damage2 = team2Attacker.getAttack();
 
                 team2Attacker.takeDamage(damage1);
-                sequence.add(new ActionRecord("attack", team1Attacker, damage1));
-                sequence.add(new ActionRecord("health", team2Attacker, -damage1));
+                // Action, Team, UnitPosition, Damage
+                sequence.add(new ActionRecord("attack", "Team1", team1AttackerIndex, damage1));
+                sequence.add(new ActionRecord("health", "Team2",team2AttackerIndex, -damage1));
                 
                 team1Attacker.takeDamage(damage2);
-                sequence.add(new ActionRecord("attack", team2Attacker, damage2));
-                sequence.add(new ActionRecord("health", team1Attacker, -damage2));
+                sequence.add(new ActionRecord("attack", "Team2", team2AttackerIndex, damage2));
+                sequence.add(new ActionRecord("health", "Team1", team1AttackerIndex, -damage2));
 
                 // If a unit's health is zero or less, it's defeated, and the next unit takes its place
                 if (!team1Attacker.isAlive()) {
-                    sequence.add(new ActionRecord("defeat", team1Attacker, 1));
+                    sequence.add(new ActionRecord("defeat", "Team1", team1AttackerIndex, 1));
                     team1AttackerIndex++;
                 }
                 if (!team2Attacker.isAlive()) {
-                    sequence.add(new ActionRecord("defeat", team2Attacker, 1));
+                    sequence.add(new ActionRecord("defeat", "Team2",team2AttackerIndex, 1));
                     team2AttackerIndex++;
                 }
             } else {
                 // If a unit is defeated, move to the next unit in the slot
                 if (!team1Attacker.isAlive()) {
-                    sequence.add(new ActionRecord("defeat", team1Attacker, 1));
+                    sequence.add(new ActionRecord("defeat", "Team1",team1AttackerIndex, 1));
                     team1AttackerIndex++;
                 }
                 if (!team2Attacker.isAlive()) {
-                    sequence.add(new ActionRecord("defeat", team1Attacker, 1));
+                    sequence.add(new ActionRecord("defeat", "Team2",team2AttackerIndex, 1));
                     team2AttackerIndex++;
                 }
             }

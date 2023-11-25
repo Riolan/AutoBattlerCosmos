@@ -44,13 +44,24 @@ public class Battle{
         PacketElement statePacket = new GameStateChangePacket(GameStates.STARTROUND);
         playerOneHandler.sendData(statePacket);
         playerTwoHandler.sendData(statePacket);
+        
+        
+        // do Battle
+        //doBattle();
     }
     
-    public void doBattle() {
-        if (playerOne.getGameState() == GameStates.PLAYOUTROUND && playerTwo.getGameState() == GameStates.PLAYOUTROUND) {
+    public void doBattle(Client client ) {
+        System.out.println("Attempting to do bnattle");
+        
+        System.out.println("Attempting to do bnattle1" + client.getGameState());
+        
+        if (client.getGameState() == GameStates.PLAYOUTROUND) {
             System.out.println("doBattle");
             BattleLogic battleLogic = new BattleLogic(playerOne.getUnits(), playerTwo.getUnits());
             System.out.println(battleLogic.getSequence());
+            for (int i = 0; i < battleLogic.sequence.size(); i++) {
+                System.out.println(String.valueOf(battleLogic.getSequence().get(i)));
+            }
         }
     }
     
