@@ -19,7 +19,7 @@ import java.util.List;
 public class Player extends Battler {
     public static Player INSTANCE;
     
-    private int gold = 10;
+    private int gold;// = 10;
 
     // Not really a neccessary component
     // will return to later.
@@ -30,7 +30,7 @@ public class Player extends Battler {
         if (INSTANCE != null) {
             throw new IllegalAccessException("You cannot construct an instance of the Player class. Please use the getInstance() function.");
         }
-        
+        gold = 10;
     }
 
     public static Player getPlayer() {
@@ -80,6 +80,11 @@ public class Player extends Battler {
         return false;
         }
         gold = gold-cost;
+        return true;
+    }
+    
+    public boolean addGold(int cost) {
+        gold = gold + cost;
         return true;
     }
 }

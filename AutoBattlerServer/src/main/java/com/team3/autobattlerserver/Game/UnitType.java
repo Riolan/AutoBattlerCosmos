@@ -5,7 +5,8 @@ import javax.swing.ImageIcon;
 
 /**
  * Contains state shared by several units
- * @author Curbow & Rio
+ * @author Curbow
+ * @author Rio
  */
 public class UnitType {
     // A unit shares a name

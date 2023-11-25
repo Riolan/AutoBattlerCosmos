@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 
 /**
- *
+ * 
  * @author Rio
  */
 public class AutoBattlerServer {

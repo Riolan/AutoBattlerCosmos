@@ -5,7 +5,8 @@ package com.team3.autobattlerserver.Game;
 import java.util.List;
 /**
  * Contains state unique for each unit.
- * @author Curbow & Rio
+ * @author Rio
+ * @author Curbow
  */
 public class Unit implements Comparable<Unit> {
     private UnitType type;

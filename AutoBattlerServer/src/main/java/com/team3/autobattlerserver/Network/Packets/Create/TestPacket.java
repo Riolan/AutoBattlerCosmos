@@ -23,9 +23,9 @@ public class TestPacket implements PacketElement {
     Field fld[] = this.getClass().getDeclaredFields();
     
     /**
-     * This is a test packer which is used to ensure viability as well
+     * This is a test packet which is used to ensure viability as well
      * as to demonstrate how a packet should be set up.
-     * @param ping
+     * @param pong
      */
     public TestPacket(String pong) {
         init();

@@ -7,6 +7,8 @@ package com.team3.autobattler.SceneManagement.Scenes;
 import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
+import com.team3.autobattler.Network.Packet.Create.SearchForGamePacket;
+import com.team3.autobattler.Network.Packet.Create.StartGamePacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.SceneManagement.SceneManager;
 
@@ -84,8 +86,12 @@ public class GameSearchScene extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PacketElement statePacket = new GameStateChangePacket(GameStates.STARTROUND);
-        AutoBattler.socketHandler.sendData(statePacket);   
+//        PacketElement statePacket = new GameStateChangePacket(GameStates.STARTROUND);
+//        AutoBattler.socketHandler.sendData(statePacket);   
+
+
+        PacketElement startGamePacket = new SearchForGamePacket(true);
+        AutoBattler.socketHandler.sendData(startGamePacket);   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

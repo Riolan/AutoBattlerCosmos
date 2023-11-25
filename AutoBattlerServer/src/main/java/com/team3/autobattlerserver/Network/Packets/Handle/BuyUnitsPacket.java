@@ -7,8 +7,11 @@ package com.team3.autobattlerserver.Network.Packets.Handle;
 import com.team3.autobattlerserver.Client.ClientHandler;
 import com.team3.autobattlerserver.Client.Client;
 import com.team3.autobattlerserver.Game.GameBoard;
+import com.team3.autobattlerserver.Game.GameStates;
 import com.team3.autobattlerserver.Game.Troop;
 import com.team3.autobattlerserver.Game.Unit;
+import com.team3.autobattlerserver.Network.PacketElement;
+import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 
 import com.team3.autobattlerserver.Network.PacketHandler;
 import java.util.ArrayList;
@@ -22,7 +25,11 @@ import org.json.JSONObject;
  */
 public class BuyUnitsPacket implements PacketHandler {
 
-    
+    /**
+     * 
+     * @param aId
+     * @param inputBuffer 
+     */
     @Override
     public void execute(long aId, JSONObject inputBuffer) {
         
@@ -60,6 +67,7 @@ public class BuyUnitsPacket implements PacketHandler {
         
         
         for (Unit unit : new_units) {
+            // add unit
             troop.createUnit((int)aId, unit);
         }
      
@@ -67,6 +75,13 @@ public class BuyUnitsPacket implements PacketHandler {
         for (Unit unit : troop.getUnits((int)aId)) {
             System.out.println("Troops units: " + unit);
         }
+        
+        System.out.println("Senbding out a gamestate change packe for end shop");
+        
+        
+        // End shop button was pressed
+        PacketElement packet = new GameStateChangePacket(GameStates.GAMESEARCH);
+        clientHandler.sendData(packet);
         
         
     }

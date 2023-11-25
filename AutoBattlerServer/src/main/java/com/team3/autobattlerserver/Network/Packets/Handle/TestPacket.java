@@ -11,8 +11,7 @@ import org.json.JSONObject;
 
 /**
  *
- * @author riola
- * @Todo Rename to HandleTestPacket or TestPacketHandler or rename execute to handle()
+ * @author Rio
  */
 public class TestPacket implements PacketHandler {
     

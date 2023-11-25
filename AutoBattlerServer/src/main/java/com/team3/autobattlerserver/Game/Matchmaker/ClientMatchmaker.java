@@ -45,6 +45,7 @@ public class ClientMatchmaker {
                     for (int i = 0; i < clientQueue.size() / 2; i++ ) {
                         ClientHandler playerOne = clientQueue.remove();
                         ClientHandler playerTwo = clientQueue.remove();
+                        
                         new Battle(playerOne, playerTwo);
                     }
                     

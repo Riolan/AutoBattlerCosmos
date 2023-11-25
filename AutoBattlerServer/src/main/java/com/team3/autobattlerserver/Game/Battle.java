@@ -6,6 +6,8 @@ package com.team3.autobattlerserver.Game;
 
 import com.team3.autobattlerserver.Client.ClientHandler;
 import com.team3.autobattlerserver.Client.Client;
+import com.team3.autobattlerserver.Network.PacketElement;
+import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 /**
  *
  * @author pzex
@@ -23,8 +25,10 @@ public class Battle{
         this.playerOne = playerOneHandler.getClient();
         this.playerTwo = playerTwoHandler.getClient();
         
-
-        
+        // Send users to next state.
+        PacketElement packet = new GameStateChangePacket(GameStates.STARTROUND);
+        this.playerOneHandler.sendData(packet);
+        this.playerTwoHandler.sendData(packet);
         
         
         

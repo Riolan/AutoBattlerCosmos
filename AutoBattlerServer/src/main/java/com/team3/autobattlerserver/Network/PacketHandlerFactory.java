@@ -18,7 +18,8 @@ public class PacketHandlerFactory {
             case SHOP -> new ShopEntitiesPacket();
             case STARTGAME -> new StartGamePacket();
             case LOGIN -> new LoginPacket();
-            case BUYUNITS -> new BuyUnitsPacket();                
+            case BUYUNITS -> new BuyUnitsPacket();          
+            case SEARCHFORGAME -> new SearchForGamePacket();
             default -> new TestPacket();
         }; 
     }    

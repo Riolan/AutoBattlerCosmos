@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.team3.autobattler.SceneManagement.Scenes.PlayerPanel;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
@@ -32,7 +33,10 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -44,6 +48,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListCellRenderer;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.TransferHandler;
@@ -55,7 +60,7 @@ import org.json.JSONObject;
 
 /**
  *
- * @author colli
+ * @author Rio
  */
 public class Shop extends javax.swing.JPanel {
     final int MAX_UNITS = 5;
@@ -64,11 +69,12 @@ public class Shop extends javax.swing.JPanel {
     List<PlayerPanel> listOfPlayerPanels = new ArrayList<PlayerPanel>();
     List<BuyPanel> listOfBuyPanels = new ArrayList<BuyPanel>();
     
-    DefaultListModel from = new DefaultListModel();
-    DefaultListModel move = new DefaultListModel();
+    final DefaultListModel<Unit> from = new DefaultListModel<>();
+    final DefaultListModel<Unit> move = new DefaultListModel<>();
     
-    JList dragFrom;
     
+    JList<Unit> dragFrom;
+    JList<Unit> moveTo;
     byte attemptedBuy = 0b0000;
     
     /**
@@ -78,25 +84,13 @@ public class Shop extends javax.swing.JPanel {
         initComponents();
 
         this.setLayout(new GridLayout(3, 3));       
-        
-        
-        
-        
-        for (int i = 15; i >= 0; i--) {
-            from.add(0, "Source item " + i);
-        }
-
-        for (int i = 2; i >= 0; i--) {
-            move.add(0, "Target item " + i);
-        }
 
         // Drag panel
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         
-        dragFrom = new JList(from);
+        dragFrom = new JList<Unit>(from);
         dragFrom.setTransferHandler(new customTransferHandler(TransferHandler.MOVE));
-        dragFrom.setPrototypeCellValue("List Item WWWWWW");
         dragFrom.setDragEnabled(true);
         dragFrom.setDropMode(DropMode.INSERT);
         dragFrom.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -109,16 +103,22 @@ public class Shop extends javax.swing.JPanel {
         add(p, BorderLayout.WEST);
         
         // Move
-        JList moveTo = new JList(move);
+        
+        moveTo = new JList<Unit>(move);
         moveTo.setTransferHandler(new customTransferHandler(TransferHandler.MOVE));
-        moveTo.setPrototypeCellValue("List Item WWWWWW");
         moveTo.setDropMode(DropMode.INSERT);
         moveTo.setDragEnabled(true);
         moveTo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        
+        moveTo.setCellRenderer(new ComboBoxRenderer());
         // Copy Panel
         p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        
         sp = new JScrollPane(moveTo);
+        
+        
         sp.setAlignmentX(0f);
         p.add(sp);
         label = new JLabel("Drop to MOVE to here:");
@@ -128,97 +128,48 @@ public class Shop extends javax.swing.JPanel {
     }
     
     
+    public void createLists() {
+        
+    }
     
-    class customTransferHandler extends TransferHandler {
-        int action;
-        private int index = 0;
-        
-        
-        public customTransferHandler(int action) {
-            this.action = action;
-        }
-        
-        public int getSourceActions(JComponent comp) {
-            return MOVE;
-        }
-
-
-
-        public Transferable createTransferable(JComponent comp) {
-            JList c = (JList)comp;
-            DefaultListModel model = (DefaultListModel)c.getModel();
-            index = c.getSelectedIndex();
-
-            if (index < 0 || (index >= model.getSize())) {
-                return null;
-            }
-
-            return new StringSelection((String)c.getSelectedValue());
-        }
-        
-        public void exportDone(JComponent comp, Transferable trans, int action) {
-            if (action != MOVE) {
-                return;
-            }
-            JList c = (JList)comp;
-            DefaultListModel model = (DefaultListModel)c.getModel();
-            model.removeElementAt(index);
-        }
-        
-        public boolean canImport(TransferHandler.TransferSupport support) {
-            // for the demo, we'll only support drops (not clipboard paste)
-            if (!support.isDrop()) {
-                return false;
-            }
-
-            // we only import Strings
-            if (!support.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-                return false;
-            }
-
-            boolean actionSupported = (action & support.getSourceDropActions()) == action;
-            if (actionSupported) {
-                support.setDropAction(action);
-                return true;
-            }
-
-            return false;
-        }
-
-        public boolean importData(TransferHandler.TransferSupport support) {
-            // if we can't handle the import, say so
-            if (!canImport(support)) {
-                return false;
-            }
-
-            // fetch the drop location
-            JList.DropLocation dl = (JList.DropLocation)support.getDropLocation();
-
-            int index = dl.getIndex();
-
-            // fetch the data and bail if this fails
-            String data;
-            try {
-                data = (String)support.getTransferable().getTransferData(DataFlavor.stringFlavor);
-            } catch (UnsupportedFlavorException e) {
-                return false;
-            } catch (java.io.IOException e) {
-                return false;
-            }
-
-            JList list = (JList)support.getComponent();
-            DefaultListModel model = (DefaultListModel)list.getModel();
-            model.insertElementAt(data, index);
-
-            Rectangle rect = list.getCellBounds(index, index);
-            list.scrollRectToVisible(rect);
-            list.setSelectedIndex(index);
-            list.requestFocusInWindow();
-
-            return true;
-        }  
+    class ComboBoxRenderer extends JLabel implements ListCellRenderer<Unit> {
+    public ComboBoxRenderer() {
+        setOpaque(true);
+        setHorizontalAlignment(CENTER);
+        setVerticalAlignment(CENTER);
     }
 
+    /*
+     * This method finds the image and text corresponding
+     * to the selected value and returns the label, set up
+     * to display the text and image.
+     */
+    @Override
+    public Component getListCellRendererComponent(
+                                       JList<? extends Unit> list,
+                                       Unit value,
+                                       int index,
+                                       boolean isSelected,
+                                       boolean cellHasFocus) {
+        //Get the selected index. (The index parameter isn't
+        //always valid, so just use the value.)
+        list.setVisibleRowCount(5);
+        
+        setText(value.getName());
+        
+        if (isSelected) {
+            setBackground(list.getSelectionBackground());
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground());
+            setForeground(list.getForeground());
+        }
+
+        return this;
+    }
+
+    }
+    
     
     public void recieveData(JSONArray units) {
         // Remove old input
@@ -247,14 +198,237 @@ public class Shop extends javax.swing.JPanel {
             
             BuyPanel aBuy = new BuyPanel( aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1));
             aBuy.buyButton.addActionListener(new buyButtonListener(count));
-            
+            //
+            from.add(0, aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1));
+            move.add(0, aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1));
             listOfBuyPanels.add(aBuy);
             count = (byte) (count << 0x1);   
         }
         handlePlayerPanel();
         // update panel
         updateBuyPanels();
+        
+        
+        Unit unit = aTroop.aggregate.get(-1).get(0);
+
     }
+    
+    public class ObjectTransferable<E> implements Transferable {
+
+    /*
+     * This class can be used to transfer any kind of java class.
+     * Can only be used within the same JVM.
+     */
+
+    private final DataFlavor[] flavors;
+    private final E obj;
+
+    public ObjectTransferable(E object) throws ClassNotFoundException {
+        obj = object;
+        flavors = new DataFlavor[] {
+            new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class="+object.getClass().getName())
+        };
+    }
+
+    public ObjectTransferable(E object, DataFlavor flavor) {
+        obj = object;
+        flavors = new DataFlavor[] {
+            flavor
+        };
+    }
+
+    public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
+        if (!isDataFlavorSupported(flavor)) {
+            throw new UnsupportedFlavorException(flavor);
+        }
+        return obj;
+    }
+
+    public DataFlavor[] getTransferDataFlavors() {
+        return flavors;
+    }
+
+    public boolean isDataFlavorSupported(DataFlavor flavor) {
+        return flavors[0].equals(flavor);
+    }
+
+}
+    
+    
+    
+    class customTransferHandler extends TransferHandler {
+        int action;
+        private int index = 0;
+        DefaultListModel sharedModel;
+        boolean skip = false;
+        
+        
+        ObjectTransferable<Unit> unit_;
+
+        public customTransferHandler(int action) {
+            this.action = action;
+            aTroop.createUnit(-9, 1, 1, "", "", 1);
+            try {
+                unit_ = new ObjectTransferable<Unit>(aTroop.aggregate.get(-9).get(0));
+            } catch (Exception e) {
+                System.out.println("big uh oh");
+            }
+            
+        }
+        
+        @Override
+        public int getSourceActions(JComponent comp) {
+            return MOVE;
+        }
+
+
+
+        @Override
+        public Transferable createTransferable(JComponent comp) {
+            JList c = (JList)comp;
+            DefaultListModel model = (DefaultListModel)c.getModel();
+            index = c.getSelectedIndex();
+            
+            this.sharedModel = model;
+            
+            if ((model == from) && (move.getSize() >= 5)) {
+                return null;
+            }
+            
+        
+            if (model == from) {
+                System.out.println("->>>> from");  
+            }
+            
+            if (model == move) {
+                System.out.println("->>>> move");  
+            }
+            
+            
+            if (index < 0 || (index >= model.getSize())) {
+                return null;
+            }
+
+            try {
+                return new ObjectTransferable<Unit>((Unit)c.getSelectedValue());
+            } catch (Exception e) {
+                 System.out.println("Somethign went wrong");
+            }
+            return null;
+        }
+        
+        @Override
+        public void exportDone(JComponent comp, Transferable trans, int action) {
+            if (action != MOVE) {
+                return;
+            }
+            
+            System.out.println("----------------------");  
+            JList c = (JList)comp;
+            DefaultListModel model = (DefaultListModel)c.getModel();
+
+            if (skip) {
+                // pass we just swap instead
+            } else {
+                model.removeElementAt(index);
+            }
+            
+            for (int i = 0; i < move.getSize(); i++) {
+                System.out.println(i + " " + move.get(i));
+            }
+           
+        }
+        
+        @Override
+        public boolean canImport(TransferHandler.TransferSupport support) {
+            // for the demo, we'll only support drops (not clipboard paste)
+            System.out.println("======================================");
+            if (!support.isDrop()) {
+                return false;
+            }
+
+            
+            
+            if (!support.isDataFlavorSupported(unit_.getTransferDataFlavors()[0])) {
+                return false;
+            }
+
+
+            boolean actionSupported = (action & support.getSourceDropActions()) == action;
+            if (actionSupported) {
+                support.setDropAction(action);
+                return true;
+            }
+
+            return false;
+        }
+
+        @Override
+        public boolean importData(TransferHandler.TransferSupport support) {
+            // if we can't handle the import, say so
+            if (!canImport(support)) {
+                return false;
+            }
+            System.out.println("-wwwwwwwwwwwwwwwwwwwwwwww-");
+
+
+            // fetch the drop location
+            JList.DropLocation dl = (JList.DropLocation)support.getDropLocation();
+
+            int aindex = dl.getIndex();
+
+            JList list = (JList)support.getComponent();
+            DefaultListModel<Unit> model = (DefaultListModel)list.getModel();
+
+
+            
+            
+            // fetch the data and bail if this fails
+            Unit data;
+            try {
+                data = (Unit)support.getTransferable().getTransferData(unit_.getTransferDataFlavors()[0]);
+                // TODO IMPLEMENT LOGIC FOR VALID MOVEMENT   
+                
+                int cost = data.getCost();
+                System.out.println("plr gold = 10: " + player.getGold());
+                //player.subtractGold(10);
+                //System.out.println("plr gold = 0 now: " + player.getGold());
+                System.out.println("Attempted cost is: " + cost);
+                if (!player.subtractGold(cost) && (model != from)) {
+                    System.out.println("The Player does not have enough to buy this unit.");
+                    return false;
+                } else if (model == from) {
+                    player.addGold(cost);
+                    System.out.println("Added: " + cost + " to player.");
+                }
+                System.out.println("plr gold after: " + player.getGold());
+                
+            } catch (UnsupportedFlavorException e) {
+                return false;
+            } catch (java.io.IOException e) {
+                return false;
+            }
+
+     
+            // swap
+            //if (model == sharedModel) {
+            
+            if (model == sharedModel) {
+                List<Object> asList = Arrays.asList(model.toArray());
+                if (aindex == model.getSize()) aindex--;
+                Collections.swap(asList, aindex, index); 
+                model.clear();
+                for(Object val : asList) {
+                    model.addElement((Unit)val);
+                }
+                skip = true;
+            } else {
+                model.insertElementAt(data, aindex);
+            }
+            return true;
+        }  
+    }
+
     
     
     private class buyButtonListener implements ActionListener {                                          
@@ -269,6 +443,7 @@ public class Shop extends javax.swing.JPanel {
             attemptedBuy += count;
             String s1 = String.format("%8s", Integer.toBinaryString(attemptedBuy & 0xFF)).replace(' ', '0');
             System.out.println("Attempted buy is now: " + s1);
+            count = 0;
         }
         
     }                 
@@ -473,6 +648,13 @@ public class Shop extends javax.swing.JPanel {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+
+        for (int i = 0; i < moveTo.getModel().getSize(); i++) {
+            Unit unit = (Unit) moveTo.getModel().getElementAt(i);
+            
+            System.out.println("Unit->"+ unit.getName());
+        }
+        
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -496,6 +678,8 @@ public class Shop extends javax.swing.JPanel {
         // Send out info about attemptedBuy
         PacketElement statePacket = new BuyUnitsPacket(attemptedBuy);
         AutoBattler.socketHandler.sendData(statePacket);    
+        
+        
     }//GEN-LAST:event_endShopActionPerformed
 
 
