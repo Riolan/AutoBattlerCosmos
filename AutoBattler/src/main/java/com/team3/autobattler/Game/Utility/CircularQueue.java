@@ -13,7 +13,7 @@ public class CircularQueue {
   int front, rear;
   int items[];
 
-  CircularQueue(int size) {
+  public CircularQueue(int size) {
     this.size = size;
     this.items = new int[size];
     front = -1;
