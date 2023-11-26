@@ -6,63 +6,28 @@ package com.team3.autobattler.SceneManagement.Scenes;
 
 import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.Base.Player;
-import com.team3.autobattler.Game.Base.Item;
 import com.team3.autobattler.Game.Base.UnitA.*;
-import com.team3.autobattler.Game.Factories.ItemFactory;
 import com.team3.autobattler.Game.GameStates;
-import com.team3.autobattler.Game.Utility.CircularQueue;
 import com.team3.autobattler.Network.Packet.Create.BuyUnitsPacket;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.Create.SearchForGamePacket;
-import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
-import com.team3.autobattler.Network.Packet.Create.TestPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.SceneManagement.SceneManager;
-import com.team3.autobattler.SceneManagement.Scenes.BuyPanel;
-import java.util.List;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import com.team3.autobattler.SceneManagement.Scenes.PlayerPanel;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
-import javax.swing.DropMode;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListCellRenderer;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
-import javax.swing.TransferHandler;
-import static javax.swing.TransferHandler.COPY_OR_MOVE;
-import static javax.swing.TransferHandler.MOVE;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 
 /**
- *
+ * Provides an interface to the user to buy, sell units, and progress to next state.
  * @author Rio
+ * @author Collin
  */
 public class Shop extends javax.swing.JPanel {
     final int MAX_UNITS = 5;
@@ -86,8 +51,9 @@ public class Shop extends javax.swing.JPanel {
     
     
     public void receiveData(JSONArray units) {
-        // Remove old input
+        // Remove all panels to make room for next on the screen
         buyPanel.removeAll();
+        // clear the list so values appear in correct order.
         listOfBuyPanels.clear();
         
         // Log info
@@ -105,6 +71,8 @@ public class Shop extends javax.swing.JPanel {
             int cost = unit.getInt("cost");
             String ability = "N/A";
 
+            
+            // Improve this logic here later.
             // Troop logic seems kinda silly imo
             aTroop.createUnit(-1, health, attack, name, ability, cost);
             Logger.getLogger(SceneManager.class.getName()).log(Level.INFO, aTroop.aggregate.toString());
@@ -122,13 +90,59 @@ public class Shop extends javax.swing.JPanel {
         handlePlayerPanel();
         // update panel
         updateBuyPanels();
+    }
         
-        
-        Unit unit = aTroop.aggregate.get(-1).get(0);
+    
+    public void handlePlayerPanel() {
+        // Remove all panels to make room for next on the screen
+        playerPanel.removeAll();
+        // clear the list so values appear in correct order.
+        listOfPlayerPanels.clear();
 
+        Unit unit;
+        PlayerPanel playerUnitPanel;
+        
+        for (int i = 0; i < player.getUnits().size(); i++) {
+
+            if ((unit = player.getUnit(i)) != null) {
+                playerUnitPanel = new PlayerPanel(unit);
+                playerUnitPanel.leftButton.addActionListener(new LeftRotationListener());
+                playerUnitPanel.rightButton.addActionListener(new RightRotationListener());
+                playerUnitPanel.sellButton.addActionListener(new SellButtonListener(unit));
+                
+                listOfPlayerPanels.add(playerUnitPanel);
+            
+            } 
+        }
+
+        updatePlayerPanels();
+        validate();
     }
     
     
+    
+    ////
+    //      Update Panels
+    ////
+    private void updateBuyPanels() {
+        for (BuyPanel panel : listOfBuyPanels ) {
+            buyPanel.add(panel);
+        }
+        validate();
+    }
+    
+    public void updatePlayerPanels() {
+        for (PlayerPanel panel : listOfPlayerPanels) {
+            playerPanel.add(panel);
+        }
+        validate();
+    }
+    
+    
+    
+    ////
+    //      Custom Action Listeners
+    ////
     private class BuyButtonListener implements ActionListener {                                          
         byte count = 0;
         Unit unit;
@@ -148,9 +162,9 @@ public class Shop extends javax.swing.JPanel {
             int size = player.getUnits().size();
         
             if (size < 5 && player.subtractGold(unit.getCost())) {
-                    player.addUnit(unit);
-                    System.out.println("You spent " + unit.getCost());
-
+                player.addUnit(unit);
+                System.out.println("You spent " + unit.getCost());
+                // Send Packet to Server registering buy
             } else {
                     System.out.println("Missing gold requirement or have the max party size.");
             }
@@ -219,45 +233,7 @@ public class Shop extends javax.swing.JPanel {
         
     }  
     
-    
-     public void handlePlayerPanel() {
-        playerPanel.removeAll();
-        listOfPlayerPanels.clear();
 
-        Unit unit;
-        PlayerPanel playerUnitPanel;
-        System.out.println(player.getUnits().size());
-        for (int i = 0; i < player.getUnits().size(); i++) {
-
-            if ((unit = player.getUnit(i)) != null) {
-                playerUnitPanel = new PlayerPanel(unit);
-                playerUnitPanel.leftButton.addActionListener(new LeftRotationListener());
-                playerUnitPanel.rightButton.addActionListener(new RightRotationListener());
-                playerUnitPanel.sellButton.addActionListener(new SellButtonListener(unit));
-                
-                listOfPlayerPanels.add(playerUnitPanel);
-            
-            } 
-        }
-
-        updatePlayerPanels();
-        validate();
-    }
-    
-    private void updateBuyPanels() {
-        for (BuyPanel panel : listOfBuyPanels ) {
-            buyPanel.add(panel);
-        }
-        validate();
-    }
-    
-    public void updatePlayerPanels() {
-        for (PlayerPanel panel : listOfPlayerPanels) {
-            System.out.println("->>>>" + panel);
-            playerPanel.add(panel);
-        }
-        validate();
-    }
     
     
     
