@@ -59,8 +59,6 @@ public class Shop extends javax.swing.JPanel {
         // Log info
         Logger.getLogger(SceneManager.class.getName()).log(Level.INFO, "Shop Scene recieved data.");
 
-        byte count= 0b0001;
-
         // Loop through each recieved
         for (int i = 0; i < units.length(); i++) {
             
@@ -78,12 +76,11 @@ public class Shop extends javax.swing.JPanel {
             Logger.getLogger(SceneManager.class.getName()).log(Level.INFO, aTroop.aggregate.toString());
             
             BuyPanel aBuy = new BuyPanel( aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1));
-            aBuy.buyButton.addActionListener(new BuyButtonListener(count, aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1)));
+            aBuy.buyButton.addActionListener(new BuyButtonListener(i, aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1)));
 
             
             //
-            listOfBuyPanels.add(aBuy);
-            count = (byte) (count << 0x1);   
+            listOfBuyPanels.add(aBuy); 
         }
         
         
@@ -106,6 +103,7 @@ public class Shop extends javax.swing.JPanel {
 
             if ((unit = player.getUnit(i)) != null) {
                 playerUnitPanel = new PlayerPanel(unit);
+                
                 playerUnitPanel.leftButton.addActionListener(new LeftRotationListener());
                 playerUnitPanel.rightButton.addActionListener(new RightRotationListener());
                 playerUnitPanel.sellButton.addActionListener(new SellButtonListener(unit));
@@ -118,7 +116,7 @@ public class Shop extends javax.swing.JPanel {
         updatePlayerPanels();
         validate();
     }
-    
+
     
     
     ////
@@ -144,9 +142,9 @@ public class Shop extends javax.swing.JPanel {
     //      Custom Action Listeners
     ////
     private class BuyButtonListener implements ActionListener {                                          
-        byte count = 0;
+        int count = 0;
         Unit unit;
-        public BuyButtonListener(byte count, Unit unit) {
+        public BuyButtonListener(int count, Unit unit) {
             this.count = count;
             this.unit = unit;
         }
@@ -154,8 +152,6 @@ public class Shop extends javax.swing.JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             attemptedBuy += count;
-            String s1 = String.format("%8s", Integer.toBinaryString(attemptedBuy & 0xFF)).replace(' ', '0');
-            System.out.println("Attempted buy is now: " + s1);
             count = 0;
             
             

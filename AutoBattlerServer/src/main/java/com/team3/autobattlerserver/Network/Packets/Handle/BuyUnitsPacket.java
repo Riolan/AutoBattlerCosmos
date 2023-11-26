@@ -38,46 +38,25 @@ public class BuyUnitsPacket implements PacketHandler {
         // Derefrence client
         Client client = handler.getClient();
 
-        int input = (int) inputBuffer.getNumber("bought");
+        // index for unit bought
+        int index = (int) inputBuffer.getInt("bought");
         
         
         // Logic for buying units.
-        List<Unit> units = client.getUnits();
-        
-        List<Unit> new_units = new ArrayList<Unit>();
-        
-        if ((input & 1) == 1) {
-            new_units.add(units.get(0));
-        } 
-        if ((input & 2) == 2) {
-             new_units.add(units.get(1));
-        } 
-        if ((input & 4) == 4) {
-             new_units.add(units.get(2));
-        } 
-        if ((input & 8) == 8) {
-             new_units.add(units.get(3));       
-        }
+        List<Unit> units = client.getStoredShopUnits();
+        System.out.println("Bought unit:" + units.get(index));
         
         // validate we can buy these units 
-        
         Troop troop = GameBoard.getInstance().getTroop();
         
         
-        for (Unit unit : new_units) {
-            // add unit
-            troop.createUnit((int)handler.getClient().getUser().getId(), unit);
-        }
-     
+        // Associate new unit to player using uuid
+        troop.createUnit((int)handler.getClient().getUser().getId(), units.get(index));
         
-        for (Unit unit : troop.getUnits((int)handler.getClient().getUser().getId())) {
-            System.out.println("Troops units: " + unit);
-        }
-        
-        System.out.println("Senbding out a gamestate change packe for end shop");
-        
+
         
         // End shop button was pressed
+        // Therefore progress to next state.
         PacketElement packet = new GameStateChangePacket(GameStates.GAMESEARCH);
         handler.getClient().setGameState(GameStates.GAMESEARCH);
         handler.sendData(packet);

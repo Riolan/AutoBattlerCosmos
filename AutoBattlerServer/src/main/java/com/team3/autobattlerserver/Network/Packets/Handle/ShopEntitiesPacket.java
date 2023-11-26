@@ -29,11 +29,6 @@ public class ShopEntitiesPacket implements PacketHandler {
         PacketElement packet = null;
 
         packet = new com.team3.autobattlerserver.Network.Packets.Create.ShopEntitiesPacket(troop.getUnits(-1));
-
-        System.out.println("--troop.getUnits(-1):" + troop.getUnits(-1));
-        
         handler.sendData(packet);
-        System.out.println("current gamestate" + handler.getClient().getGameState());
-
     }
 }
