@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -80,6 +82,34 @@ public class ClientDataAccess {
         return clientAmt;
     }
     
+    public List<Client> getData() {
+        List<Client> clients = new ArrayList();
+        try {
+            Client client = null;
+            FileInputStream fis = new FileInputStream(dataFile);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            boolean fileDone = false;
+            while(!fileDone) {
+                System.out.println("while");
+                try {
+                    client = (Client) ois.readObject();
+                    clients.add(client);
+                } catch (EOFException ex) {
+                    fileDone = true;
+                    System.out.println("end of file reached");
+                }
+                System.out.println("client found");
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return clients;
+    }
+    
     public void save(Client client) {
         clients.put(client.getUser().getId(), client);
         users.put(client.getUser().getUsername(), client.getUser());
@@ -97,6 +127,70 @@ public class ClientDataAccess {
 	}
     }
     
+    public void updateClientData(Client newClient) {
+        try {
+            FileInputStream fis = new FileInputStream(dataFile);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            FileOutputStream fos = new FileOutputStream("temp.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            // Read objects from the file
+            Client oldClient;
+
+            while ((oldClient = (Client) ois.readObject()) != null) {
+                // Check if this is the object to be modified
+                if (oldClient.getUser().getId() == newClient.getUser().getId()) {
+                    oos.writeObject(newClient);
+                    
+                } else {
+                    // Write unchanged objects to the temporary file
+                    oos.writeObject(oldClient);
+                }
+            }
+
+        } catch (EOFException e) {
+            // End of file reached
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Replace the original file with the temporary file
+        new File("temp.ser").renameTo(new File("ClientData.ser"));
+        
+        System.out.println("updated");
+    }
+    
+    public void deleteClient(Client client) {
+        try {
+            FileInputStream fis = new FileInputStream(dataFile);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            FileOutputStream fos = new FileOutputStream("temp.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            // Read objects from the file
+            Client oldClient;
+
+            while ((oldClient = (Client) ois.readObject()) != null) {
+                // Check if this is the object to be modified
+                if (oldClient.getUser().getId() == client.getUser().getId()) {
+                    
+                } else {
+                    // Write unchanged objects to the temporary file
+                    oos.writeObject(oldClient);
+                }
+            }
+
+        } catch (EOFException e) {
+            // End of file reached
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Replace the original file with the temporary file
+        new File("temp.ser").renameTo(new File("ClientData.ser"));
+        
+        System.out.println("deleted");
+    }
     /**
      * Retrieves the singleton instance.
      *

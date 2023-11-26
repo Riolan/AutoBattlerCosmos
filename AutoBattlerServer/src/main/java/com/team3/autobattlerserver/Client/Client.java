@@ -19,6 +19,7 @@ import java.util.ArrayList;
  * @author Rio
  */
 public class Client implements Serializable, GameStateObservable {
+    private static final long serialVersionUID = -1837165166881191638L;
     User user;
     
     private boolean inGame = false;
@@ -58,6 +59,7 @@ public class Client implements Serializable, GameStateObservable {
     
     public void setCurrency(int currency) {
         this.currency = currency;
+        ClientDataAccess.getInstance().updateClientData(this);
     }
     
     public boolean getInGame() {
@@ -92,7 +94,6 @@ public class Client implements Serializable, GameStateObservable {
     public boolean setGameState(GameStates gameState) {
         if (this.gameState.canChangeGameState(this.gameState, gameState)) {
             this.gameState = gameState;
-
             notifyObservers();
             return true;
         }

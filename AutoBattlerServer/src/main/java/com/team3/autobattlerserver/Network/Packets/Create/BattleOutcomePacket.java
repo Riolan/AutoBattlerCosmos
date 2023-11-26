@@ -8,6 +8,7 @@ import com.team3.autobattlerserver.Network.PacketBuilder;
 import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.PacketVisitor;
 import com.team3.autobattlerserver.Game.GameStates;
+import com.team3.autobattlerserver.Game.Troop;
 import com.team3.autobattlerserver.Game.Unit;
 
 import static com.team3.autobattlerserver.Network.PacketElement.jsonObject;
@@ -35,7 +36,6 @@ public class BattleOutcomePacket implements PacketElement {
         System.out.println("create opponent packet");
         this.name = opponent.getUser().getUsername();
         System.out.println(name);
-        this.units = opponent.getUnits();
         System.out.println(units);
         
         

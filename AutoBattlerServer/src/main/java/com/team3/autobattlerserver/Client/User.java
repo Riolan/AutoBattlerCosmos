@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author riola
  */
 public class User implements Serializable {
-    
+    private static final long serialVersionUID = -6691078704282048003L;
 
     private long uuid;
 
