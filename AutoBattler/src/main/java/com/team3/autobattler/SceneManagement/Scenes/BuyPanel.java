@@ -34,25 +34,28 @@ public class BuyPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        unitNameLabel = new javax.swing.JLabel();
-        unitStatsLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        unitStatsLabel = new javax.swing.JLabel();
+        unitNameLabel = new javax.swing.JLabel();
         buyButton = new javax.swing.JButton();
 
-        setLayout(new java.awt.GridLayout(5, 1));
+        setLayout(new java.awt.GridLayout(1, 3, 20, 0));
 
-        unitNameLabel.setText("jLabel1");
-        add(unitNameLabel);
-
-        unitStatsLabel.setText("jLabel2");
-        add(unitStatsLabel);
-
-        jLabel3.setText("jLabel3");
-        add(jLabel3);
+        jPanel1.setLayout(new java.awt.GridLayout(5, 1));
 
         jLabel4.setText("jLabel4");
-        add(jLabel4);
+        jPanel1.add(jLabel4);
+
+        jLabel3.setText("jLabel3");
+        jPanel1.add(jLabel3);
+
+        unitStatsLabel.setText("jLabel2");
+        jPanel1.add(unitStatsLabel);
+
+        unitNameLabel.setText("jLabel1");
+        jPanel1.add(unitNameLabel);
 
         buyButton.setText("Purchase Unit");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -60,32 +63,14 @@ public class BuyPanel extends javax.swing.JPanel {
                 buyButtonActionPerformed(evt);
             }
         });
-        add(buyButton);
+        jPanel1.add(buyButton);
+
+        add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
 
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
         // TODO add your handling code here:
-        // Validate player has enough gold to buy unit
-        int size;
-
-        List<Unit> units = player.getUnits();
-        if (units == null) {
-            size = 0;
-        }
-        else
-        {
-            size = units.size();
-        }
-    if (size < 4) {
-        if (player.subtractGold(unit.getCost())) {
-            player.addUnit(unit);
-            System.out.println("You spent " + unit.getCost());
-        }
-    } else 
-        {
-            System.out.println("You have the max party size.");
-        }
-        
+        this.buyButton.setEnabled(false);
     }//GEN-LAST:event_buyButtonActionPerformed
 
 
@@ -93,6 +78,7 @@ public class BuyPanel extends javax.swing.JPanel {
     public javax.swing.JButton buyButton;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel unitNameLabel;
     private javax.swing.JLabel unitStatsLabel;
     // End of variables declaration//GEN-END:variables

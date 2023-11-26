@@ -20,11 +20,10 @@ public class StartBattlePacket implements PacketHandler {
     @Override
     public void execute(ClientHandler handler, JSONObject response) {
         System.out.println("StartBattlePacket: " + response);
-        //if (response.getBoolean("refreshShop") && checkIfCanRefreshShop) 
-        boolean x = response.getBoolean("startBattle");
-        System.out.println("Outpiut - " + x);
+        
+        // Allow player to dequeue from the match        
         if (response.getBoolean("startBattle")) {
-            // put into matc
+            // Put player into match
             Client client = handler.getClient();
             Battle battle = ClientMatchmaker.matches.get(client.getGame().getBattleId());
             battle.doBattle(client);

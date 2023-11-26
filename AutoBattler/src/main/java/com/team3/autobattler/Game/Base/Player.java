@@ -51,9 +51,8 @@ public class Player extends Battler {
         units.add(unit);
     }
     
-    /* Could be nullable */
     public List<Unit> getUnits() {
-        if (units.size() <= 0) return null;
+        
         return units;
     }
     
@@ -72,6 +71,14 @@ public class Player extends Battler {
         this.units.set(index, unit);
         
     }
+    
+    
+    public void removeUnit(Unit unit) {
+        this.units.remove(unit);
+    }
+    
+    
+    
     public int getGold() {
         return gold;
     }

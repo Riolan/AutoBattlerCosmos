@@ -30,15 +30,20 @@ public class Client implements Serializable, GameStateObservable {
     
     
     
-    private List<GameStateObserver> observers = new ArrayList<>();
+    private List<GameStateObserver> observers;
     
     
     public Client() {
+        observers = new ArrayList<>(); 
         this.user = new User();
     }
     
-    
-    public List<Unit> getUnits() {
+    /**
+     * Store units transmitted to player's shop
+     * Used to validate buy.
+     * @return 
+     */
+    public List<Unit> getStoredShopUnits() {
         return possibleShopUnits;
     }
     

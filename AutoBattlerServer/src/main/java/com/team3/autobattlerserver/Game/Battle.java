@@ -9,6 +9,7 @@ import com.team3.autobattlerserver.Client.Client;
 import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 import com.team3.autobattlerserver.Network.Packets.Create.OpponentPacket;
+
 /**
  * holds battle between two players
  * @author Emily
@@ -21,6 +22,7 @@ public class Battle{
     private int id;
     
     public Battle(ClientHandler playerOneHandler, ClientHandler playerTwoHandler, int id) {
+        // Could shorten this with a for loop/iterating a loop
         System.out.println("battle entered");
         this.id = id;
         this.playerOneHandler = playerOneHandler;
@@ -28,13 +30,19 @@ public class Battle{
         this.playerOne = playerOneHandler.getClient();
         this.playerTwo = playerTwoHandler.getClient();
         
+        // Set players battle state to true 
+        // (might be better to represent as enum)
         playerOne.getGame().setInBattle(true);
         playerTwo.getGame().setInBattle(true);
+        
+        // Set player battle id
         playerOne.getGame().setBattleId(id);
         playerTwo.getGame().setBattleId(id);
         
+        // Create new packet
         PacketElement packet1 = new OpponentPacket(playerTwo);
         PacketElement packet2 = new OpponentPacket(playerOne);
+        
         playerOneHandler.sendData(packet1);
         playerTwoHandler.sendData(packet2);
         System.out.println("opponents sent");
@@ -56,7 +64,16 @@ public class Battle{
         
         if (client.getGameState() == GameStates.PLAYOUTROUND) {
             System.out.println("doBattle");
-            BattleLogic battleLogic = new BattleLogic(playerOne.getUnits(), playerTwo.getUnits());
+            
+            // Access players units through the troop
+            Troop troop = new Troop();
+            BattleLogic battleLogic = new BattleLogic(troop.getUnits((int)client.getUser().getId()),
+                    troop.getUnits((int)playerTwo.getUser().getId()));
+            
+            
+            System.out.println("");
+            
+            // Analyze action sequence
             System.out.println(battleLogic.getSequence());
             for (int i = 0; i < battleLogic.sequence.size(); i++) {
                 System.out.println(String.valueOf(battleLogic.getSequence().get(i)));

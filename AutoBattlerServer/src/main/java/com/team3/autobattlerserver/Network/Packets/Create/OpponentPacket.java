@@ -4,10 +4,12 @@
  */
 package com.team3.autobattlerserver.Network.Packets.Create;
 import com.team3.autobattlerserver.Client.Client;
+import com.team3.autobattlerserver.Client.User;
 import com.team3.autobattlerserver.Network.PacketBuilder;
 import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.PacketVisitor;
 import com.team3.autobattlerserver.Game.GameStates;
+import com.team3.autobattlerserver.Game.Troop;
 import com.team3.autobattlerserver.Game.Unit;
 
 import static com.team3.autobattlerserver.Network.PacketElement.jsonObject;
@@ -18,8 +20,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Packet used to change scene.
- * @author riola
+ * Packet used for sending data about the respective opponent.
+ * @author Rio
+ * @author Emily
  */
 public class OpponentPacket implements PacketElement {
     // Required ID for each packet
@@ -31,15 +34,21 @@ public class OpponentPacket implements PacketElement {
 
     public OpponentPacket(Client opponent) {
         init();
-        System.out.println("create opponent packet");
-        this.name = opponent.getUser().getUsername();
-        System.out.println(name);
-        this.units = opponent.getUnits();
+        
+        
+        Troop troop = new Troop();
+        System.out.println("Creating Opponent Packet");
+        
+        
+        User user = opponent.getUser();
+        // Information for client
+        this.name = user.getUsername();
+        this.units = troop.getUnits((int)user.getId());
+        
+        
         System.out.println(units);
-        
-        
-        
-        //
+        System.out.println(name);
+
         for(Field x : fld) {
             if (x.getName().equals("fld")) continue;
             try {

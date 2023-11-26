@@ -18,16 +18,16 @@ import org.json.JSONObject;
 public class BuyUnitsPacket implements PacketElement {
     // Required ID for each packet
     private int id = PacketBuilder.BUYUNITS.getId();
-    private byte bought = 0;
+    private int bought = 0;
 
     
     Field fld[] = this.getClass().getDeclaredFields();
     
     /**
-     * This is a BuyUnitsPacket packer which is used 
+     * This is a BuyUnitsPacket packet which is used 
      * 
      */
-    public BuyUnitsPacket(byte bought) {
+    public BuyUnitsPacket(int bought) {
         init();
         this.bought = bought;
 

@@ -38,35 +38,68 @@ public class PlayerPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        leftButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         unitNameLabel = new javax.swing.JLabel();
         unitStatsLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        buyButton = new javax.swing.JButton();
+        sellButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        rightButton = new javax.swing.JButton();
 
-        setLayout(new java.awt.GridLayout(5, 1));
+        setLayout(new java.awt.GridLayout(1, 0));
+
+        leftButton.setText("<");
+        jPanel1.add(leftButton);
+
+        add(jPanel1);
+
+        jPanel2.setLayout(new java.awt.GridLayout(5, 0));
 
         unitNameLabel.setText("jLabel1");
-        add(unitNameLabel);
+        jPanel2.add(unitNameLabel);
 
         unitStatsLabel.setText("jLabel2");
-        add(unitStatsLabel);
+        jPanel2.add(unitStatsLabel);
 
         jLabel3.setText("jLabel3");
-        add(jLabel3);
+        jPanel2.add(jLabel3);
 
         jLabel4.setText("jLabel4");
-        add(jLabel4);
+        jPanel2.add(jLabel4);
 
-        buyButton.setText("Sell Unit");
-        add(buyButton);
+        sellButton.setText("Sell Unit");
+        jPanel2.add(sellButton);
+
+        add(jPanel2);
+
+        rightButton.setText(">");
+        rightButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rightButtonActionPerformed(evt);
+            }
+        });
+        jPanel3.add(rightButton);
+
+        add(jPanel3);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rightButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buyButton;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    public javax.swing.JButton leftButton;
+    public javax.swing.JButton rightButton;
+    public javax.swing.JButton sellButton;
     private javax.swing.JLabel unitNameLabel;
     private javax.swing.JLabel unitStatsLabel;
     // End of variables declaration//GEN-END:variables
