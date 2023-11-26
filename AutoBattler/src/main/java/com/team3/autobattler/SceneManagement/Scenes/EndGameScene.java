@@ -12,7 +12,7 @@ import com.team3.autobattler.SceneManagement.SceneManager;
 
 /**
  *
- * @author pzex
+ * @author Emily
  */
 public class EndGameScene extends javax.swing.JPanel {
 

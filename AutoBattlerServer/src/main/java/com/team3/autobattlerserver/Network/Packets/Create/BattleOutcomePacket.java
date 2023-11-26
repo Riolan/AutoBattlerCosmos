@@ -26,19 +26,16 @@ import org.json.JSONObject;
 public class BattleOutcomePacket implements PacketElement {
     // Required ID for each packet
     private int id = PacketBuilder.BATTLEOUTCOME.getId();
-    private String name;
-    private List<Unit> units;
+    private String result;
+    private int goldEarned;
 
     Field fld[] = this.getClass().getDeclaredFields();
 
-    public BattleOutcomePacket(Client opponent) {
+    public BattleOutcomePacket(String result, int goldEarned) {
         init();
-        System.out.println("create opponent packet");
-        this.name = opponent.getUser().getUsername();
-        System.out.println(name);
-        System.out.println(units);
-        
-        
+        System.out.println("create BattleOutcomePacket");
+        this.result = result;
+        this.goldEarned = goldEarned;
         
         //
         for(Field x : fld) {

@@ -176,6 +176,7 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
                 return gameSearchScene;
             }
             case STARTROUND -> {
+                startRoundScene.jPanel1.setVisible(false);
                 return startRoundScene;
             }
             case PLAYOUTROUND -> {

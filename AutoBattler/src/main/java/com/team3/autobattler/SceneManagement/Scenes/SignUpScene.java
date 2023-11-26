@@ -6,12 +6,11 @@ package com.team3.autobattler.SceneManagement.Scenes;
 import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
-import com.team3.autobattler.Network.Packet.Create.LoginPacket;
 import com.team3.autobattler.Network.Packet.Create.SignUpPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 /**
  *
- * @author pzex
+ * @author Emily
  */
 public class SignUpScene extends javax.swing.JPanel {
 
@@ -20,6 +19,29 @@ public class SignUpScene extends javax.swing.JPanel {
      */
     public SignUpScene() {
         initComponents();
+    }
+    
+    // put signup validation code into its own function so user can sign up by hitting enter on either text box as well
+    private void attemptSignUp() {
+        String usernameVal = username.getText();
+        String passwordVal = new String(password.getPassword());
+        
+        if(usernameVal.length() >= 1 && passwordVal.length() >= 8) {
+            PacketElement signUpPacket = new SignUpPacket(usernameVal, passwordVal);
+            AutoBattler.socketHandler.sendData(signUpPacket);
+        }
+        if(usernameVal.length() < 1) {
+            usernameErrorMsg.setText("Please enter a username");
+        }
+        else {
+            usernameErrorMsg.setText("");
+        }
+        if(passwordVal.length() < 8) {
+            passwordErrorMsg.setText("Password must be at least 8 digits long");
+        }
+        else {
+            passwordErrorMsg.setText("");
+        }
     }
 
     /**
@@ -40,6 +62,8 @@ public class SignUpScene extends javax.swing.JPanel {
         usernameErrorMsg = new javax.swing.JLabel();
         passwordErrorMsg = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("Sign Up");
 
@@ -83,6 +107,15 @@ public class SignUpScene extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setText("Already have an account?");
+
+        jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,10 +130,6 @@ public class SignUpScene extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(159, 159, 159))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(usernameErrorMsg)
-                .addContainerGap(859, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,6 +145,15 @@ public class SignUpScene extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addComponent(usernameErrorMsg))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,39 +174,25 @@ public class SignUpScene extends javax.swing.JPanel {
                     .addComponent(usernameErrorMsg))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addComponent(signUpButton)
-                .addGap(158, 158, 158))
+                .addGap(100, 100, 100)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jButton1))
+                .addGap(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-
+        attemptSignUp();
     }//GEN-LAST:event_usernameActionPerformed
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-
+        attemptSignUp();
     }//GEN-LAST:event_passwordActionPerformed
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
 
-        String usernameVal = username.getText();
-        String passwordVal = new String(password.getPassword());
-        
-        if(usernameVal.length() >= 1 && passwordVal.length() >= 8) {
-            PacketElement signUpPacket = new SignUpPacket(usernameVal, passwordVal);
-            AutoBattler.socketHandler.sendData(signUpPacket);
-        }
-        if(usernameVal.length() < 1) {
-            usernameErrorMsg.setText("Please enter a username");
-        }
-        else {
-            usernameErrorMsg.setText("");
-        }
-        if(passwordVal.length() < 8) {
-            passwordErrorMsg.setText("Password must be at least 8 digits long");
-        }
-        else {
-            passwordErrorMsg.setText("");
-        }
+        attemptSignUp();
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     private void usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyTyped
@@ -183,12 +207,19 @@ public class SignUpScene extends javax.swing.JPanel {
         AutoBattler.socketHandler.getClient().bypassGameState(GameStates.valueOf(jComboBox1.getSelectedItem().toString()));
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PacketElement statePacket = new GameStateChangePacket(GameStates.LOGIN);
+        AutoBattler.socketHandler.sendData(statePacket);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField password;
     private javax.swing.JLabel passwordErrorMsg;
     private javax.swing.JButton signUpButton;

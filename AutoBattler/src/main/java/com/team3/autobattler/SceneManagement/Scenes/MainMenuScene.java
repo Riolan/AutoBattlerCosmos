@@ -13,7 +13,7 @@ import com.team3.autobattler.Network.Packet.PacketElement;
 
 /**
  *
- * @author pzex
+ * @author Emily
  */
 public class MainMenuScene extends javax.swing.JPanel {
 
@@ -111,7 +111,7 @@ public class MainMenuScene extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(currency)
-                        .addGap(40, 40, 40)
+                        .addGap(114, 114, 114)
                         .addComponent(items)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(logOutButton)
@@ -163,7 +163,7 @@ public class MainMenuScene extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel currency;
+    public javax.swing.JLabel currency;
     private javax.swing.JLabel items;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

@@ -26,7 +26,6 @@ public class Client implements Serializable, GameStateObservable {
     Game game = null;
 
     GameStates gameState; 
-    int currency;
     private List<Unit> possibleShopUnits;
     
     
@@ -52,22 +51,15 @@ public class Client implements Serializable, GameStateObservable {
         this.possibleShopUnits = units;
     }
     
-    
-    public int getCurrency() {
-        return currency;
-    }
-    
-    public void setCurrency(int currency) {
-        this.currency = currency;
-        ClientDataAccess.getInstance().updateClientData(this);
-    }
-    
     public boolean getInGame() {
         return inGame;
     }
     
     public void setInGame(boolean inGame) {
         this.inGame = inGame;
+        if (this.inGame == true) {
+            this.game = new Game();
+        }
     }
     
     public Game getGame() {

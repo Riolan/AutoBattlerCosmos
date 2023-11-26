@@ -5,6 +5,7 @@
 package com.team3.autobattler.Network.Packet.Handle;
 
 import com.team3.autobattler.AutoBattler;
+import com.team3.autobattler.Game.Base.Player;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Client;
 import com.team3.autobattler.Network.Packet.PacketElement;
@@ -39,6 +40,7 @@ public class LoginPacket implements PacketHandler {
             
             if (username != null) {
                 mainMenu.welcomeUser.setText("Welcome, " + username);
+                mainMenu.currency.setText("Currency: " + Player.getPlayer().getGold() + " Gold");
             } 
             else {
                 mainMenu.welcomeUser.setText("SOMETHING WENT WRONG");

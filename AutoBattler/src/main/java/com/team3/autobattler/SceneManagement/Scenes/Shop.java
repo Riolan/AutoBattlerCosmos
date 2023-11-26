@@ -416,8 +416,8 @@ public class Shop extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         // Send out info about attemptedBuy
-        PacketElement statePacket = new ShopInteractionPacket(3, -1);
-        AutoBattler.socketHandler.sendData(statePacket);    
+        PacketElement searchPacket = new SearchForGamePacket(true);
+        AutoBattler.socketHandler.sendData(searchPacket); 
         
         
     }//GEN-LAST:event_endShopActionPerformed

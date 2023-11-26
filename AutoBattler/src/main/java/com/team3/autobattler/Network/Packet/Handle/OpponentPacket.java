@@ -38,8 +38,10 @@ public class OpponentPacket implements PacketHandler {
         StartRoundScene startRoundScene = (StartRoundScene)sceneManager.getScene(GameStates.STARTROUND);
         // Update Panel with new information, not sure if this is the correct way to do it yet
         //sceneManager.changeScene(GameStates.SHOP);
+        Client client = AutoBattler.socketHandler.getClient();
         if (opponentName != null) {
                 startRoundScene.opponentName.setText(opponentName);
+                startRoundScene.playerName.setText(client.getUser().getUsername());
             } else {
                 startRoundScene.opponentName.setText("SOMETHING WENT WRONG");
 

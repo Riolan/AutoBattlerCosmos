@@ -16,8 +16,10 @@ public class Game {
     private int battleId = -1;
     private int wins = 0;
     private int losses = 0;
+    private int draws = 0;
     
     public Game() {
+        System.out.println("game entered");
         this.inBattle = false;
         this.battleId = -1;
         this.wins = 0;
@@ -30,6 +32,7 @@ public class Game {
     
     public void setInBattle(boolean inBattle) {
         this.inBattle = inBattle;
+        System.out.println("inBattle" + this.inBattle);
     }
     
     public int getBattleId() {
@@ -38,6 +41,7 @@ public class Game {
     
     public void setBattleId(int battleId) {
         this.battleId = battleId;
+        System.out.println("battleId" + this.battleId);
     }
     
     public int getWins() {
@@ -54,5 +58,13 @@ public class Game {
     
     public void incrementLosses() {
         this.losses++;
+    }
+    
+    public int getDraws() {
+        return draws;
+    }
+    
+    public void incrementDraws() {
+        this.draws++;
     }
 }

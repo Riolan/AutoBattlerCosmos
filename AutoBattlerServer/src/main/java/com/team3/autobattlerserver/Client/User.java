@@ -4,6 +4,7 @@
  */
 package com.team3.autobattlerserver.Client;
 
+import com.team3.autobattlerserver.AutoBattlerServer;
 import java.io.Serializable;
 
 /**
@@ -18,6 +19,8 @@ public class User implements Serializable {
 
     private String username;
     private String password;
+    
+    private int currency;
     
     public User( ) {
         this.username = null;
@@ -51,5 +54,23 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
+    public int getCurrency() {
+        return currency;
+    }
+    
+    public void setCurrency(int currency) {
+        this.currency = currency;
+        AutoBattlerServer.userDataAccess.updateUserData(this);
+    }
+    
+    public void addCurrency(int amount) {
+        this.currency += amount;
+        AutoBattlerServer.userDataAccess.updateUserData(this);
+    }
+    
+    public void subtractCurrency(int amount) {
+        this.currency -= amount;
+        AutoBattlerServer.userDataAccess.updateUserData(this);
+    }
 }

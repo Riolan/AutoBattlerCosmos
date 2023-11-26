@@ -4,6 +4,7 @@
 
 package com.team3.autobattlerserver;
 
+import com.team3.autobattlerserver.Client.UserDataAccess;
 import com.team3.autobattlerserver.Client.ClientHandler;
 import com.team3.autobattlerserver.Game.Matchmaker.ClientMatchmaker;
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class AutoBattlerServer {
     private static int port = 31228;
     
     public static ClientMatchmaker clientMatchmaker;
+    public static UserDataAccess userDataAccess;
     
     static Logger logger = Logger.getLogger(AutoBattlerServer.class.getName());
 
@@ -69,6 +71,11 @@ public class AutoBattlerServer {
             Logger.getLogger(AutoBattlerServer.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        try {
+            userDataAccess = new UserDataAccess();
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(AutoBattlerServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Handler handlerObj = new ConsoleHandler();
         handlerObj.setLevel(Level.ALL);

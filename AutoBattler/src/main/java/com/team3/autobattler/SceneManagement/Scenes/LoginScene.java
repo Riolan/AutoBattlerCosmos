@@ -10,7 +10,7 @@ import com.team3.autobattler.Network.Packet.Create.LoginPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 /**
  *
- * @author pzex
+ * @author Emily
  */
 public class LoginScene extends javax.swing.JPanel {
 
@@ -21,6 +21,33 @@ public class LoginScene extends javax.swing.JPanel {
         initComponents();
     }
 
+    // put login validation code into its own function so user can login by hitting enter on either text box as well
+    private void attemptLogin() {
+        String usernameVal = username.getText();
+        String passwordVal = new String(password.getPassword());
+        System.out.println("Clicked!");
+
+        if(usernameVal.length() >= 1 && passwordVal.length() >= 1) {
+            System.out.println("INTO HERE");
+            PacketElement loginPacket = new LoginPacket(usernameVal, passwordVal);
+            AutoBattler.socketHandler.sendData(loginPacket);
+            
+//            PacketElement statePacket = new GameStateChangePacket(GameStates.MAINMENU);
+//            AutoBattler.socketHandler.sendData(statePacket);
+        }
+        if(usernameVal.length() < 1) {
+            usernameErrorMsg.setText("Please enter a username");
+        }
+        else {
+            usernameErrorMsg.setText("");
+        }
+        if(passwordVal.length() < 1) {
+            passwordErrorMsg.setText("Please enter a password");
+        }
+        else {
+            passwordErrorMsg.setText("");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -168,39 +195,16 @@ public class LoginScene extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-
+        attemptLogin();
     }//GEN-LAST:event_usernameActionPerformed
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-
+        attemptLogin();
     }//GEN-LAST:event_passwordActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
 
-        String usernameVal = username.getText();
-        String passwordVal = new String(password.getPassword());
-        System.out.println("Clicked!");
-
-        if(usernameVal.length() >= 1 && passwordVal.length() >= 8) {
-            System.out.println("INTO HERE");
-            PacketElement loginPacket = new LoginPacket(usernameVal, passwordVal);
-            AutoBattler.socketHandler.sendData(loginPacket);
-            
-//            PacketElement statePacket = new GameStateChangePacket(GameStates.MAINMENU);
-//            AutoBattler.socketHandler.sendData(statePacket);
-        }
-        if(usernameVal.length() < 1) {
-            usernameErrorMsg.setText("Please enter a username");
-        }
-        else {
-            usernameErrorMsg.setText("");
-        }
-        if(passwordVal.length() < 1) {
-            passwordErrorMsg.setText("Please enter a password");
-        }
-        else {
-            passwordErrorMsg.setText("");
-        }
+        attemptLogin();
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyTyped

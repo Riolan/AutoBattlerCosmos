@@ -10,7 +10,7 @@ import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 /**
  *
- * @author pzex
+ * @author Emily
  */
 // scene that loads upon game launch
 public class LaunchScene extends javax.swing.JPanel {

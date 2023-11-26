@@ -6,6 +6,7 @@ package com.team3.autobattlerserver.Network.Packets.Handle;
 import com.team3.autobattlerserver.Client.Client;
 import com.team3.autobattlerserver.Client.ClientHandler;
 import com.team3.autobattlerserver.Game.Battle;
+import com.team3.autobattlerserver.Game.GameStates;
 import com.team3.autobattlerserver.Network.PacketHandler;
 import com.team3.autobattlerserver.Game.Matchmaker.ClientMatchmaker;
 
@@ -25,8 +26,9 @@ public class StartBattlePacket implements PacketHandler {
         if (response.getBoolean("startBattle")) {
             // Put player into match
             Client client = handler.getClient();
+            client.setGameState(GameStates.PLAYOUTROUND);
             Battle battle = ClientMatchmaker.matches.get(client.getGame().getBattleId());
-            battle.doBattle(client);
+            battle.doBattle();
         }
         
 

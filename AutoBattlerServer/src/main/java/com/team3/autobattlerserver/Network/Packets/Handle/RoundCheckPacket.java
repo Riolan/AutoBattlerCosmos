@@ -42,8 +42,10 @@ public class RoundCheckPacket implements PacketHandler {
         Game game = client.getGame();
         
         if (game != null) {
-            if (game.getWins() <= 10 && game.getLosses() <= 3) {
+            if (game.getWins() < 10 && game.getLosses() < 3) {
                 client.setGameState(GameStates.SHOP);
+                PacketElement statePacket = new GameStateChangePacket(GameStates.SHOP);
+                handler.sendData(statePacket);
             }
             else {
                 PacketElement resultsPacket = new GameResultsPacket(game);
