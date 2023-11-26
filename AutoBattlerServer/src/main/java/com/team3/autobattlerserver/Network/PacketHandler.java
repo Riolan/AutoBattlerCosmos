@@ -1,6 +1,7 @@
 package com.team3.autobattlerserver.Network;
 
 import org.json.JSONObject;
+import com.team3.autobattlerserver.Client.ClientHandler;
 
 /**
  *
@@ -9,5 +10,5 @@ import org.json.JSONObject;
 public interface PacketHandler {
     // The collection of bytes which make up 
     // the user's request.
-    public void execute(long aId, JSONObject inputBuffer);
+    public void execute(ClientHandler handler, JSONObject inputBuffer);
 }

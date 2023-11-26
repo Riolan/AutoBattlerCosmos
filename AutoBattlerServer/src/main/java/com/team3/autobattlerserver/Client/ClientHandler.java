@@ -35,7 +35,7 @@ public class ClientHandler implements Runnable {
 
     private Client client;
 
-    ClientHandlerGUI clientGUI;
+    public ClientHandlerGUI clientGUI;
 
     
     public ClientHandler(Socket socket) {
@@ -47,6 +47,7 @@ public class ClientHandler implements Runnable {
             // Create a new Client associated with this socket.
             this.client = new Client();
             
+            // truly unique to user
             this.client.user.setId(clientAmt);
             
             
@@ -109,7 +110,7 @@ public class ClientHandler implements Runnable {
                 // Strategy pattern for different algorithm based on input.
                 PacketHandler packet = packetHandlerFactory.make(packetId);
                 // Excute the packet (closer to handle)
-                packet.execute(this.client.user.getId(), jsonObject);
+                packet.execute(this, jsonObject);
 
             } catch (IOException e) {
                 

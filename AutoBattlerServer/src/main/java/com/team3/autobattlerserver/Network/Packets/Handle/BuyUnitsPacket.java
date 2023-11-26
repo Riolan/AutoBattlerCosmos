@@ -31,14 +31,12 @@ public class BuyUnitsPacket implements PacketHandler {
      * @param inputBuffer 
      */
     @Override
-    public void execute(long aId, JSONObject inputBuffer) {
+    public void execute(ClientHandler handler, JSONObject inputBuffer) {
         
-        System.out.println("execute: Client Id: " + aId);
         System.out.println("BuyUnitsPacket Packet, Recieved: " + inputBuffer);
         
         // Derefrence client
-        ClientHandler clientHandler = ClientHandler.clientHandlers.get(aId);
-        Client client = clientHandler.getClient();
+        Client client = handler.getClient();
 
         int input = (int) inputBuffer.getNumber("bought");
         
@@ -68,11 +66,11 @@ public class BuyUnitsPacket implements PacketHandler {
         
         for (Unit unit : new_units) {
             // add unit
-            troop.createUnit((int)aId, unit);
+            troop.createUnit((int)handler.getClient().getUser().getId(), unit);
         }
      
         
-        for (Unit unit : troop.getUnits((int)aId)) {
+        for (Unit unit : troop.getUnits((int)handler.getClient().getUser().getId())) {
             System.out.println("Troops units: " + unit);
         }
         
@@ -81,8 +79,8 @@ public class BuyUnitsPacket implements PacketHandler {
         
         // End shop button was pressed
         PacketElement packet = new GameStateChangePacket(GameStates.GAMESEARCH);
-        clientHandler.getClient().setGameState(GameStates.GAMESEARCH);
-        clientHandler.sendData(packet);
+        handler.getClient().setGameState(GameStates.GAMESEARCH);
+        handler.sendData(packet);
         
         
     }

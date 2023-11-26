@@ -46,8 +46,6 @@ public class Battle{
         playerTwoHandler.sendData(statePacket);
         
         
-        // do Battle
-        //doBattle();
     }
     
     public void doBattle(Client client ) {

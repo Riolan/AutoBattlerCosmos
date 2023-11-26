@@ -16,11 +16,11 @@ import org.json.JSONObject;
 public class TestPacket implements PacketHandler {
     
     @Override
-    public void execute(long aId, JSONObject inputBuffer) {
+    public void execute(ClientHandler handler, JSONObject response) {
                 
-        System.out.println("execute: Client Id: " + aId);
+        System.out.println("SearchForGamePacket: " + response);
 
-        if (inputBuffer.has("ping")) System.out.println(inputBuffer.get("ping"));
+        if (response.has("ping")) System.out.println(response.get("ping"));
         
         
         

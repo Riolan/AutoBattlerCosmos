@@ -21,12 +21,11 @@ public class LoginPacket implements PacketHandler {
 
 
     @Override
-    public void execute(long aId, JSONObject response) {
+    public void execute(ClientHandler handler, JSONObject response) {
         System.out.println("LoginPacket, Recieved: " + response);
         
         
-        ClientHandler clientHandler = ClientHandler.clientHandlers.get(aId);
-        Client client = clientHandler.getClient();
+        Client client = handler.getClient();
         
         String username = response.getString("username");
         String password = response.getString("password");
@@ -34,7 +33,7 @@ public class LoginPacket implements PacketHandler {
         // Validate that a user exists with that username and password.
         if (!username.equals("x")) {
             PacketElement packet = new com.team3.autobattlerserver.Network.Packets.Create.LoginPacket(false, username);
-            clientHandler.sendData(packet);
+            handler.sendData(packet);
             return;
         }
         
@@ -42,7 +41,8 @@ public class LoginPacket implements PacketHandler {
         user.setId(client.getUser().getId());
         client.setUser(user);
         
+        
         PacketElement packet = new com.team3.autobattlerserver.Network.Packets.Create.LoginPacket(true, username);
-        clientHandler.sendData(packet);
+        handler.sendData(packet);
     }
 }

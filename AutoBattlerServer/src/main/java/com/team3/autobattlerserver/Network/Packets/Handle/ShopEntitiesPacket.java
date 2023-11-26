@@ -19,9 +19,8 @@ import org.json.JSONObject;
 public class ShopEntitiesPacket implements PacketHandler {
     
     @Override
-    public void execute(long aId, JSONObject response) {
+    public void execute(ClientHandler handler, JSONObject response) {
        
-        System.out.println("execute: Client Id: " + aId);
         System.out.println("ShopEntitesPacker: " + response);
         //if (response.getBoolean("refreshShop") && checkIfCanRefreshShop) 
         GameBoard.getInstance();
@@ -32,9 +31,9 @@ public class ShopEntitiesPacket implements PacketHandler {
         packet = new com.team3.autobattlerserver.Network.Packets.Create.ShopEntitiesPacket(troop.getUnits(-1));
 
         System.out.println("--troop.getUnits(-1):" + troop.getUnits(-1));
-        ClientHandler client = ClientHandler.clientHandlers.get(aId);
-        client.sendData(packet);
-        System.out.println("current gamestate" + client.getClient().getGameState());
+        
+        handler.sendData(packet);
+        System.out.println("current gamestate" + handler.getClient().getGameState());
 
     }
 }

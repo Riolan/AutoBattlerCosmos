@@ -29,14 +29,14 @@ public class StartGamePacket implements PacketHandler {
 
     
     @Override
-    public void execute(long aId, JSONObject inputBuffer) {
+    public void execute(ClientHandler handler, JSONObject inputBuffer) {
         
-        System.out.println("execute: Client Id: " + aId);
+        
         System.out.println("Start Game Packet, Recieved: " + inputBuffer);
         
         // Derefrence client
-        ClientHandler clientHandler = ClientHandler.clientHandlers.get(aId);
-        Client client = clientHandler.getClient();
+
+        Client client = handler.getClient();
         
         // Client requests to start a game.
         // check if client is already in game
@@ -44,7 +44,7 @@ public class StartGamePacket implements PacketHandler {
         
         // Send changestate to client (SHOP)
         PacketElement packet = new GameStateChangePacket(GameStates.SHOP);
-        clientHandler.sendData(packet);
+        handler.sendData(packet);
         
         // Generate random units to send to Player.
 
@@ -57,7 +57,7 @@ public class StartGamePacket implements PacketHandler {
         client.setUnits(units);
         // send random shop units
         PacketElement shopDataPacket = new ShopEntitiesPacket(units);
-        clientHandler.sendData(shopDataPacket);
+        handler.sendData(shopDataPacket);
         
     }
     

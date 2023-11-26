@@ -18,16 +18,14 @@ import org.json.JSONObject;
 public class StartBattlePacket implements PacketHandler {
     
     @Override
-    public void execute(long aId, JSONObject response) {
-        System.out.println("execute: Client Id: " + aId);
+    public void execute(ClientHandler handler, JSONObject response) {
         System.out.println("StartBattlePacket: " + response);
         //if (response.getBoolean("refreshShop") && checkIfCanRefreshShop) 
         boolean x = response.getBoolean("startBattle");
         System.out.println("Outpiut - " + x);
         if (response.getBoolean("startBattle")) {
             // put into matc
-            ClientHandler clientHandler = ClientHandler.clientHandlers.get(aId);
-            Client client = clientHandler.getClient();
+            Client client = handler.getClient();
             Battle battle = ClientMatchmaker.matches.get(client.getBattleId());
             battle.doBattle(client);
         }

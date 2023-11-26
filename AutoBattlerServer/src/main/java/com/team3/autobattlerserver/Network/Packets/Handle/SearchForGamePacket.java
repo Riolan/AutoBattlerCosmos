@@ -19,12 +19,9 @@ import org.json.JSONObject;
 public class SearchForGamePacket implements PacketHandler {
     
     @Override
-    public void execute(long aId, JSONObject response) {
+    public void execute(ClientHandler handler, JSONObject response) {
         System.out.println("check");
-        
-        ClientHandler clientHandler = ClientHandler.clientHandlers.get(aId);
-        
-        System.out.println("execute: Client Id: " + aId);
+                
         System.out.println("SearchForGamePacket: " + response);
         //if (response.getBoolean("refreshShop") && checkIfCanRefreshShop) 
         boolean x = response.getBoolean("doSearchForGame");
@@ -32,14 +29,14 @@ public class SearchForGamePacket implements PacketHandler {
         if (response.getBoolean("doSearchForGame")) {
             // put into matc
             ClientMatchmaker matchmaker = ClientMatchmaker.getInstance();
-            matchmaker.addClient(ClientHandler.clientHandlers.get(aId));
+            matchmaker.addClient(handler);
             
             System.out.println("client added");
             
             
             PacketElement packet = new com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket(GameStates.GAMESEARCH);
-            clientHandler.getClient().setGameState(GameStates.STARTROUND);
-            clientHandler.sendData(packet);
+            handler.getClient().setGameState(GameStates.STARTROUND);
+            handler.sendData(packet);
         }
         
 
