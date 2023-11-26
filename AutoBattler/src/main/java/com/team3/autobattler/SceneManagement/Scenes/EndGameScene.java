@@ -35,6 +35,8 @@ public class EndGameScene extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
+        winsLabel = new javax.swing.JLabel();
+        lossesLabel = new javax.swing.JLabel();
 
         jLabel1.setText("(final game results)");
 
@@ -52,29 +54,43 @@ public class EndGameScene extends javax.swing.JPanel {
             }
         });
 
+        winsLabel.setText("wins");
+
+        lossesLabel.setText("losses");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(395, 395, 395)
+                .addContainerGap(395, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
-                .addGap(395, 395, 395))
+                .addContainerGap(395, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(188, 188, 188)
+                .addComponent(winsLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lossesLabel)
+                .addGap(202, 202, 202))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addGap(113, 113, 113)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(winsLabel)
+                    .addComponent(lossesLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap(131, Short.MAX_VALUE))
         );
@@ -94,5 +110,7 @@ public class EndGameScene extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel lossesLabel;
+    public javax.swing.JLabel winsLabel;
     // End of variables declaration//GEN-END:variables
 }

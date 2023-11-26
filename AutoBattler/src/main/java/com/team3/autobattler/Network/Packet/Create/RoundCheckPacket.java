@@ -3,44 +3,45 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.team3.autobattler.Network.Packet.Create;
+
 import com.team3.autobattler.Network.Packet.PacketBuilder;
 import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.Network.Packet.PacketVisitor;
-import com.team3.autobattler.Game.GameStates;
-import static com.team3.autobattler.Network.Packet.PacketElement.jsonObject;
 import java.lang.reflect.Field;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Packet used to change the game state, primarily for changing scene and 
- * ensuring that the Client/Server are on the correct state.
- * @author Rio
+ * Checks how many rounds a player has played within the current game, used to 
+ * end game once 10 win or 3 losses has been reached
+ * 
+ * @author Emily
  */
-public class GameStateChangePacket implements PacketElement {
+public class RoundCheckPacket implements PacketElement {
     // Required ID for each packet
-    private int id = PacketBuilder.STATECHANGE.getId();
-    // your variables
-    private GameStates gameState;
-
+    private int id = PacketBuilder.ROUNDCHECK.getId();
+    private boolean doRoundCheck;
+    
     Field fld[] = this.getClass().getDeclaredFields();
-
-    public GameStateChangePacket(GameStates gameState) {
-        //
+    
+    /**
+     * This is a StartGamePacket packer which is used 
+     * 
+     */
+    public RoundCheckPacket(boolean doRoundCheck) {
         init();
-        // set your variables
-        this.gameState = gameState;
-        
-        
-        //
+        this.doRoundCheck = doRoundCheck;
+
         for(Field x : fld) {
             if (x.getName().equals("fld")) continue;
             try {
                 jsonObject.put(x.getName(), x.get(this));
             } catch(IllegalAccessException | IllegalArgumentException | JSONException e) {
-                 System.out.println("-------\n" + e + "\n-------");
-            } 
-        }
+                System.out.println("-------\n" + e + "\n-------");
+            }
+            
+            
+        }        
     }
     
     @Override
@@ -54,7 +55,7 @@ public class GameStateChangePacket implements PacketElement {
         return visitor.visit(this);
     }
     
-        @Override
+    @Override
     public void init() {
         jsonObject.clear();
     }

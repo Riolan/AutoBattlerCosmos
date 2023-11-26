@@ -8,14 +8,15 @@ import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.PacketHandler;
 import com.team3.autobattler.SceneManagement.SceneManager;
+import com.team3.autobattler.SceneManagement.Scenes.EndGameScene;
 import com.team3.autobattler.SceneManagement.Scenes.MainMenuScene;
 import org.json.JSONObject;
 
 /**
- *
- * @author riola
+ * receives game results from server and displays to user
+ * @author Emily
  */
-public class GameStateChangePacket implements PacketHandler {
+public class GameResultsPacket implements PacketHandler {
  
     
     
@@ -27,9 +28,13 @@ public class GameStateChangePacket implements PacketHandler {
         // validation, then implement proper, more extansive
         System.out.println("GameStateChangePacket, Recieved: " + inputBuffer);
         
-        GameStates newState = inputBuffer.getEnum(GameStates.class, "gameState");
+        int wins = inputBuffer.getInt("wins");
+        int losses = inputBuffer.getInt("losses");
 
-        AutoBattler.socketHandler.getClient().setGameState(newState);
+        EndGameScene endGame = (EndGameScene)SceneManager.getInstance().getScene(GameStates.ENDGAME);
+            
+            endGame.winsLabel.setText("Wins: " + wins);
+            endGame.lossesLabel.setText("Losses: " + losses);
     }
             
 

@@ -17,10 +17,13 @@ public class PacketHandlerFactory {
     public PacketHandler make(int packetId) {
         return switch (PacketBuilder.values()[packetId]) {
             case TEST -> new TestPacket();
-            case SCENECHANGE -> new GameStateChangePacket();
+            case STATECHANGE -> new GameStateChangePacket();
             case SHOP -> new ShopEntitiesPacket();
             case LOGIN -> new LoginPacket();
             case OPPONENT -> new OpponentPacket();
+            case BATTLEOUTCOME -> new BattleOutcomePacket();
+            case GAMERESULTS -> new GameResultsPacket();
+            case SIGNUP -> new SignUpPacket();
             default -> new TestPacket();
         }; //case SEARCHFORGAME: return new SearchForGamePacket();
         //case STARTGAME: return new StartGamePacket();

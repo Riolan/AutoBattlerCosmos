@@ -155,8 +155,6 @@ public class MainMenuScene extends javax.swing.JPanel {
 //        AutoBattler.socketHandler.sendData(statePacket);
         PacketElement startGame = new StartGamePacket(true);
         AutoBattler.socketHandler.sendData(startGame);   
-        PacketElement statePacket = new GameStateChangePacket(GameStates.SHOP);
-        AutoBattler.socketHandler.sendData(statePacket);
     }//GEN-LAST:event_startGameButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

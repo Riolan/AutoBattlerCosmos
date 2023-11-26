@@ -167,8 +167,7 @@ public class StartRoundScene extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PacketElement statePacket = new GameStateChangePacket(GameStates.PLAYOUTROUND);
-        AutoBattler.socketHandler.sendData(statePacket);
+
         PacketElement battlePacket = new StartBattlePacket(true);
         AutoBattler.socketHandler.sendData(battlePacket);   
     }//GEN-LAST:event_jButton1ActionPerformed

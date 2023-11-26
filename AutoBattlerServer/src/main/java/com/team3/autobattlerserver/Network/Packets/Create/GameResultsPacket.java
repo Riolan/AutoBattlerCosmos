@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.team3.autobattlerserver.Network.Packets.Create;
+import com.team3.autobattlerserver.Game.Game;
 import com.team3.autobattlerserver.Network.PacketBuilder;
 import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.PacketVisitor;
@@ -15,19 +16,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Packet used to change scene.
- * @author riola
+ * Sends user game results once they finish a game
+ * @author Emily
  */
-public class GameStateChangePacket implements PacketElement {
+public class GameResultsPacket implements PacketElement {
     // Required ID for each packet
-    private int id = PacketBuilder.STATECHANGE.getId();
-    private GameStates gameState;
+    private int id = PacketBuilder.GAMERESULTS.getId();
+    private int wins;
+    private int losses;
 
     Field fld[] = this.getClass().getDeclaredFields();
 
-    public GameStateChangePacket(GameStates gameState) {
+    public GameResultsPacket(Game game) {
         init();
-        this.gameState = gameState;
+        this.wins = game.getWins();
+        this.losses = game.getLosses();
         
         
         //

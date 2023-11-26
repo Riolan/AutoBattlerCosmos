@@ -665,8 +665,6 @@ public class Shop extends javax.swing.JPanel {
     private void changeSceneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeSceneButtonActionPerformed
         // TODO add your handling code here:
         
-        PacketElement statePacket = new GameStateChangePacket(GameStates.GAMESEARCH);
-        AutoBattler.socketHandler.sendData(statePacket);   
         PacketElement searchPacket = new SearchForGamePacket(true);
         AutoBattler.socketHandler.sendData(searchPacket);
     }//GEN-LAST:event_changeSceneButtonActionPerformed

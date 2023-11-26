@@ -16,6 +16,8 @@ public interface PacketVisitor {
     JSONObject visit(GameStateChangePacket packet);
     JSONObject visit(ShopEntitiesPacket packet);
     JSONObject visit(OpponentPacket packet);
-
-    public JSONObject visit(LoginPacket aThis);
+    JSONObject visit(LoginPacket packet);
+    JSONObject visit(BattleOutcomePacket packet);
+    JSONObject visit(GameResultsPacket packet);
+    JSONObject visit(SignUpPacket packet);
 }

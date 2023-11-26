@@ -14,13 +14,15 @@ public class PacketHandlerFactory {
     public PacketHandler make(int packetId) {
         return switch (PacketBuilder.valueOf(packetId)) {
             case TEST -> new TestPacket();
-            case SCENECHANGE -> new GameStateChangePacket();
+            case STATECHANGE -> new GameStateChangePacket();
             case SHOP -> new ShopEntitiesPacket();
             case SEARCHFORGAME -> new SearchForGamePacket();
             case STARTGAME -> new StartGamePacket();
             case LOGIN -> new LoginPacket();
             case BUYUNITS -> new BuyUnitsPacket();         
             case STARTBATTLE -> new StartBattlePacket();
+            case ROUNDCHECK ->  new RoundCheckPacket();
+            case SIGNUP -> new SignUpPacket();
             default -> new TestPacket();
         }; 
     }    

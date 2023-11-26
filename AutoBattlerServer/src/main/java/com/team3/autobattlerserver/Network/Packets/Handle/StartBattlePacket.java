@@ -26,7 +26,7 @@ public class StartBattlePacket implements PacketHandler {
         if (response.getBoolean("startBattle")) {
             // put into matc
             Client client = handler.getClient();
-            Battle battle = ClientMatchmaker.matches.get(client.getBattleId());
+            Battle battle = ClientMatchmaker.matches.get(client.getGame().getBattleId());
             battle.doBattle(client);
         }
         

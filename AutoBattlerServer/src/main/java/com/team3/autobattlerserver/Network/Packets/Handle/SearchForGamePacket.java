@@ -5,6 +5,7 @@
 package com.team3.autobattlerserver.Network.Packets.Handle;
 import com.team3.autobattlerserver.Client.Client;
 import com.team3.autobattlerserver.Client.ClientHandler;
+import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 import com.team3.autobattlerserver.Game.GameStates;
 import com.team3.autobattlerserver.Network.PacketHandler;
 import com.team3.autobattlerserver.Game.Matchmaker.ClientMatchmaker;
@@ -27,6 +28,9 @@ public class SearchForGamePacket implements PacketHandler {
         boolean x = response.getBoolean("doSearchForGame");
         System.out.println("Outpiut - " + x);
         if (response.getBoolean("doSearchForGame")) {
+            handler.getClient().setGameState(GameStates.GAMESEARCH);
+            PacketElement statePacket = new GameStateChangePacket(GameStates.GAMESEARCH);
+            handler.sendData(statePacket);
             // put into matc
             ClientMatchmaker matchmaker = ClientMatchmaker.getInstance();
             matchmaker.addClient(handler);

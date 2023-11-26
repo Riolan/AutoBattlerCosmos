@@ -40,6 +40,8 @@ public class LoginScene extends javax.swing.JPanel {
         passwordErrorMsg = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         loginSuccess = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        signUpButton = new javax.swing.JButton();
 
         jLabel1.setText("Log In");
 
@@ -85,6 +87,15 @@ public class LoginScene extends javax.swing.JPanel {
 
         loginSuccess.setText("------");
 
+        jLabel4.setText("No account?");
+
+        signUpButton.setText("Sign Up");
+        signUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,20 +111,6 @@ public class LoginScene extends javax.swing.JPanel {
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(159, 159, 159))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(422, 422, 422))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(loginButton)
-                        .addGap(408, 408, 408))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordErrorMsg))
-                        .addGap(16, 16, 16))))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
@@ -121,6 +118,24 @@ public class LoginScene extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addComponent(loginSuccess, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(422, 422, 422))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordErrorMsg))
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(loginButton)
+                        .addGap(405, 405, 405))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(signUpButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -142,9 +157,13 @@ public class LoginScene extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordErrorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usernameErrorMsg))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addGap(77, 77, 77)
                 .addComponent(loginButton)
-                .addGap(158, 158, 158))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(signUpButton))
+                .addGap(33, 33, 33))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -176,8 +195,8 @@ public class LoginScene extends javax.swing.JPanel {
         else {
             usernameErrorMsg.setText("");
         }
-        if(passwordVal.length() < 8) {
-            passwordErrorMsg.setText("Password must be at least 8 digits long");
+        if(passwordVal.length() < 1) {
+            passwordErrorMsg.setText("Please enter a password");
         }
         else {
             passwordErrorMsg.setText("");
@@ -196,16 +215,23 @@ public class LoginScene extends javax.swing.JPanel {
         AutoBattler.socketHandler.getClient().bypassGameState(GameStates.valueOf(jComboBox1.getSelectedItem().toString()));
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
+        PacketElement statePacket = new GameStateChangePacket(GameStates.SIGNUP);
+        AutoBattler.socketHandler.sendData(statePacket);
+    }//GEN-LAST:event_signUpButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton loginButton;
     public javax.swing.JLabel loginSuccess;
     private javax.swing.JPasswordField password;
     private javax.swing.JLabel passwordErrorMsg;
+    private javax.swing.JButton signUpButton;
     private javax.swing.JTextField username;
     private javax.swing.JLabel usernameErrorMsg;
     // End of variables declaration//GEN-END:variables

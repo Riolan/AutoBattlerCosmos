@@ -17,11 +17,9 @@ public interface PacketVisitor {
     JSONObject visit(ShopEntitiesPacket packet);
     JSONObject visit(SearchForGamePacket packet);
     JSONObject visit(StartBattlePacket packet);
-
-    public JSONObject visit(LoginPacket packet);
-
-    public JSONObject visit(StartGamePacket aThis);
-
-    public JSONObject visit(BuyUnitsPacket aThis);
-    
+    JSONObject visit(LoginPacket packet);
+    JSONObject visit(StartGamePacket packet);
+    JSONObject visit(BuyUnitsPacket packet);
+    JSONObject visit(SignUpPacket packet);
+    JSONObject visit(RoundCheckPacket packet);
 }

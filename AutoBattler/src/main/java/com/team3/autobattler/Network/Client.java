@@ -4,10 +4,13 @@
  */
 package com.team3.autobattler.Network;
 
+import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStateObservable;
 import com.team3.autobattler.Game.GameStateObserver;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Game.MyGameState;
+import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
+import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.SceneManagement.SceneManager;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -73,10 +76,11 @@ public class Client implements Serializable {
     // temporary function to switch to any game state for testing purposes
     public boolean bypassGameState(GameStates gameState) {
         System.out.println("bypassGameState Set game state: " + gameState);
-        
-        // Update the observerables game state
-        // this automatically notifies observers
-        this.observable.setGameState(gameState);
+        PacketElement statePacket1 = new GameStateChangePacket(GameStates.CONNECTED);
+        AutoBattler.socketHandler.sendData(statePacket1);
+        PacketElement statePacket2 = new GameStateChangePacket(gameState);
+        AutoBattler.socketHandler.sendData(statePacket2);  
+
         return true;
 
     }

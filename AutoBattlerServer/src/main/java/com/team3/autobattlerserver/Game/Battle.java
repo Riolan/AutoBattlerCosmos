@@ -10,8 +10,8 @@ import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 import com.team3.autobattlerserver.Network.Packets.Create.OpponentPacket;
 /**
- *
- * @author pzex
+ * holds battle between two players
+ * @author Emily
  */
 public class Battle{
     private ClientHandler playerOneHandler;
@@ -28,10 +28,10 @@ public class Battle{
         this.playerOne = playerOneHandler.getClient();
         this.playerTwo = playerTwoHandler.getClient();
         
-        playerOne.setInBattle(true);
-        playerTwo.setInBattle(true);
-        playerOne.setBattleId(id);
-        playerTwo.setBattleId(id);
+        playerOne.getGame().setInBattle(true);
+        playerTwo.getGame().setInBattle(true);
+        playerOne.getGame().setBattleId(id);
+        playerTwo.getGame().setBattleId(id);
         
         PacketElement packet1 = new OpponentPacket(playerTwo);
         PacketElement packet2 = new OpponentPacket(playerOne);
@@ -41,6 +41,7 @@ public class Battle{
         
         playerOne.setGameState(GameStates.STARTROUND);
         playerTwo.setGameState(GameStates.STARTROUND);
+        
         PacketElement statePacket = new GameStateChangePacket(GameStates.STARTROUND);
         playerOneHandler.sendData(statePacket);
         playerTwoHandler.sendData(statePacket);
@@ -75,3 +76,4 @@ public class Battle{
         return id;
     }
 }
+

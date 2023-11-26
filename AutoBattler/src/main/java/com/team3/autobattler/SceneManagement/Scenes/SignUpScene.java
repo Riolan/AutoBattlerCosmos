@@ -6,6 +6,8 @@ package com.team3.autobattler.SceneManagement.Scenes;
 import com.team3.autobattler.AutoBattler;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
+import com.team3.autobattler.Network.Packet.Create.LoginPacket;
+import com.team3.autobattler.Network.Packet.Create.SignUpPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 /**
  *
@@ -152,8 +154,8 @@ public class SignUpScene extends javax.swing.JPanel {
         String passwordVal = new String(password.getPassword());
         
         if(usernameVal.length() >= 1 && passwordVal.length() >= 8) {
-            PacketElement statePacket = new GameStateChangePacket(GameStates.MAINMENU);
-            AutoBattler.socketHandler.sendData(statePacket);
+            PacketElement signUpPacket = new SignUpPacket(usernameVal, passwordVal);
+            AutoBattler.socketHandler.sendData(signUpPacket);
         }
         if(usernameVal.length() < 1) {
             usernameErrorMsg.setText("Please enter a username");
@@ -191,6 +193,6 @@ public class SignUpScene extends javax.swing.JPanel {
     private javax.swing.JLabel passwordErrorMsg;
     private javax.swing.JButton signUpButton;
     private javax.swing.JTextField username;
-    private javax.swing.JLabel usernameErrorMsg;
+    public javax.swing.JLabel usernameErrorMsg;
     // End of variables declaration//GEN-END:variables
 }

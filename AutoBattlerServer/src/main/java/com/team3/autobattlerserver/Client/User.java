@@ -4,13 +4,16 @@
  */
 package com.team3.autobattlerserver.Client;
 
+import java.io.Serializable;
+
 /**
  * Each client has a user. https://www.baeldung.com/java-dao-pattern
  *
  * @author riola
  */
-public class User {
+public class User implements Serializable {
     
+
     private long uuid;
 
     private String username;

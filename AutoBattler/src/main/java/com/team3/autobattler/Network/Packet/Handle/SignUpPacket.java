@@ -12,21 +12,22 @@ import com.team3.autobattler.Network.Packet.PacketHandler;
 import com.team3.autobattler.SceneManagement.SceneManager;
 import com.team3.autobattler.SceneManagement.Scenes.LoginScene;
 import com.team3.autobattler.SceneManagement.Scenes.MainMenuScene;
+import com.team3.autobattler.SceneManagement.Scenes.SignUpScene;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
  *
- * @author Rio
+ * @author Emily
  */
-public class LoginPacket implements PacketHandler {
+public class SignUpPacket implements PacketHandler {
     @Override
     public void execute(JSONObject response) {
         // response as the passed variable makes so much more sense
-        System.out.println("LoginPacket, Recieved: " + response);
+        System.out.println("SignUpPacket, Recieved: " + response);
         if (response.getBoolean("success")) {
-            // Login was successful
+            // SignUp was successful
             
             // Go to mainmenu
            
@@ -48,8 +49,8 @@ public class LoginPacket implements PacketHandler {
             AutoBattler.socketHandler.sendData(statePacket);
             
         } else {
-            LoginScene loginScene = (LoginScene)SceneManager.getInstance().getScene(GameStates.LOGIN);
-            loginScene.loginSuccess.setText("Failed to login");
+            SignUpScene signUpScene = (SignUpScene)SceneManager.getInstance().getScene(GameStates.SIGNUP);
+            signUpScene.usernameErrorMsg.setText("Username taken");
             
         }
         

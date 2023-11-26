@@ -21,12 +21,12 @@ public enum GameStates {
     LOGIN(Arrays.asList(new GameStates[]{})),
     SIGNUP(Arrays.asList(new GameStates[]{})),
     MAINMENU(Arrays.asList(new GameStates[]{})),
-    GAMESEARCH(Arrays.asList(new GameStates[]{})),
-    ENDGAME(Arrays.asList(new GameStates[]{})),
-    ENDROUND(Arrays.asList(new GameStates[]{})),
-    PLAYOUTROUND(Arrays.asList(new GameStates[]{})),
     SHOP(Arrays.asList(new GameStates[]{})),
+    GAMESEARCH(Arrays.asList(new GameStates[]{})),
     STARTROUND(Arrays.asList(new GameStates[]{})),
+    PLAYOUTROUND(Arrays.asList(new GameStates[]{})),
+    ENDROUND(Arrays.asList(new GameStates[]{})),
+    ENDGAME(Arrays.asList(new GameStates[]{})),
     CONNECTED(Arrays.asList(new GameStates[]{}));
 
     private List<GameStates> validStates = new LinkedList<GameStates>();
@@ -36,16 +36,16 @@ public enum GameStates {
             GameStates.SIGNUP, GameStates.MAINMENU, GameStates.GAMESEARCH, GameStates.STARTROUND,
             GameStates.SHOP, GameStates.PLAYOUTROUND, GameStates.ENDROUND}));
 
-        STARTROUND.validStates = Arrays.asList(new GameStates[]{GameStates.PLAYOUTROUND});
-        SHOP.validStates = Arrays.asList(new GameStates[]{GameStates.GAMESEARCH});
-        PLAYOUTROUND.validStates = Arrays.asList(new GameStates[]{GameStates.ENDROUND});
-        ENDROUND.validStates = Arrays.asList(new GameStates[]{GameStates.SHOP, GameStates.ENDGAME});
-        ENDGAME.validStates = Arrays.asList(new GameStates[]{GameStates.MAINMENU});
-        GAMESEARCH.validStates = Arrays.asList(new GameStates[]{GameStates.STARTROUND});
-        LAUNCH.validStates = Arrays.asList(new GameStates[]{GameStates.LOGIN, GameStates.MAINMENU});
-        MAINMENU.validStates = Arrays.asList(new GameStates[]{GameStates.SHOP, GameStates.LOGIN});
-        LOGIN.validStates = Arrays.asList(new GameStates[]{GameStates.SIGNUP, GameStates.MAINMENU});
-        SIGNUP.validStates = Arrays.asList(new GameStates[]{GameStates.LOGIN, GameStates.MAINMENU});
+        LAUNCH.validStates = Arrays.asList(new GameStates[]{GameStates.LOGIN, GameStates.MAINMENU, GameStates.CONNECTED});
+        LOGIN.validStates = Arrays.asList(new GameStates[]{GameStates.SIGNUP, GameStates.MAINMENU, GameStates.CONNECTED});
+        SIGNUP.validStates = Arrays.asList(new GameStates[]{GameStates.LOGIN, GameStates.MAINMENU, GameStates.CONNECTED});
+        MAINMENU.validStates = Arrays.asList(new GameStates[]{GameStates.SHOP, GameStates.LOGIN, GameStates.CONNECTED});
+        SHOP.validStates = Arrays.asList(new GameStates[]{GameStates.GAMESEARCH, GameStates.CONNECTED});
+        GAMESEARCH.validStates = Arrays.asList(new GameStates[]{GameStates.STARTROUND, GameStates.CONNECTED});
+        STARTROUND.validStates = Arrays.asList(new GameStates[]{GameStates.PLAYOUTROUND, GameStates.CONNECTED});
+        PLAYOUTROUND.validStates = Arrays.asList(new GameStates[]{GameStates.ENDROUND, GameStates.CONNECTED});
+        ENDROUND.validStates = Arrays.asList(new GameStates[]{GameStates.SHOP, GameStates.ENDGAME, GameStates.CONNECTED});
+        ENDGAME.validStates = Arrays.asList(new GameStates[]{GameStates.MAINMENU, GameStates.CONNECTED});
         UNCONNECTED.validStates = Arrays.asList(new GameStates[]{GameStates.CONNECTED});
     }
 

@@ -17,17 +17,24 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="395" max="-2" attributes="0"/>
+              <EmptySpace pref="395" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="395" max="-2" attributes="0"/>
+              <EmptySpace pref="395" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
+              <Component id="winsLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lossesLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -36,9 +43,14 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="227" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="173" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="winsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lossesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="250" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="131" max="32767" attributes="0"/>
           </Group>
@@ -81,6 +93,22 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="winsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="wins"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lossesLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="losses"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
   </SubComponents>

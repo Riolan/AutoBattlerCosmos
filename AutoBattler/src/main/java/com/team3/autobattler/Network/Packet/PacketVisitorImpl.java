@@ -65,4 +65,16 @@ public class PacketVisitorImpl implements PacketVisitor {
         JSONObject data = packet.getJsonObject();
         return data;
     }
+    
+    @Override
+    public JSONObject visit(RoundCheckPacket packet) {
+        JSONObject data = packet.getJsonObject();
+        return data;
+    }
+    
+    @Override
+    public JSONObject visit(SignUpPacket packet) {
+        JSONObject data = packet.getJsonObject();
+        return data;
+    }
 }

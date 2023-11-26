@@ -4,11 +4,14 @@
  */
 package com.team3.autobattlerserver.Client;
 
+import com.team3.autobattlerserver.Game.Game;
 import java.io.Serializable;
 import com.team3.autobattlerserver.Game.GameStates;
 import com.team3.autobattlerserver.Game.GameStateObserver;
 import com.team3.autobattlerserver.Game.GameStateObservable;
 import com.team3.autobattlerserver.Game.Unit;
+import com.team3.autobattlerserver.Network.PacketElement;
+import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 import java.util.List;
 import java.util.ArrayList;
 /**
@@ -19,8 +22,7 @@ public class Client implements Serializable, GameStateObservable {
     User user;
     
     private boolean inGame = false;
-    private boolean inBattle = false;
-    private int battleId = -1;
+    Game game = null;
 
     GameStates gameState; 
     int currency;
@@ -49,11 +51,10 @@ public class Client implements Serializable, GameStateObservable {
         return currency;
     }
     
-    void setCurrency(int currency) {
+    public void setCurrency(int currency) {
         this.currency = currency;
     }
     
-        
     public boolean getInGame() {
         return inGame;
     }
@@ -62,21 +63,13 @@ public class Client implements Serializable, GameStateObservable {
         this.inGame = inGame;
     }
     
-    public boolean getInBattle() {
-        return inBattle;
+    public Game getGame() {
+        return game;
     }
     
-    public void setInBattle(boolean inBattle) {
-        this.inBattle = inBattle;
+    public void startGame() {
+        game = new Game();
     }
-    public int getBattleId() {
-        return battleId;
-    }
-    
-    public void setBattleId(int battleId) {
-        this.battleId = battleId;
-    }
-    
     
     public User getUser() {
         return user;
@@ -89,12 +82,12 @@ public class Client implements Serializable, GameStateObservable {
     public GameStates getGameState() {
         return gameState;
     }
-    
 
     // If able to change the gamestate change it and return true.
     public boolean setGameState(GameStates gameState) {
         if (this.gameState.canChangeGameState(this.gameState, gameState)) {
             this.gameState = gameState;
+
             notifyObservers();
             return true;
         }
