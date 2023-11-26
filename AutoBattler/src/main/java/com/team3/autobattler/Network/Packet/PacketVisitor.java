@@ -19,7 +19,7 @@ public interface PacketVisitor {
     JSONObject visit(StartBattlePacket packet);
     JSONObject visit(LoginPacket packet);
     JSONObject visit(StartGamePacket packet);
-    JSONObject visit(BuyUnitsPacket packet);
+    JSONObject visit(ShopInteractionPacket packet);
     JSONObject visit(SignUpPacket packet);
     JSONObject visit(RoundCheckPacket packet);
 }

@@ -19,7 +19,7 @@ public class PacketHandlerFactory {
             case SEARCHFORGAME -> new SearchForGamePacket();
             case STARTGAME -> new StartGamePacket();
             case LOGIN -> new LoginPacket();
-            case BUYUNITS -> new BuyUnitsPacket();         
+            case SHOPINTERACTION -> new ShopInteractionPacket();         
             case STARTBATTLE -> new StartBattlePacket();
             case ROUNDCHECK ->  new RoundCheckPacket();
             case SIGNUP -> new SignUpPacket();
