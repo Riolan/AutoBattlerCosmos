@@ -22,6 +22,6 @@ public interface PacketVisitor {
 
     public JSONObject visit(StartGamePacket aThis);
 
-    public JSONObject visit(BuyUnitsPacket aThis);
+    public JSONObject visit(ShopInteractionPacket aThis);
     
 }

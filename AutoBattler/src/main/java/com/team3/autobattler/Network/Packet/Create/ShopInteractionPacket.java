@@ -15,9 +15,10 @@ import org.json.JSONObject;
  * 
  * @author Rio
  */
-public class BuyUnitsPacket implements PacketElement {
+public class ShopInteractionPacket implements PacketElement {
     // Required ID for each packet
-    private int id = PacketBuilder.BUYUNITS.getId();
+    private int id = PacketBuilder.SHOPINTERACTION.getId();
+    private int action = 0;
     private int bought = 0;
 
     
@@ -27,8 +28,10 @@ public class BuyUnitsPacket implements PacketElement {
      * This is a BuyUnitsPacket packet which is used 
      * 
      */
-    public BuyUnitsPacket(int bought) {
+    public ShopInteractionPacket(int action, int bought) {
         init();
+        
+        this.action = action;
         this.bought = bought;
 
         for(Field x : fld) {
