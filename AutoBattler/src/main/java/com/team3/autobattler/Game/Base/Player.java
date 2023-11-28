@@ -7,6 +7,10 @@ package com.team3.autobattler.Game.Base;
 
 import com.team3.autobattler.Game.Base.UnitA.Unit;
 import com.team3.autobattler.Game.Factories.ItemFactory;
+import com.team3.autobattler.Game.GameStates;
+import com.team3.autobattler.SceneManagement.SceneManager;
+import com.team3.autobattler.SceneManagement.Scenes.MainMenuScene;
+import com.team3.autobattler.SceneManagement.Scenes.Shop;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,21 +81,27 @@ public class Player extends Battler {
         this.units.remove(unit);
     }
     
-    
-    
     public int getGold() {
         return gold;
     }
+    
     public boolean subtractGold(int cost) {
         if (gold - cost < 0) {
         return false;
         }
         gold = gold-cost;
+        SceneManager sceneManager = SceneManager.getInstance();
+        MainMenuScene mainMenu = (MainMenuScene) sceneManager.getScene(GameStates.MAINMENU);
+        mainMenu.currency.setText("Currency: " + this.getGold() + " Gold");
+        
         return true;
     }
     
     public boolean addGold(int cost) {
         gold = gold + cost;
+        SceneManager sceneManager = SceneManager.getInstance();
+        MainMenuScene mainMenu = (MainMenuScene) sceneManager.getScene(GameStates.MAINMENU);
+        mainMenu.currency.setText("Currency: " + this.getGold() + " Gold");
         return true;
     }
 }

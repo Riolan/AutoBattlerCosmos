@@ -11,6 +11,8 @@ import com.team3.autobattlerserver.Network.PacketElement;
 import com.team3.autobattlerserver.Network.Packets.Create.BattleOutcomePacket;
 import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 import com.team3.autobattlerserver.Network.Packets.Create.OpponentPacket;
+import com.team3.autobattlerserver.Network.Packets.Create.ShopEntitiesPacket;
+import java.util.List;
 
 /**
  * holds battle between two players
@@ -118,6 +120,21 @@ public class Battle{
                 playerOneHandler.sendData(resultPacket);
                 playerTwoHandler.sendData(resultPacket);
             }
+            
+            // Generate random units to send to Player.
+
+            // Take a look back at this later for generating random units.
+        
+            List<Unit> units = troop.getUnits(-1);
+        
+            // Store random shop units here.
+            playerOne.setUnits(units);
+            playerTwo.setUnits(units);
+            
+            // send random shop units
+            PacketElement shopDataPacket = new ShopEntitiesPacket(units);
+            playerOneHandler.sendData(shopDataPacket);
+            playerTwoHandler.sendData(shopDataPacket);
             
             AutoBattlerServer.clientMatchmaker.matches.remove(id, this);
             playerOne.getGame().setInBattle(false);

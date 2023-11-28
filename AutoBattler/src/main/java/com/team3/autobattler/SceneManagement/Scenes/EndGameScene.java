@@ -9,20 +9,38 @@ import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.SceneManagement.SceneManager;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Emily
  */
 public class EndGameScene extends javax.swing.JPanel {
+    private Image backgroundImage;
 
     /**
      * Creates new form EndGameScene
      */
     public EndGameScene() {
+        this.backgroundImage = new ImageIcon(getClass().getResource("/spaceBackground.png")).getImage();
+        Dimension size = new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
         initComponents();
     }
-
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(backgroundImage, 0, 0, this);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,6 +56,9 @@ public class EndGameScene extends javax.swing.JPanel {
         winsLabel = new javax.swing.JLabel();
         lossesLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("(final game results)");
 
         jButton1.setText("Main Menu");
@@ -54,8 +75,10 @@ public class EndGameScene extends javax.swing.JPanel {
             }
         });
 
+        winsLabel.setForeground(new java.awt.Color(255, 255, 255));
         winsLabel.setText("wins");
 
+        lossesLabel.setForeground(new java.awt.Color(255, 255, 255));
         lossesLabel.setText("losses");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

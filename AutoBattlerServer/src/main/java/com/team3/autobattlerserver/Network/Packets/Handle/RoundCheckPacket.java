@@ -48,6 +48,7 @@ public class RoundCheckPacket implements PacketHandler {
                 handler.sendData(statePacket);
             }
             else {
+                client.setInGame(false);
                 PacketElement resultsPacket = new GameResultsPacket(game);
                 handler.sendData(resultsPacket);
                 

@@ -8,17 +8,34 @@ import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.Create.SignUpPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Emily
  */
 public class SignUpScene extends javax.swing.JPanel {
-
+    private Image backgroundImage;
     /**
      * Creates new form SignUpScene
      */
     public SignUpScene() {
+        this.backgroundImage = new ImageIcon(getClass().getResource("/spaceBackground.png")).getImage();
+        Dimension size = new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
         initComponents();
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(backgroundImage, 0, 0, this);
     }
     
     // put signup validation code into its own function so user can sign up by hitting enter on either text box as well
@@ -65,6 +82,9 @@ public class SignUpScene extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Sign Up");
 
         signUpButton.setText("Sign Up");
@@ -96,8 +116,10 @@ public class SignUpScene extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Username:");
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
@@ -107,6 +129,7 @@ public class SignUpScene extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Already have an account?");
 
         jButton1.setText("Login");

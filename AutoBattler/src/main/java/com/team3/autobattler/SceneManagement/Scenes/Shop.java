@@ -13,6 +13,9 @@ import com.team3.autobattler.Network.Packet.Create.SearchForGamePacket;
 import com.team3.autobattler.Network.Packet.Create.ShopInteractionPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.SceneManagement.SceneManager;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -30,6 +34,7 @@ import org.json.JSONObject;
  * @author Collin
  */
 public class Shop extends javax.swing.JPanel {
+    private Image backgroundImage;
     final int MAX_UNITS = 5;
     Troop aTroop = new Troop();
     Player player = Player.getPlayer();
@@ -44,9 +49,22 @@ public class Shop extends javax.swing.JPanel {
      * Creates new form Shop
      */
     public Shop() {
+        this.backgroundImage = new ImageIcon(getClass().getResource("/spaceBackground.png")).getImage();
+        Dimension size = new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
         initComponents();
 
               
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(backgroundImage, 0, 0, this);
     }
     
     

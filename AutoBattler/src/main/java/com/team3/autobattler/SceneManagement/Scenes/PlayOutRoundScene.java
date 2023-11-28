@@ -9,18 +9,36 @@ import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.SceneManagement.SceneManager;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Emily
  */
 public class PlayOutRoundScene extends javax.swing.JPanel {
+    private Image backgroundImage;
 
     /**
      * Creates new form PlayOutRoundScene
      */
     public PlayOutRoundScene() {
+        this.backgroundImage = new ImageIcon(getClass().getResource("/spaceBackground.png")).getImage();
+        Dimension size = new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
         initComponents();
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(backgroundImage, 0, 0, this);
     }
 
     /**
@@ -45,18 +63,27 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
         playerName = new javax.swing.JLabel();
         opponentName = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("planet2");
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("planet3");
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("planet4");
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("planet5");
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("planet6");
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("planet7");
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("planet8");
 
         jButton1.setText("Results");
@@ -66,6 +93,7 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("planet1");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
@@ -75,8 +103,10 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
             }
         });
 
+        playerName.setForeground(new java.awt.Color(255, 255, 255));
         playerName.setText("*player name*");
 
+        opponentName.setForeground(new java.awt.Color(255, 255, 255));
         opponentName.setText("*opponent name*");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

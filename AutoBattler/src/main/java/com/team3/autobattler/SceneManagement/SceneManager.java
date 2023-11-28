@@ -86,7 +86,6 @@ public class SceneManager extends javax.swing.JFrame implements GameStateObserve
         imagePanel = new ImagePanel();
         
         
-        
         mainPanel.add(unconnectedScene, "unconnectedScene");
         mainPanel.add(launchScene, "launchScene");
         mainPanel.add(loginScene, "loginScene");

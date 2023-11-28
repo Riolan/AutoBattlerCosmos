@@ -10,18 +10,36 @@ import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.Create.ShopEntitiesPacket;
 import com.team3.autobattler.Network.Packet.Create.StartGamePacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Emily
  */
 public class MainMenuScene extends javax.swing.JPanel {
+    private Image backgroundImage;
 
     /**
      * Creates new form MainMenuScene
      */
     public MainMenuScene() {
+        this.backgroundImage = new ImageIcon(getClass().getResource("/spaceBackground.png")).getImage();
+        Dimension size = new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
         initComponents();
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(backgroundImage, 0, 0, this);
     }
     
     /**
@@ -45,6 +63,8 @@ public class MainMenuScene extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 204, 204));
+
         startGameButton.setText("Start Game");
         startGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,18 +79,25 @@ public class MainMenuScene extends javax.swing.JPanel {
             }
         });
 
+        planet1.setForeground(new java.awt.Color(255, 255, 255));
         planet1.setText("planet1");
 
+        planet2.setForeground(new java.awt.Color(255, 255, 255));
         planet2.setText("planet2");
 
+        planet3.setForeground(new java.awt.Color(255, 255, 255));
         planet3.setText("planet3");
 
+        currency.setForeground(new java.awt.Color(255, 255, 255));
         currency.setText("currency");
 
+        items.setForeground(new java.awt.Color(255, 255, 255));
         items.setText("items");
 
+        planet4.setForeground(new java.awt.Color(255, 255, 255));
         planet4.setText("planet4");
 
+        welcomeUser.setForeground(new java.awt.Color(255, 255, 255));
         welcomeUser.setText("welcome, *insert username*");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));

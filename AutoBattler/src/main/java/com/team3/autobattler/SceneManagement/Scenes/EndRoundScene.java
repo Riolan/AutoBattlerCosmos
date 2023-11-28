@@ -10,18 +10,36 @@ import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.Create.RoundCheckPacket;
 import com.team3.autobattler.Network.Packet.PacketElement;
 import com.team3.autobattler.SceneManagement.SceneManager;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Emily
  */
 public class EndRoundScene extends javax.swing.JPanel {
+    private Image backgroundImage;
 
     /**
      * Creates new form EndRoundScene
      */
     public EndRoundScene() {
+        this.backgroundImage = new ImageIcon(getClass().getResource("/spaceBackground.png")).getImage();
+        Dimension size = new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
         initComponents();
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(backgroundImage, 0, 0, this);
     }
 
     /**
@@ -38,6 +56,9 @@ public class EndRoundScene extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         goldEarnedMsg = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 204, 204));
+
+        resultMsg.setForeground(new java.awt.Color(255, 255, 255));
         resultMsg.setText("(round result)");
 
         jButton1.setText("Done");
@@ -54,6 +75,7 @@ public class EndRoundScene extends javax.swing.JPanel {
             }
         });
 
+        goldEarnedMsg.setForeground(new java.awt.Color(255, 255, 255));
         goldEarnedMsg.setText("(gold earned)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -5,6 +5,7 @@
 package com.team3.autobattler.Network.Packet.Handle;
 
 import com.team3.autobattler.AutoBattler;
+import com.team3.autobattler.Game.Base.Player;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Client;
 import com.team3.autobattler.Network.Packet.PacketHandler;
@@ -46,6 +47,7 @@ public class BattleOutcomePacket implements PacketHandler {
                 endRoundScene.resultMsg.setText("SOMETHING WENT WRONG");
 
             }
+        Player.getPlayer().addGold(goldEarned);
         endRoundScene.goldEarnedMsg.setText("You earned " + goldEarned + " gold");
     }
             

@@ -46,7 +46,6 @@ public class BattleOutcomePacket implements PacketElement {
                  System.out.println("-------\n" + e + "\n-------");
             } 
         }
-        System.out.println("create opponent packet done");
     }
     
     @Override
