@@ -64,27 +64,42 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
         opponentName = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 204));
+        setLayout(null);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("planet2");
+        add(jLabel2);
+        jLabel2.setBounds(184, 447, 43, 17);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("planet3");
+        add(jLabel3);
+        jLabel3.setBounds(275, 447, 43, 17);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("planet4");
+        add(jLabel4);
+        jLabel4.setBounds(367, 447, 43, 17);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("planet5");
+        add(jLabel5);
+        jLabel5.setBounds(519, 447, 43, 17);
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("planet6");
+        add(jLabel6);
+        jLabel6.setBounds(610, 447, 43, 17);
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("planet7");
+        add(jLabel7);
+        jLabel7.setBounds(692, 447, 43, 17);
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("planet8");
+        add(jLabel8);
+        jLabel8.setBounds(781, 447, 43, 17);
 
         jButton1.setText("Results");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,9 +107,13 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1);
+        jButton1.setBounds(414, 530, 74, 23);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("planet1");
+        add(jLabel1);
+        jLabel1.setBounds(87, 447, 43, 17);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -102,74 +121,18 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
                 jComboBox1ActionPerformed(evt);
             }
         });
+        add(jComboBox1);
+        jComboBox1.setBounds(850, 10, 138, 23);
 
         playerName.setForeground(new java.awt.Color(255, 255, 255));
         playerName.setText("*player name*");
+        add(playerName);
+        playerName.setBounds(207, 106, 82, 17);
 
         opponentName.setForeground(new java.awt.Color(255, 255, 255));
         opponentName.setText("*opponent name*");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(414, 414, 414)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(playerName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(opponentName))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(87, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel2)
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel3)
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel6)
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel7)))
-                .addGap(46, 46, 46)
-                .addComponent(jLabel8)
-                .addGap(76, 76, 76))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(playerName)
-                    .addComponent(opponentName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(66, 66, 66)
-                .addComponent(jButton1)
-                .addGap(47, 47, 47))
-        );
+        add(opponentName);
+        opponentName.setBounds(634, 106, 101, 17);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

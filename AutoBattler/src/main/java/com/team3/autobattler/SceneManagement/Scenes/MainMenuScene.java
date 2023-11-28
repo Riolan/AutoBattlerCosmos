@@ -61,9 +61,9 @@ public class MainMenuScene extends javax.swing.JPanel {
         planet4 = new javax.swing.JLabel();
         welcomeUser = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 204));
+        setLayout(null);
 
         startGameButton.setText("Start Game");
         startGameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +71,8 @@ public class MainMenuScene extends javax.swing.JPanel {
                 startGameButtonActionPerformed(evt);
             }
         });
+        add(startGameButton);
+        startGameButton.setBounds(468, 619, 96, 23);
 
         logOutButton.setText("Log Out");
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -78,27 +80,43 @@ public class MainMenuScene extends javax.swing.JPanel {
                 logOutButtonActionPerformed(evt);
             }
         });
+        add(logOutButton);
+        logOutButton.setBounds(774, 6, 76, 23);
 
         planet1.setForeground(new java.awt.Color(255, 255, 255));
         planet1.setText("planet1");
+        add(planet1);
+        planet1.setBounds(92, 497, 43, 17);
 
         planet2.setForeground(new java.awt.Color(255, 255, 255));
         planet2.setText("planet2");
+        add(planet2);
+        planet2.setBounds(268, 497, 43, 17);
 
         planet3.setForeground(new java.awt.Color(255, 255, 255));
         planet3.setText("planet3");
+        add(planet3);
+        planet3.setBounds(653, 497, 43, 17);
 
         currency.setForeground(new java.awt.Color(255, 255, 255));
         currency.setText("currency");
+        add(currency);
+        currency.setBounds(31, 9, 50, 17);
 
         items.setForeground(new java.awt.Color(255, 255, 255));
         items.setText("items");
+        add(items);
+        items.setBounds(195, 9, 32, 17);
 
         planet4.setForeground(new java.awt.Color(255, 255, 255));
         planet4.setText("planet4");
+        add(planet4);
+        planet4.setBounds(843, 497, 43, 17);
 
         welcomeUser.setForeground(new java.awt.Color(255, 255, 255));
         welcomeUser.setText("welcome, *insert username*");
+        add(welcomeUser);
+        welcomeUser.setBounds(422, 194, 171, 44);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -106,69 +124,8 @@ public class MainMenuScene extends javax.swing.JPanel {
                 jComboBox1ActionPerformed(evt);
             }
         });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(startGameButton)
-                .addGap(335, 335, 335))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(planet1)
-                .addGap(148, 148, 148)
-                .addComponent(planet2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
-                .addComponent(planet3)
-                .addGap(116, 116, 116)
-                .addComponent(planet4)
-                .addGap(93, 93, 93))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(welcomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(currency)
-                        .addGap(114, 114, 114)
-                        .addComponent(items)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logOutButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logOutButton)
-                    .addComponent(currency)
-                    .addComponent(items)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(welcomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(planet1)
-                    .addComponent(planet2)
-                    .addComponent(planet3)
-                    .addComponent(planet4))
-                .addGap(104, 104, 104)
-                .addComponent(startGameButton)
-                .addGap(99, 99, 99))
-        );
+        add(jComboBox1);
+        jComboBox1.setBounds(856, 6, 138, 23);
     }// </editor-fold>//GEN-END:initComponents
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
@@ -193,7 +150,6 @@ public class MainMenuScene extends javax.swing.JPanel {
     public javax.swing.JLabel currency;
     private javax.swing.JLabel items;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JLabel planet1;
     private javax.swing.JLabel planet2;

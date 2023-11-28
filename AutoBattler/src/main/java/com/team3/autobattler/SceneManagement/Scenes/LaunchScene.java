@@ -54,11 +54,12 @@ public class LaunchScene extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(204, 204, 204));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(null);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Auto Battler Cosmos");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, -1, -1));
+        add(jLabel1);
+        jLabel1.setBounds(460, 160, 160, 20);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/playButton.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -72,7 +73,8 @@ public class LaunchScene extends javax.swing.JPanel {
                 jLabel2MouseExited(evt);
             }
         });
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, -1, -1));
+        add(jLabel2);
+        jLabel2.setBounds(440, 330, 150, 150);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +82,8 @@ public class LaunchScene extends javax.swing.JPanel {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 6, -1, -1));
+        add(jComboBox1);
+        jComboBox1.setBounds(850, 10, 138, 23);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
