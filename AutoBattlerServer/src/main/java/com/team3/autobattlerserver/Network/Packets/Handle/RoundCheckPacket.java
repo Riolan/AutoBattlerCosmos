@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 import com.team3.autobattlerserver.Network.Packets.Create.ShopEntitiesPacket;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -40,9 +41,15 @@ public class RoundCheckPacket implements PacketHandler {
         // Derefrence client
         Client client = handler.getClient();
         Game game = client.getGame();
-        
+        Troop troop = new Troop();
         if (game != null) {
             if (game.getWins() < 10 && game.getLosses() < 3) {
+                List<Unit> availableUnits = troop.getUnits(-1);
+                Collections.shuffle(availableUnits);
+                List <Unit> shopUnits = availableUnits.subList(0, 4);
+                
+                PacketElement shopPacket = new ShopEntitiesPacket(shopUnits);
+                handler.sendData(shopPacket);
                 client.setGameState(GameStates.SHOP);
                 PacketElement statePacket = new GameStateChangePacket(GameStates.SHOP);
                 handler.sendData(statePacket);
@@ -55,6 +62,7 @@ public class RoundCheckPacket implements PacketHandler {
                 client.setGameState(GameStates.ENDGAME);
                 PacketElement statePacket = new GameStateChangePacket(GameStates.ENDGAME);
                 handler.sendData(statePacket);
+                
 
             }
         }
