@@ -20,14 +20,17 @@ public class PlayerPanel extends javax.swing.JPanel {
         initComponents();
 
         unitNameLabel.setText( "Buy units.");
-        unitStatsLabel.setText("");
+        unitHealthLabel.setText("");
+        unitAttackLabel.setText("");
     }
     
     public PlayerPanel(Unit unit) {
         initComponents();
 
-        unitNameLabel.setText( unit.getName());
-        unitStatsLabel.setText(unit.getHealth() + " " + unit.getAttack());
+        unitNameLabel.setText(unit.getName());
+        unitHealthLabel.setText("Health: " + unit.getHealth());
+        unitAttackLabel.setText("Attack: " + unit.getAttack());
+        unitIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + unit.getName() + ".png")));
     }
 
     /**
@@ -42,76 +45,98 @@ public class PlayerPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         leftButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        unitIcon = new javax.swing.JLabel();
         unitNameLabel = new javax.swing.JLabel();
-        unitStatsLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        unitHealthLabel = new javax.swing.JLabel();
+        unitAttackLabel = new javax.swing.JLabel();
         sellButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         rightButton = new javax.swing.JButton();
 
         setOpaque(false);
-        setLayout(new java.awt.GridLayout(1, 0));
+        setLayout(null);
 
         jPanel1.setOpaque(false);
+        jPanel1.setLayout(null);
 
         leftButton.setText("<");
+        leftButton.setBounds(new java.awt.Rectangle(5, 5, 23, 23));
         jPanel1.add(leftButton);
+        leftButton.setBounds(13, 5, 23, 23);
 
         add(jPanel1);
+        jPanel1.setBounds(0, 0, 30, 300);
 
         jPanel2.setOpaque(false);
-        jPanel2.setLayout(new java.awt.GridLayout(5, 0));
+        jPanel2.setLayout(null);
+
+        unitIcon.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(unitIcon);
+        unitIcon.setBounds(0, 0, 150, 160);
 
         unitNameLabel.setForeground(new java.awt.Color(255, 255, 255));
-        unitNameLabel.setText("jLabel1");
+        unitNameLabel.setText("name");
         jPanel2.add(unitNameLabel);
+        unitNameLabel.setBounds(0, 170, 150, 20);
 
-        unitStatsLabel.setForeground(new java.awt.Color(255, 255, 255));
-        unitStatsLabel.setText("jLabel2");
-        jPanel2.add(unitStatsLabel);
+        unitHealthLabel.setForeground(new java.awt.Color(255, 255, 255));
+        unitHealthLabel.setText("Health: ");
+        jPanel2.add(unitHealthLabel);
+        unitHealthLabel.setBounds(0, 190, 150, 20);
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("jLabel3");
-        jPanel2.add(jLabel3);
-
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("jLabel4");
-        jPanel2.add(jLabel4);
+        unitAttackLabel.setForeground(new java.awt.Color(255, 255, 255));
+        unitAttackLabel.setText("Attack: ");
+        jPanel2.add(unitAttackLabel);
+        unitAttackLabel.setBounds(0, 210, 150, 20);
 
         sellButton.setText("Sell Unit");
+        sellButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sellButtonActionPerformed(evt);
+            }
+        });
         jPanel2.add(sellButton);
+        sellButton.setBounds(0, 240, 150, 60);
 
         add(jPanel2);
+        jPanel2.setBounds(36, 0, 150, 300);
 
         jPanel3.setOpaque(false);
+        jPanel3.setLayout(null);
 
         rightButton.setText(">");
+        rightButton.setBounds(new java.awt.Rectangle(5, 5, 23, 23));
         rightButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rightButtonActionPerformed(evt);
             }
         });
         jPanel3.add(rightButton);
+        rightButton.setBounds(13, 5, 23, 23);
 
         add(jPanel3);
+        jPanel3.setBounds(191, 0, 30, 300);
     }// </editor-fold>//GEN-END:initComponents
 
     private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rightButtonActionPerformed
 
+    private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sellButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     public javax.swing.JButton leftButton;
     public javax.swing.JButton rightButton;
     public javax.swing.JButton sellButton;
+    private javax.swing.JLabel unitAttackLabel;
+    private javax.swing.JLabel unitHealthLabel;
+    private javax.swing.JLabel unitIcon;
     private javax.swing.JLabel unitNameLabel;
-    private javax.swing.JLabel unitStatsLabel;
     // End of variables declaration//GEN-END:variables
 }

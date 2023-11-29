@@ -15,7 +15,7 @@ import java.util.Random;
  */
 public class UnitFactory {
 
-    static Map<String, UnitType> unitsTypes = new HashMap<>();
+    public static Map<String, UnitType> unitsTypes = new HashMap<>();
 
     /* Empty Constructor */
     private UnitFactory() {} 

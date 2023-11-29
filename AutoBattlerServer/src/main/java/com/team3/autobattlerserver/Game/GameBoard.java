@@ -58,16 +58,15 @@ public class GameBoard {
         
         // Units extrensic types are: associated client, health, attack
         
-        troop.createUnit(-1, 7, 4, "Mercury", "Mercury Ability", 1);
-        troop.createUnit(-1, 4, 3, "Venus", "Venus Ability", 4);        
-       // troop.createUnit(-1, earthUnit.health,  earthUnit.attack,  "Earth", "Earth Ability");
-        troop.createUnit(-1, 2, 9, "Mars", "Mars Ability", 3);
-        troop.createUnit(-1, 10, 2, "Jupiter", "Jupiter Ability", 1);
-        
-        troop.createUnit(-2, 4, 4, "Saturn", "Saturn Ability", 5);
-        troop.createUnit(-2, 5, 4, "Uranus", "Uranus Ability", 2);
-        troop.createUnit(-2, 4, 4, "Neptune", "Neptune Ability", 8);
-        troop.createUnit(-2, 2, 9, "Mars", "Mars Ability", 6);
+        troop.createUnit(-1, 3, 2, "Mercury", "Mercury Ability", 2);
+        troop.createUnit(-1, 3, 5, "Venus", "Venus Ability", 3);
+        troop.createUnit(-1, 6, 3,  "Earth", "Earth Ability", 5);
+        troop.createUnit(-1, 5, 3, "Mars", "Mars Ability", 3);
+        troop.createUnit(-1, 15, 8, "Jupiter", "Jupiter Ability", 15);
+        troop.createUnit(-1, 9, 12, "Saturn", "Saturn Ability", 12);
+        troop.createUnit(-1, 5, 8, "Uranus", "Uranus Ability", 8);
+        troop.createUnit(-1, 8, 6, "Neptune", "Neptune Ability", 8);
+        troop.createUnit(-1, 2, 1, "Pluto", "Pluto Ability", 1);
 
         
         

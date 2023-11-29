@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import com.team3.autobattlerserver.Network.Packets.Create.GameStateChangePacket;
 import com.team3.autobattlerserver.Network.Packets.Create.ShopEntitiesPacket;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -52,12 +53,15 @@ public class StartGamePacket implements PacketHandler {
         // Take a look back at this later for generating random units.
         Troop troop = GameBoard.getInstance().getTroop();
         
-        List<Unit> units = troop.getUnits(-1);
+        List<Unit> availableUnits = troop.getUnits(-1);
+        Collections.shuffle(availableUnits);
+        List <Unit> shopUnits = availableUnits.subList(0, 4);
+        
         
         // Store random shop units here.
-        client.setUnits(units);
+        client.setUnits(shopUnits);
         // send random shop units
-        PacketElement shopDataPacket = new ShopEntitiesPacket(units);
+        PacketElement shopDataPacket = new ShopEntitiesPacket(shopUnits);
         handler.sendData(shopDataPacket);
         
     }

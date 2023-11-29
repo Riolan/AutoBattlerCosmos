@@ -5,6 +5,9 @@
 package com.team3.autobattler.SceneManagement.Scenes;
 
 import com.team3.autobattler.AutoBattler;
+import com.team3.autobattler.Game.Base.Player;
+import com.team3.autobattler.Game.Base.UnitA.Unit;
+import com.team3.autobattler.Game.Base.UnitA.UnitType;
 import com.team3.autobattler.Game.GameStates;
 import com.team3.autobattler.Network.Packet.Create.GameStateChangePacket;
 import com.team3.autobattler.Network.Packet.Create.StartBattlePacket;
@@ -13,6 +16,8 @@ import com.team3.autobattler.SceneManagement.SceneManager;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -25,6 +30,9 @@ import org.json.JSONObject;
  */
 public class StartRoundScene extends javax.swing.JPanel {
     private Image backgroundImage;
+    Player player = Player.getPlayer();
+    List<UnitPanel> listOfPlayerPanels = new ArrayList<UnitPanel>();
+    List<UnitPanel> listOfOpponentPanels = new ArrayList<UnitPanel>();
     /**
      * Creates new form PlayOutRoundScene
      */
@@ -53,7 +61,20 @@ public class StartRoundScene extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     
     public void receiveData(String opponentName, JSONArray opponentUnits) {
-
+        
+        playerPanel.removeAll();
+        opponentPanel.removeAll();
+        // Log info
+        Logger.getLogger(SceneManager.class.getName()).log(Level.INFO, "StartRoundScene recieved data.");
+        
+        List<Unit> playerUnits = player.getUnits();
+        
+        for (int i = 0; i < playerUnits.size(); i++) {
+            UnitPanel aUnit = new UnitPanel(playerUnits.get(i));
+            aUnit.setOpaque(false);
+            listOfPlayerPanels.add(aUnit);
+        }
+        
         // Loop through each recieved
         for (int i = 0; i < opponentUnits.length(); i++) {
             
@@ -63,67 +84,55 @@ public class StartRoundScene extends javax.swing.JPanel {
             int attack = unit.getInt("attack");
             int cost = unit.getInt("cost");
             String ability = "N/A";
+            
+            UnitType unitType = new UnitType(unitName, ability, cost);
+            Unit newUnit = new Unit(health, attack, unitType);
+            UnitPanel aUnit = new UnitPanel(newUnit);
+            aUnit.setOpaque(false);
+            listOfOpponentPanels.add(aUnit);
         }
         
+        updatePlayerPanels();
+        updateOpponentPanels();
+        validate();
+    }
+
+    ////
+    //      Update Panels
+    ////
+    private void updatePlayerPanels() {
+        for (UnitPanel panel : listOfPlayerPanels ) {
+            panel.setOpaque(false);
+            playerPanel.add(panel);
+        }
+        validate();
+    }
+    
+    public void updateOpponentPanels() {
+        for (UnitPanel panel : listOfOpponentPanels) {
+            panel.setOpaque(false);
+            opponentPanel.add(panel);
+        }
+        validate();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         playerName = new javax.swing.JLabel();
         opponentName = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         waitingMsg = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        opponentPanel = new javax.swing.JPanel();
+        playerPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(null);
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("planet2");
-        add(jLabel2);
-        jLabel2.setBounds(180, 500, 43, 17);
-
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("planet3");
-        add(jLabel3);
-        jLabel3.setBounds(270, 500, 43, 17);
-
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("planet4");
-        add(jLabel4);
-        jLabel4.setBounds(370, 500, 43, 17);
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("planet5");
-        add(jLabel5);
-        jLabel5.setBounds(570, 500, 43, 17);
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("planet6");
-        add(jLabel6);
-        jLabel6.setBounds(670, 500, 43, 17);
-
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("planet7");
-        add(jLabel7);
-        jLabel7.setBounds(760, 500, 43, 17);
-
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("planet8");
-        add(jLabel8);
-        jLabel8.setBounds(850, 500, 43, 17);
-
         jButton1.setText("Battle");
+        jButton1.setBounds(new java.awt.Rectangle(464, 610, 72, 23));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -131,11 +140,6 @@ public class StartRoundScene extends javax.swing.JPanel {
         });
         add(jButton1);
         jButton1.setBounds(470, 590, 72, 23);
-
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("planet1");
-        add(jLabel1);
-        jLabel1.setBounds(80, 500, 43, 17);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +165,7 @@ public class StartRoundScene extends javax.swing.JPanel {
         opponentName.setBounds(570, 80, 260, 40);
 
         jPanel1.setVisible(false);
+        jPanel1.setBounds(new java.awt.Rectangle(370, 200, 260, 80));
 
         waitingMsg.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         waitingMsg.setText("Waiting for other player...");
@@ -191,6 +196,38 @@ public class StartRoundScene extends javax.swing.JPanel {
         jLabel9.setText("VS");
         add(jLabel9);
         jLabel9.setBounds(440, 70, 110, 60);
+
+        opponentPanel.setBounds(new java.awt.Rectangle(520, 330, 440, 250));
+
+        javax.swing.GroupLayout opponentPanelLayout = new javax.swing.GroupLayout(opponentPanel);
+        opponentPanel.setLayout(opponentPanelLayout);
+        opponentPanelLayout.setHorizontalGroup(
+            opponentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 440, Short.MAX_VALUE)
+        );
+        opponentPanelLayout.setVerticalGroup(
+            opponentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+
+        add(opponentPanel);
+        opponentPanel.setBounds(510, 330, 440, 250);
+
+        playerPanel.setBounds(new java.awt.Rectangle(40, 330, 440, 250));
+
+        javax.swing.GroupLayout playerPanelLayout = new javax.swing.GroupLayout(playerPanel);
+        playerPanel.setLayout(playerPanelLayout);
+        playerPanelLayout.setHorizontalGroup(
+            playerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 440, Short.MAX_VALUE)
+        );
+        playerPanelLayout.setVerticalGroup(
+            playerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+
+        add(playerPanel);
+        playerPanel.setBounds(30, 330, 440, 250);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -208,18 +245,12 @@ public class StartRoundScene extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JLabel opponentName;
+    private javax.swing.JPanel opponentPanel;
     public javax.swing.JLabel playerName;
+    private javax.swing.JPanel playerPanel;
     private javax.swing.JLabel waitingMsg;
     // End of variables declaration//GEN-END:variables
 }

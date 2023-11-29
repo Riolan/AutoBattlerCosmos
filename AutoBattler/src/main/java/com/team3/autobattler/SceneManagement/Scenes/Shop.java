@@ -178,7 +178,7 @@ public class Shop extends javax.swing.JPanel {
         
             // Check to see if player has space for another unit
             // Check to see if player has gold to buy another unit
-            if (size < 5 && player.subtractGold(unit.getCost())) {
+            if (size < 4 && player.subtractGold(unit.getCost())) {
                 // Add unit to player locally
                 player.addUnit(unit);
                 System.out.println("You spent " + unit.getCost() + " on " + unit.getName());
@@ -187,8 +187,10 @@ public class Shop extends javax.swing.JPanel {
                 PacketElement packet = null;
                 packet = new ShopInteractionPacket(0, index);
                 AutoBattler.socketHandler.sendData(packet);
-            } else {
-                System.out.println("Missing gold requirement or have the max party size.");
+            } else if (size >= 4) {
+                buyErrorMsg.setText("Max party size reached");
+            } else if (!player.subtractGold(unit.getCost())) {
+                buyErrorMsg.setText("Not enough gold");
             }
             
             
@@ -299,9 +301,19 @@ public class Shop extends javax.swing.JPanel {
         playerPanel = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         endShop = new javax.swing.JButton();
+        buyErrorMsg = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setPreferredSize(new java.awt.Dimension(1000, 1000));
+        setLayout(null);
+        add(canvas1);
+        canvas1.setBounds(1000, 860, 0, 0);
+        add(canvas2);
+        canvas2.setBounds(43, 891, 0, 0);
+        add(canvas3);
+        canvas3.setBounds(53, 891, 0, 0);
+        add(canvas4);
+        canvas4.setBounds(160, 186, 0, 0);
 
         jButton9.setText("Reroll (Disabled)");
         jButton9.setEnabled(false);
@@ -310,6 +322,8 @@ public class Shop extends javax.swing.JPanel {
                 jButton9ActionPerformed(evt);
             }
         });
+        add(jButton9);
+        jButton9.setBounds(850, 510, 125, 23);
 
         changeSceneButton.setText("Change Scene");
         changeSceneButton.addActionListener(new java.awt.event.ActionListener() {
@@ -317,16 +331,22 @@ public class Shop extends javax.swing.JPanel {
                 changeSceneButtonActionPerformed(evt);
             }
         });
+        add(changeSceneButton);
+        changeSceneButton.setBounds(880, 35, 114, 23);
 
         buyPanel.setBackground(new java.awt.Color(204, 255, 204));
         buyPanel.setOpaque(false);
         buyPanel.setPreferredSize(new java.awt.Dimension(300, 300));
         buyPanel.setLayout(new java.awt.GridLayout(1, 5));
+        add(buyPanel);
+        buyPanel.setBounds(23, 581, 880, 300);
 
         playerPanel.setBackground(new java.awt.Color(153, 255, 153));
         playerPanel.setOpaque(false);
         playerPanel.setPreferredSize(new java.awt.Dimension(300, 122));
         playerPanel.setLayout(new java.awt.GridLayout(1, 5));
+        add(playerPanel);
+        playerPanel.setBounds(23, 76, 880, 300);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -334,6 +354,8 @@ public class Shop extends javax.swing.JPanel {
                 jComboBox1ActionPerformed(evt);
             }
         });
+        add(jComboBox1);
+        jComboBox1.setBounds(856, 6, 138, 23);
 
         endShop.setText("End Shop");
         endShop.addActionListener(new java.awt.event.ActionListener() {
@@ -341,83 +363,13 @@ public class Shop extends javax.swing.JPanel {
                 endShopActionPerformed(evt);
             }
         });
+        add(endShop);
+        endShop.setBounds(850, 410, 125, 89);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(playerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
-                            .addComponent(buyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(changeSceneButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(86, 86, 86)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(endShop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 137, Short.MAX_VALUE)))))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(canvas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(canvas3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(160, 160, 160)
-                    .addComponent(canvas4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(839, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(changeSceneButton)
-                                .addGap(167, 167, 167)
-                                .addComponent(endShop, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton9)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addComponent(playerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                                .addComponent(buyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(canvas3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(canvas2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(109, 109, 109))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(186, 186, 186)
-                    .addComponent(canvas4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(20, 20, 20)))
-        );
+        buyErrorMsg.setForeground(new java.awt.Color(255, 255, 255));
+        buyErrorMsg.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        add(buyErrorMsg);
+        buyErrorMsg.setBounds(447, 440, 380, 34);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -448,6 +400,7 @@ public class Shop extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel buyErrorMsg;
     private javax.swing.JPanel buyPanel;
     private java.awt.Canvas canvas1;
     private java.awt.Canvas canvas2;
