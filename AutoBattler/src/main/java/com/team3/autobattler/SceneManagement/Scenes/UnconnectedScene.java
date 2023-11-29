@@ -31,6 +31,9 @@ public class UnconnectedScene extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         unconnectedLabel = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(null);
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setLayout(new java.awt.GridLayout(0, 1));

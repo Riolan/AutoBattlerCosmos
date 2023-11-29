@@ -35,12 +35,9 @@ public class AutoBattler {
         socketHandler = new SocketHandler();
         
 
-
-        // Game
-        // gameManager
-
         // SceneManager https://refactoring.guru/design-patterns/mediator
         sceneManager = sceneManager.getInstance();
+        System.out.println(socketHandler.getClient().setGameState(GameStates.UNCONNECTED));
     }
  
     
@@ -57,7 +54,7 @@ public class AutoBattler {
     
     
     public static void connect() {
-                // Hard coded for no reason
+        // Hard coded for no reason
         String ip = "127.0.0.1";
         int port = 31228;
         StringBuilder output = new StringBuilder ();
@@ -69,7 +66,6 @@ public class AutoBattler {
                 hasConnected = AutoBattler.socketHandler.connect(ip, port, output);            
                 System.out.println("Connection Thread ---- Initialization Result: " + hasConnected);
 
-                // I dont actually think it does
                 while (!hasConnected) {      
                     my.unconnectedLabel.setText(output.toString());
 

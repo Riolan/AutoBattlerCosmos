@@ -46,7 +46,7 @@ public enum GameStates {
         PLAYOUTROUND.validStates = Arrays.asList(new GameStates[]{GameStates.ENDROUND, GameStates.UNCONNECTED, GameStates.CONNECTED});
         ENDROUND.validStates = Arrays.asList(new GameStates[]{GameStates.SHOP, GameStates.ENDGAME, GameStates.UNCONNECTED, GameStates.CONNECTED});
         ENDGAME.validStates = Arrays.asList(new GameStates[]{GameStates.MAINMENU, GameStates.UNCONNECTED, GameStates.CONNECTED});
-        UNCONNECTED.validStates = Arrays.asList(new GameStates[]{GameStates.CONNECTED});
+        UNCONNECTED.validStates = Arrays.asList(new GameStates[]{GameStates.CONNECTED, GameStates.UNCONNECTED});
     }
     
     /**
