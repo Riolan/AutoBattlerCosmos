@@ -16,13 +16,14 @@ public class UnitType {
     // based off Unit information.
     private String ability;
     // icon
-    private ImageIcon icon;
+    private String icon;
     private int cost;
     
     public UnitType(String name, String ability, int cost) {
         this.name = name;
         this.ability = ability;
         this.cost = cost;
+        this.icon = "/" + name + ".png";
     }
     
      public String getName() {
@@ -34,6 +35,10 @@ public class UnitType {
     }
     public int getCost() {
         return cost;
+    }
+    
+    public String getIcon() {
+        return icon;
     }
     
 }

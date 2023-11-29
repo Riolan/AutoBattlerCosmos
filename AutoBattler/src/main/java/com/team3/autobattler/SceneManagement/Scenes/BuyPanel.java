@@ -6,7 +6,10 @@ package com.team3.autobattler.SceneManagement.Scenes;
 
 import com.team3.autobattler.Game.Base.Player;
 import com.team3.autobattler.Game.Base.UnitA.Unit;
+import java.awt.Image;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -23,7 +26,9 @@ public class BuyPanel extends javax.swing.JPanel {
         initComponents();
         this.unit = unit;
         unitNameLabel.setText( unit.getName());
-        unitStatsLabel.setText(unit.getHealth() + " " + unit.getAttack() + " " +unit.getCost());
+        unitStatsLabel.setText("Health: " + unit.getHealth() + " Attack: " + unit.getAttack());
+        unitCostLabel.setText("Cost: " + unit.getCost() + " Gold");
+        unitIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + unit.getName() + ".png")));
     }
 
     /**
@@ -36,10 +41,10 @@ public class BuyPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        unitStatsLabel = new javax.swing.JLabel();
+        unitIcon = new javax.swing.JLabel();
         unitNameLabel = new javax.swing.JLabel();
+        unitStatsLabel = new javax.swing.JLabel();
+        unitCostLabel = new javax.swing.JLabel();
         buyButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 204));
@@ -48,24 +53,27 @@ public class BuyPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setOpaque(false);
-        jPanel1.setLayout(new java.awt.GridLayout(5, 1));
+        jPanel1.setLayout(null);
 
-        jLabel4.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("jLabel4");
-        jPanel1.add(jLabel4);
+        unitIcon.setBackground(new java.awt.Color(204, 204, 204));
+        unitIcon.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(unitIcon);
+        unitIcon.setBounds(0, 0, 483, 160);
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("jLabel3");
-        jPanel1.add(jLabel3);
+        unitNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        unitNameLabel.setText("jLabel3");
+        jPanel1.add(unitNameLabel);
+        unitNameLabel.setBounds(0, 160, 483, 20);
 
         unitStatsLabel.setForeground(new java.awt.Color(255, 255, 255));
         unitStatsLabel.setText("jLabel2");
         jPanel1.add(unitStatsLabel);
+        unitStatsLabel.setBounds(0, 180, 483, 30);
 
-        unitNameLabel.setForeground(new java.awt.Color(255, 255, 255));
-        unitNameLabel.setText("jLabel1");
-        jPanel1.add(unitNameLabel);
+        unitCostLabel.setForeground(new java.awt.Color(255, 255, 255));
+        unitCostLabel.setText("jLabel1");
+        jPanel1.add(unitCostLabel);
+        unitCostLabel.setBounds(0, 210, 483, 30);
 
         buyButton.setText("Purchase Unit");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +82,7 @@ public class BuyPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(buyButton);
+        buyButton.setBounds(0, 240, 220, 60);
 
         add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
@@ -86,9 +95,9 @@ public class BuyPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton buyButton;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel unitCostLabel;
+    private javax.swing.JLabel unitIcon;
     private javax.swing.JLabel unitNameLabel;
     private javax.swing.JLabel unitStatsLabel;
     // End of variables declaration//GEN-END:variables
