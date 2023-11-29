@@ -55,14 +55,17 @@ public class EndGameScene extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         winsLabel = new javax.swing.JLabel();
         lossesLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("(final game results)");
+        jLabel1.setText("Game Over");
         add(jLabel1);
-        jLabel1.setBounds(445, 49, 109, 17);
+        jLabel1.setBounds(420, 30, 280, 90);
 
         jButton1.setText("Main Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +74,7 @@ public class EndGameScene extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(445, 646, 94, 23);
+        jButton1.setBounds(460, 550, 94, 23);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -82,15 +85,29 @@ public class EndGameScene extends javax.swing.JPanel {
         add(jComboBox2);
         jComboBox2.setBounds(856, 6, 138, 23);
 
+        winsLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         winsLabel.setForeground(new java.awt.Color(255, 255, 255));
-        winsLabel.setText("wins");
+        winsLabel.setText("Wins: ");
         add(winsLabel);
-        winsLabel.setBounds(188, 179, 27, 17);
+        winsLabel.setBounds(188, 179, 140, 30);
 
+        lossesLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         lossesLabel.setForeground(new java.awt.Color(255, 255, 255));
-        lossesLabel.setText("losses");
+        lossesLabel.setText("Losses: ");
         add(lossesLabel);
-        lossesLabel.setBounds(760, 179, 38, 17);
+        lossesLabel.setBounds(700, 180, 150, 30);
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Gold Earned: ");
+        add(jLabel2);
+        jLabel2.setBounds(180, 320, 230, 30);
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Gold Spent: ");
+        add(jLabel3);
+        jLabel3.setBounds(700, 330, 180, 23);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -107,6 +124,8 @@ public class EndGameScene extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     public javax.swing.JLabel lossesLabel;
     public javax.swing.JLabel winsLabel;
     // End of variables declaration//GEN-END:variables

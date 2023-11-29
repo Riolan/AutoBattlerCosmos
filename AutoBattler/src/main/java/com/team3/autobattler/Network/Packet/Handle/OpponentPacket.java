@@ -10,6 +10,7 @@ import com.team3.autobattler.Network.Client;
 import com.team3.autobattler.Network.Packet.PacketHandler;
 import com.team3.autobattler.SceneManagement.SceneManager;
 import com.team3.autobattler.SceneManagement.Scenes.MainMenuScene;
+import com.team3.autobattler.SceneManagement.Scenes.PlayOutRoundScene;
 import com.team3.autobattler.SceneManagement.Scenes.StartRoundScene;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,17 +36,19 @@ public class OpponentPacket implements PacketHandler {
         
         SceneManager sceneManager = SceneManager.getInstance();
             
-        StartRoundScene startRoundScene = (StartRoundScene)sceneManager.getScene(GameStates.STARTROUND);
+        StartRoundScene startRoundScene = (StartRoundScene) sceneManager.getScene(GameStates.STARTROUND);
+        PlayOutRoundScene playOutRoundScene = (PlayOutRoundScene) sceneManager.getScene(GameStates.PLAYOUTROUND);
         // Update Panel with new information, not sure if this is the correct way to do it yet
         //sceneManager.changeScene(GameStates.SHOP);
         Client client = AutoBattler.socketHandler.getClient();
         if (opponentName != null) {
-                startRoundScene.opponentName.setText(opponentName);
-                startRoundScene.playerName.setText(client.getUser().getUsername());
-            } else {
-                startRoundScene.opponentName.setText("SOMETHING WENT WRONG");
-
-            }
+            startRoundScene.opponentName.setText(opponentName);
+            playOutRoundScene.opponentName.setText(opponentName);
+            startRoundScene.playerName.setText(client.getUser().getUsername());
+            playOutRoundScene.playerName.setText(client.getUser().getUsername());
+        } else {
+            startRoundScene.opponentName.setText("SOMETHING WENT WRONG");
+        }
         startRoundScene.receiveData(opponentName, opponentUnits);
         startRoundScene.validate();
     }

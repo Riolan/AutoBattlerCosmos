@@ -59,10 +59,12 @@ public class EndRoundScene extends javax.swing.JPanel {
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(null);
 
+        resultMsg.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         resultMsg.setForeground(new java.awt.Color(255, 255, 255));
+        resultMsg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resultMsg.setText("(round result)");
         add(resultMsg);
-        resultMsg.setBounds(470, 270, 75, 17);
+        resultMsg.setBounds(340, 180, 330, 70);
 
         jButton1.setText("Done");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,10 +84,12 @@ public class EndRoundScene extends javax.swing.JPanel {
         add(jComboBox1);
         jComboBox1.setBounds(850, 10, 138, 23);
 
+        goldEarnedMsg.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         goldEarnedMsg.setForeground(new java.awt.Color(255, 255, 255));
+        goldEarnedMsg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         goldEarnedMsg.setText("(gold earned)");
         add(goldEarnedMsg);
-        goldEarnedMsg.setBounds(470, 290, 75, 17);
+        goldEarnedMsg.setBounds(360, 290, 290, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

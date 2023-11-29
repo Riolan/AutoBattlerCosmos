@@ -85,10 +85,11 @@ public class SignUpScene extends javax.swing.JPanel {
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Sign Up");
         add(jLabel1);
-        jLabel1.setBounds(532, 134, 46, 17);
+        jLabel1.setBounds(510, 130, 190, 60);
 
         signUpButton.setText("Sign Up");
         signUpButton.addActionListener(new java.awt.event.ActionListener() {
@@ -128,12 +129,12 @@ public class SignUpScene extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Username:");
         add(jLabel2);
-        jLabel2.setBounds(182, 221, 63, 17);
+        jLabel2.setBounds(182, 221, 120, 17);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password:");
         add(jLabel3);
-        jLabel3.setBounds(673, 221, 62, 17);
+        jLabel3.setBounds(673, 221, 140, 17);
         add(usernameErrorMsg);
         usernameErrorMsg.setBounds(41, 247, 0, 0);
         add(passwordErrorMsg);

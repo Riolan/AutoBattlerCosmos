@@ -19,6 +19,7 @@ public class BuyPanel extends javax.swing.JPanel {
      * Creates new form BuyPanel
      */
     public BuyPanel(Unit unit) {
+        this.setOpaque(false);
         initComponents();
         this.unit = unit;
         unitNameLabel.setText( unit.getName());
@@ -41,19 +42,28 @@ public class BuyPanel extends javax.swing.JPanel {
         unitNameLabel = new javax.swing.JLabel();
         buyButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 204, 204));
+        setOpaque(false);
         setLayout(new java.awt.GridLayout(1, 3, 20, 0));
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.GridLayout(5, 1));
 
+        jLabel4.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("jLabel4");
         jPanel1.add(jLabel4);
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("jLabel3");
         jPanel1.add(jLabel3);
 
+        unitStatsLabel.setForeground(new java.awt.Color(255, 255, 255));
         unitStatsLabel.setText("jLabel2");
         jPanel1.add(unitStatsLabel);
 
+        unitNameLabel.setForeground(new java.awt.Color(255, 255, 255));
         unitNameLabel.setText("jLabel1");
         jPanel1.add(unitNameLabel);
 

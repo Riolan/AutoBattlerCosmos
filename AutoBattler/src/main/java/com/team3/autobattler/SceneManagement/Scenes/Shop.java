@@ -94,6 +94,7 @@ public class Shop extends javax.swing.JPanel {
             Logger.getLogger(SceneManager.class.getName()).log(Level.INFO, aTroop.aggregate.toString());
             
             BuyPanel aBuy = new BuyPanel( aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1));
+            aBuy.setOpaque(false);
             aBuy.buyButton.addActionListener(new BuyButtonListener(i, aTroop.aggregate.get(-1).get(aTroop.aggregate.get(-1).size() - 1)));
 
             
@@ -121,6 +122,7 @@ public class Shop extends javax.swing.JPanel {
 
             if ((unit = player.getUnit(i)) != null) {
                 playerUnitPanel = new PlayerPanel(unit);
+                playerUnitPanel.setOpaque(false);
                 
                 playerUnitPanel.leftButton.addActionListener(new LeftRotationListener());
                 playerUnitPanel.rightButton.addActionListener(new RightRotationListener());
@@ -142,6 +144,7 @@ public class Shop extends javax.swing.JPanel {
     ////
     private void updateBuyPanels() {
         for (BuyPanel panel : listOfBuyPanels ) {
+            panel.setOpaque(false);
             buyPanel.add(panel);
         }
         validate();
@@ -149,6 +152,7 @@ public class Shop extends javax.swing.JPanel {
     
     public void updatePlayerPanels() {
         for (PlayerPanel panel : listOfPlayerPanels) {
+            panel.setOpaque(false);
             playerPanel.add(panel);
         }
         validate();
@@ -315,10 +319,12 @@ public class Shop extends javax.swing.JPanel {
         });
 
         buyPanel.setBackground(new java.awt.Color(204, 255, 204));
+        buyPanel.setOpaque(false);
         buyPanel.setPreferredSize(new java.awt.Dimension(300, 300));
         buyPanel.setLayout(new java.awt.GridLayout(1, 5));
 
         playerPanel.setBackground(new java.awt.Color(153, 255, 153));
+        playerPanel.setOpaque(false);
         playerPanel.setPreferredSize(new java.awt.Dimension(300, 122));
         playerPanel.setLayout(new java.awt.GridLayout(1, 5));
 

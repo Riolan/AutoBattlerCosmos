@@ -16,6 +16,7 @@ public class PlayerPanel extends javax.swing.JPanel {
      * Creates new form PlayerPanel
      */
     public PlayerPanel() {
+        this.setOpaque(false);
         initComponents();
 
         unitNameLabel.setText( "Buy units.");
@@ -49,24 +50,32 @@ public class PlayerPanel extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         rightButton = new javax.swing.JButton();
 
+        setOpaque(false);
         setLayout(new java.awt.GridLayout(1, 0));
+
+        jPanel1.setOpaque(false);
 
         leftButton.setText("<");
         jPanel1.add(leftButton);
 
         add(jPanel1);
 
+        jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.GridLayout(5, 0));
 
+        unitNameLabel.setForeground(new java.awt.Color(255, 255, 255));
         unitNameLabel.setText("jLabel1");
         jPanel2.add(unitNameLabel);
 
+        unitStatsLabel.setForeground(new java.awt.Color(255, 255, 255));
         unitStatsLabel.setText("jLabel2");
         jPanel2.add(unitStatsLabel);
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("jLabel3");
         jPanel2.add(jLabel3);
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("jLabel4");
         jPanel2.add(jLabel4);
 
@@ -74,6 +83,8 @@ public class PlayerPanel extends javax.swing.JPanel {
         jPanel2.add(sellButton);
 
         add(jPanel2);
+
+        jPanel3.setOpaque(false);
 
         rightButton.setText(">");
         rightButton.addActionListener(new java.awt.event.ActionListener() {

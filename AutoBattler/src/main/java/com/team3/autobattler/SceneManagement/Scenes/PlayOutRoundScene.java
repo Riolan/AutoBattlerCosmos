@@ -62,6 +62,7 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         playerName = new javax.swing.JLabel();
         opponentName = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(null);
@@ -84,22 +85,22 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("planet5");
         add(jLabel5);
-        jLabel5.setBounds(519, 447, 43, 17);
+        jLabel5.setBounds(580, 450, 43, 17);
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("planet6");
         add(jLabel6);
-        jLabel6.setBounds(610, 447, 43, 17);
+        jLabel6.setBounds(690, 450, 43, 17);
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("planet7");
         add(jLabel7);
-        jLabel7.setBounds(692, 447, 43, 17);
+        jLabel7.setBounds(790, 450, 43, 17);
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("planet8");
         add(jLabel8);
-        jLabel8.setBounds(781, 447, 43, 17);
+        jLabel8.setBounds(890, 450, 43, 17);
 
         jButton1.setText("Results");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +109,7 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(414, 530, 74, 23);
+        jButton1.setBounds(470, 530, 74, 23);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("planet1");
@@ -124,15 +125,26 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
         add(jComboBox1);
         jComboBox1.setBounds(850, 10, 138, 23);
 
+        playerName.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         playerName.setForeground(new java.awt.Color(255, 255, 255));
+        playerName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         playerName.setText("*player name*");
         add(playerName);
-        playerName.setBounds(207, 106, 82, 17);
+        playerName.setBounds(150, 80, 280, 40);
 
+        opponentName.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         opponentName.setForeground(new java.awt.Color(255, 255, 255));
+        opponentName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         opponentName.setText("*opponent name*");
         add(opponentName);
-        opponentName.setBounds(634, 106, 101, 17);
+        opponentName.setBounds(590, 80, 270, 40);
+
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("VS");
+        add(jLabel9);
+        jLabel9.setBounds(460, 70, 110, 60);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -156,6 +168,7 @@ public class PlayOutRoundScene extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public javax.swing.JLabel opponentName;
     public javax.swing.JLabel playerName;
     // End of variables declaration//GEN-END:variables

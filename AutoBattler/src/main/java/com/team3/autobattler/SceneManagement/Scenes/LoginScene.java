@@ -91,10 +91,11 @@ public class LoginScene extends javax.swing.JPanel {
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Log In");
         add(jLabel1);
-        jLabel1.setBounds(543, 134, 35, 17);
+        jLabel1.setBounds(520, 110, 130, 60);
 
         loginButton.setText("Log In");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -134,12 +135,12 @@ public class LoginScene extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Username:");
         add(jLabel2);
-        jLabel2.setBounds(182, 221, 63, 17);
+        jLabel2.setBounds(182, 221, 100, 17);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password:");
         add(jLabel3);
-        jLabel3.setBounds(673, 221, 62, 17);
+        jLabel3.setBounds(673, 221, 100, 17);
         add(usernameErrorMsg);
         usernameErrorMsg.setBounds(41, 247, 0, 0);
         add(passwordErrorMsg);
@@ -155,14 +156,13 @@ public class LoginScene extends javax.swing.JPanel {
         jComboBox1.setBounds(846, 6, 138, 23);
 
         loginSuccess.setForeground(new java.awt.Color(255, 255, 255));
-        loginSuccess.setText("------");
         add(loginSuccess);
         loginSuccess.setBounds(100, 46, 315, 42);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("No account?");
         add(jLabel4);
-        jLabel4.setBounds(45, 947, 73, 17);
+        jLabel4.setBounds(45, 947, 210, 17);
 
         signUpButton.setText("Sign Up");
         signUpButton.addActionListener(new java.awt.event.ActionListener() {

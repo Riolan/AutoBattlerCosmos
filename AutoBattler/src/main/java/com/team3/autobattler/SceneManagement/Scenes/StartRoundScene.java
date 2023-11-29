@@ -83,6 +83,7 @@ public class StartRoundScene extends javax.swing.JPanel {
         opponentName = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         waitingMsg = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(null);
@@ -105,17 +106,17 @@ public class StartRoundScene extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("planet5");
         add(jLabel5);
-        jLabel5.setBounds(500, 500, 43, 17);
+        jLabel5.setBounds(570, 500, 43, 17);
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("planet6");
         add(jLabel6);
-        jLabel6.setBounds(610, 500, 43, 17);
+        jLabel6.setBounds(670, 500, 43, 17);
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("planet7");
         add(jLabel7);
-        jLabel7.setBounds(730, 500, 43, 17);
+        jLabel7.setBounds(760, 500, 43, 17);
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("planet8");
@@ -129,7 +130,7 @@ public class StartRoundScene extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(430, 590, 72, 23);
+        jButton1.setBounds(470, 590, 72, 23);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("planet1");
@@ -145,39 +146,51 @@ public class StartRoundScene extends javax.swing.JPanel {
         add(jComboBox1);
         jComboBox1.setBounds(856, 6, 138, 23);
 
+        playerName.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         playerName.setForeground(new java.awt.Color(255, 255, 255));
+        playerName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         playerName.setText("*player name*");
         add(playerName);
-        playerName.setBounds(166, 81, 82, 17);
+        playerName.setBounds(150, 80, 260, 40);
 
+        opponentName.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         opponentName.setForeground(new java.awt.Color(255, 255, 255));
+        opponentName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         opponentName.setText("*opponent name*");
         add(opponentName);
-        opponentName.setBounds(719, 81, 101, 17);
+        opponentName.setBounds(570, 80, 260, 40);
 
         jPanel1.setVisible(false);
 
+        waitingMsg.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         waitingMsg.setText("Waiting for other player...");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(waitingMsg)
-                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(waitingMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(29, 29, 29)
                 .addComponent(waitingMsg)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         add(jPanel1);
-        jPanel1.setBounds(399, 213, 200, 100);
+        jPanel1.setBounds(370, 230, 260, 80);
+
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("VS");
+        add(jLabel9);
+        jLabel9.setBounds(440, 70, 110, 60);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -203,6 +216,7 @@ public class StartRoundScene extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JLabel opponentName;
     public javax.swing.JLabel playerName;

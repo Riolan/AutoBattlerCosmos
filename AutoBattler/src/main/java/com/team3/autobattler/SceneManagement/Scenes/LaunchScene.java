@@ -56,10 +56,11 @@ public class LaunchScene extends javax.swing.JPanel {
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Auto Battler Cosmos");
         add(jLabel1);
-        jLabel1.setBounds(460, 160, 160, 20);
+        jLabel1.setBounds(350, 120, 350, 180);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/playButton.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {

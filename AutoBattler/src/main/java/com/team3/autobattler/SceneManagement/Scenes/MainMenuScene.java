@@ -57,7 +57,6 @@ public class MainMenuScene extends javax.swing.JPanel {
         planet2 = new javax.swing.JLabel();
         planet3 = new javax.swing.JLabel();
         currency = new javax.swing.JLabel();
-        items = new javax.swing.JLabel();
         planet4 = new javax.swing.JLabel();
         welcomeUser = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -98,25 +97,23 @@ public class MainMenuScene extends javax.swing.JPanel {
         add(planet3);
         planet3.setBounds(653, 497, 43, 17);
 
+        currency.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         currency.setForeground(new java.awt.Color(255, 255, 255));
         currency.setText("currency");
         add(currency);
-        currency.setBounds(31, 9, 50, 17);
-
-        items.setForeground(new java.awt.Color(255, 255, 255));
-        items.setText("items");
-        add(items);
-        items.setBounds(195, 9, 32, 17);
+        currency.setBounds(31, 9, 140, 18);
 
         planet4.setForeground(new java.awt.Color(255, 255, 255));
         planet4.setText("planet4");
         add(planet4);
         planet4.setBounds(843, 497, 43, 17);
 
+        welcomeUser.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         welcomeUser.setForeground(new java.awt.Color(255, 255, 255));
-        welcomeUser.setText("welcome, *insert username*");
+        welcomeUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomeUser.setText("Welcome, *insert username*");
         add(welcomeUser);
-        welcomeUser.setBounds(422, 194, 171, 44);
+        welcomeUser.setBounds(370, 110, 340, 44);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +145,6 @@ public class MainMenuScene extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel currency;
-    private javax.swing.JLabel items;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JLabel planet1;

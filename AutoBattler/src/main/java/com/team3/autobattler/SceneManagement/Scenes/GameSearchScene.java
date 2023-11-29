@@ -57,10 +57,11 @@ public class GameSearchScene extends javax.swing.JPanel {
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Searching for opponent...");
         add(jLabel1);
-        jLabel1.setBounds(482, 461, 147, 17);
+        jLabel1.setBounds(482, 461, 350, 23);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAUNCH", "LOGIN", "SIGNUP", "MAINMENU", "SHOP", "GAMESEARCH", "STARTROUND", "PLAYOUTROUND", "ENDROUND", "ENDGAME" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
