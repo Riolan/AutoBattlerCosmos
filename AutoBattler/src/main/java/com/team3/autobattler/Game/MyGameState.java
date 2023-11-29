@@ -10,7 +10,7 @@ import com.team3.autobattler.SceneManagement.SceneManager;
  * @author Rio
  */
 public class MyGameState implements GameStateObserver {
-    private GameStates gameState;
+    private GameStates gameState = GameStates.UNCONNECTED;
     
     public MyGameState(GameStates gameState) {
         this.gameState = gameState;
