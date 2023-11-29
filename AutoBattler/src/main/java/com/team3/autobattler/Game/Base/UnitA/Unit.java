@@ -7,7 +7,7 @@ import java.util.List;
  * The Unit class contains state unique for each unit used in battle.
  * It represents a game entity with health, attack, type, and methods to interact with the unit.
  * 
- * @author Curbow & Rio
+ * @author Curbow, Rio
  */
 public class Unit {
     private UnitType type;

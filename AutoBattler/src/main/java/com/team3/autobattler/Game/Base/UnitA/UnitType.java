@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
  * The UnitType class contains state shared by several units.
  * It represents the characteristics that are common among units of the same type.
  * 
- * @author Curbow & Rio
+ * @author Curbow, Rio
  */
 public class UnitType {
     // A unit shares a name
