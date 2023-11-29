@@ -9,8 +9,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * The GameStates enum represents different states in the AutoBattler game.
+ * Each state defines a set of valid next states, allowing controlled state transitions.
  *
- * @author riola
+ * @author rio
  */
 // Abstract this out to another not dependent on Scene
 // copy too server both will maintain the state, and some reconcilliationn/stop from
@@ -50,18 +52,20 @@ public enum GameStates {
     }
     
     /**
-     * 
-     * @param vaildStates 
+     * Constructs a new GameStates enum value with a list of valid states.
+     *
+     * @param validStates The list of valid next states.
      */
     GameStates(List<GameStates> vaildStates) {
         this.validStates = validStates;
     }
 
     /**
-     * Using current state, check if next state is a valid change.
-     * @param fromState
-     * @param toState
-     * @return 
+     * Checks if a transition from the current state to the next state is valid.
+     *
+     * @param fromState The current state.
+     * @param toState   The next state.
+     * @return True if the transition is valid, false otherwise.
      */
     public boolean canChangeGameState(GameStates fromState, GameStates toState) {
         return fromState.validStates.contains(toState);

@@ -12,14 +12,19 @@ import com.team3.autobattler.SceneManagement.Scenes.MainMenuScene;
 import org.json.JSONObject;
 
 /**
+ * The GameStateChangePacket class implements the PacketHandler interface and is
+ * responsible for processing and executing changes in the game state received from the server.
  *
- * @author riola
+ * @author  rio
  */
 public class GameStateChangePacket implements PacketHandler {
  
-    
-    
-    
+    /**
+     * Executes the handling of the game state change packet by extracting the new
+     * game state information from the inputBuffer and updating the client's game state.
+     *
+     * @param inputBuffer A JSONObject containing the new game state information.
+     */
     @Override
     public void execute(JSONObject inputBuffer) {
         

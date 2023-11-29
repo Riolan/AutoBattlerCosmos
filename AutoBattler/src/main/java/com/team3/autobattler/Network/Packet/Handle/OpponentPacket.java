@@ -16,14 +16,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
+ * The OpponentPacket class implements the PacketHandler interface and is responsible
+ * for processing and executing opponent information received from the server.
  *
- * @author riola
+ * @author rio
  */
 public class OpponentPacket implements PacketHandler {
  
-    
-    
-    
+    /**
+     * Executes the handling of the opponent packet by processing the information
+     * received from the server and updating relevant scenes and UI elements.
+     *
+     * @param inputBuffer A JSONObject containing the opponent information.
+     */
     @Override
     public void execute(JSONObject inputBuffer) {
         

@@ -13,10 +13,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
+ * The ShopEntitiesPacket class implements the PacketHandler interface and is responsible
+ * for processing and executing shop entities information received from the server.
  *
- * @author Rio
+ * @author  Rio
  */
 public class ShopEntitiesPacket implements PacketHandler {
+    /**
+     * Executes the handling of the shop entities packet by processing the information
+     * received from the server and updating the Shop scene with the new unit information.
+     *
+     * @param response A JSONObject containing the shop entities information.
+     */
     @Override
     public void execute(JSONObject response) {
         // response as the passed variable makes so much more sense

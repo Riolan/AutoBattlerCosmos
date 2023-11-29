@@ -12,7 +12,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * 
+ * The StartGamePacket class implements the PacketElement interface and is used
+ * to signal the start of a game. It contains information about whether the game
+ * should start or not.
+ *
  * @author Rio
  */
 public class StartGamePacket implements PacketElement {
@@ -23,8 +26,9 @@ public class StartGamePacket implements PacketElement {
     Field fld[] = this.getClass().getDeclaredFields();
     
     /**
-     * This is a StartGamePacket packer which is used 
-     * 
+     * Constructs a StartGamePacket with the specified startGame flag.
+     *
+     * @param startGame A Boolean flag indicating whether the game should start.
      */
     public StartGamePacket(boolean startGame) {
         init();
@@ -42,17 +46,31 @@ public class StartGamePacket implements PacketElement {
         }        
     }
     
+    /**
+     * Gets the JSON representation of the packet.
+     *
+     * @return A JSONObject containing the data of the StartGamePacket.
+     */
     @Override
     public JSONObject getJsonObject() {
         return jsonObject;
     }
     
-    
+    /**
+     * Accepts a PacketVisitor and returns the JSON representation of the packet
+     * based on the visitor pattern.
+     *
+     * @param visitor The PacketVisitor to accept.
+     * @return A JSONObject containing the data of the StartGamePacket.
+     */
     @Override
     public JSONObject accept(PacketVisitor visitor) {
         return visitor.visit(this);
     }
     
+    /**
+     * Initializes the JSON object.
+     */
     @Override
     public void init() {
         jsonObject.clear();

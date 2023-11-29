@@ -18,10 +18,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
+ * The LoginPacket class implements the PacketHandler interface and is responsible
+ * for processing and executing login responses received from the server.
  *
  * @author Rio
  */
 public class LoginPacket implements PacketHandler {
+     /**
+     * Executes the handling of the login packet by processing the response received
+     * from the server and updating the client's state accordingly.
+     *
+     * @param response A JSONObject containing the login response information.
+     */
     @Override
     public void execute(JSONObject response) {
         // response as the passed variable makes so much more sense

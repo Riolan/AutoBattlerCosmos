@@ -5,14 +5,23 @@
 package com.team3.autobattler.Game.Utility;
 
 /**
- * Reimplementing common circular queue.
- * @author Rio
+ * The CircularQueue class represents a circular queue data structure with a fixed size.
+ * It provides methods for checking if the queue is full or empty, adding elements to the
+ * queue (enqueue), removing elements from the queue (dequeue), and displaying the current
+ * status of the queue.
+ *
+ * @author [Your Name]
  */
 public class CircularQueue {
   final int size; // Size of Circular Queue
   int front, rear;
   int items[];
 
+    /**
+     * Constructs a CircularQueue with the specified size.
+     *
+     * @param size The size of the Circular Queue.
+     */
   public CircularQueue(int size) {
     this.size = size;
     this.items = new int[size];
@@ -20,7 +29,11 @@ public class CircularQueue {
     rear = -1;
   }
 
-  // Check if the queue is full
+  /**
+     * Checks if the circular queue is full.
+     *
+     * @return True if the queue is full, false otherwise.
+     */
   boolean isFull() {
     if (front == 0 && rear == size - 1) {
       return true;
@@ -31,7 +44,11 @@ public class CircularQueue {
     return false;
   }
 
-  // Check if the queue is empty
+  /**
+     * Checks if the circular queue is empty.
+     *
+     * @return True if the queue is empty, false otherwise.
+     */
   boolean isEmpty() {
     if (front == -1)
       return true;
@@ -39,7 +56,11 @@ public class CircularQueue {
       return false;
   }
 
-  // Adding an element
+   /**
+     * Adds an element to the circular queue.
+     *
+     * @param element The element to be added.
+     */
   void enqueue(int element) {
     if (isFull()) {
       System.out.println("Queue is full");
@@ -52,7 +73,11 @@ public class CircularQueue {
     }
   }
 
-  // Removing an element
+  /**
+     * Removes and returns an element from the circular queue.
+     *
+     * @return The removed element, or -1 if the queue is empty.
+     */
   int dequeue() {
     int element;
     if (isEmpty()) {
@@ -71,7 +96,11 @@ public class CircularQueue {
     }
   }
 
-
+  /**
+     * Provides a string representation of the CircularQueue's current status.
+     *
+     * @return A string displaying the contents and status of the queue.
+     */
   @Override
   public String toString() {
     /* Function to display status of Circular Queue */

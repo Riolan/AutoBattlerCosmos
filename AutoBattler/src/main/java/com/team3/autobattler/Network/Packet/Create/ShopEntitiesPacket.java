@@ -13,7 +13,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Packet used to request Shop Entities.
+ * The ShopEntitiesPacket class implements the PacketElement interface and represents
+ * a packet used to request shop entities. It contains information about whether the
+ * client intends to refresh the shop and receive an updated list of available items.
+ * 
  * @author Rio
  */
 public class ShopEntitiesPacket implements PacketElement {
@@ -22,7 +25,12 @@ public class ShopEntitiesPacket implements PacketElement {
     private boolean refreshShop;
 
     Field fld[] = this.getClass().getDeclaredFields();
-
+    
+    /**
+     * Constructs a ShopEntitiesPacket with the specified refresh status.
+     *
+     * @param refreshShop True if the client intends to refresh the shop, false otherwise.
+     */
     public ShopEntitiesPacket(boolean refreshShop) {  
         init();
         // Request the server to send a refreshed list of the shop
@@ -41,18 +49,32 @@ public class ShopEntitiesPacket implements PacketElement {
         }
     }
     
+    /**
+     * Gets the JSON representation of the packet.
+     *
+     * @return A JSONObject containing the data of the ShopEntitiesPacket.
+     */
     @Override
     public JSONObject getJsonObject() {
         return jsonObject;
     }
     
-    
+    /**
+     * Accepts a PacketVisitor and returns the JSON representation of the packet
+     * based on the visitor pattern.
+     *
+     * @param visitor The PacketVisitor to accept.
+     * @return A JSONObject containing the data of the ShopEntitiesPacket.
+     */
     @Override
     public JSONObject accept(PacketVisitor visitor) {
         return visitor.visit(this);
     }
     
-        @Override
+    /**
+     * Initializes the JSON object.
+     */
+    @Override
     public void init() {
         jsonObject.clear();
     }

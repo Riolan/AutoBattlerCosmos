@@ -13,7 +13,13 @@ import com.team3.autobattler.SceneManagement.Scenes.UnconnectedScene;
 
 
 /**
+ * The AutoBattler class represents the entry point for the client-side of the AutoBattler game.
+ * It initializes essential components such as the SocketHandler for handling connections to the server
+ * and the SceneManager for managing the game GUI. The main method connects to the server and starts
+ * the client application.
+ *
  * Clients Model
+ * 
  * @author Rio
  */
 public class AutoBattler {
@@ -23,7 +29,9 @@ public class AutoBattler {
     // Scene Manager, manages game GUI
     public static SceneManager sceneManager;
     
-    
+    /**
+     * Constructs a new AutoBattler instance, initializing the SocketHandler and SceneManager.
+     */
     public AutoBattler() {
         
         // Client Game State
@@ -41,7 +49,11 @@ public class AutoBattler {
     }
  
     
-    
+    /**
+     * The entry point for the AutoBattler client application.
+     *
+     * @param args The command-line arguments.
+     */
     static boolean hasConnected = false;
     /* Entry point for Client */
     public static void main(String[] args) {
@@ -52,7 +64,10 @@ public class AutoBattler {
         //}
     }
     
-    
+     /**
+     * Connects to the server using a separate thread and attempts to establish a connection every 3 seconds.
+     * Displays connection status in the UNCONNECTED scene.
+     */
     public static void connect() {
         // Hard coded for no reason
         String ip = "127.0.0.1";

@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The GameStateObservable class represents an observable subject that holds the current game state.
+ * It allows observers to register and receive updates when the game state changes.
+ * 
  * NewsAgency
+ * 
  * @author Rio
  */
 public class GameStateObservable {
@@ -16,24 +20,27 @@ public class GameStateObservable {
     private List<GameStateObserver> observers = new ArrayList<>();
     
     /**
-     * 
-     * @param observer 
+     * Adds an observer to the list of subscribers.
+     *
+     * @param observer The observer to be added.
      */
     public void addObserver(GameStateObserver observer) {
         this.observers.add(observer);
     }
     
     /**
-     * 
-     * @param observer 
+     * Removes an observer from the list of subscribers.
+     *
+     * @param observer The observer to be removed.
      */
     public void removeObserver(GameStateObserver observer) {
         this.observers.add(observer);
     }
     
-    /**
-     * 
-     * @param gameState 
+   /**
+     * Sets the current game state and notifies all registered observers.
+     *
+     * @param gameState The new game state.
      */
     public void setGameState(GameStates gameState) {
         // validation might be placed here

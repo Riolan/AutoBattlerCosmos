@@ -13,6 +13,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
+ * The StartBattlePacket class implements the PacketElement interface and is used
+ * to signal the start of a battle. It contains information about whether the battle
+ * should start or not.
  *
  * @author Rio
  */
@@ -22,7 +25,12 @@ public class StartBattlePacket implements PacketElement {
     private boolean startBattle;
     
     Field fld[] = this.getClass().getDeclaredFields();
-
+    
+    /**
+     * Constructs a StartBattlePacket with the specified startBattle flag.
+     *
+     * @param startBattle A Boolean flag indicating whether the battle should start.
+     */
     public StartBattlePacket(boolean startBattle) {  
         init();
         this.startBattle = startBattle;
@@ -37,18 +45,32 @@ public class StartBattlePacket implements PacketElement {
         }
     }
     
+    /**
+     * Gets the JSON representation of the packet.
+     *
+     * @return A JSONObject containing the data of the StartBattlePacket.
+     */
     @Override
     public JSONObject getJsonObject() {
         return jsonObject;
     }
     
-    
+    /**
+     * Accepts a PacketVisitor and returns the JSON representation of the packet
+     * based on the visitor pattern.
+     *
+     * @param visitor The PacketVisitor to accept.
+     * @return A JSONObject containing the data of the StartBattlePacket.
+     */
     @Override
     public JSONObject accept(PacketVisitor visitor) {
         return visitor.visit(this);
     }
     
-        @Override
+    /**
+     * Initializes the JSON object.
+     */
+    @Override
     public void init() {
         jsonObject.clear();
     }

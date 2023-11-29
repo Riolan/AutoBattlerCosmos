@@ -12,8 +12,9 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 /**
- *
- * @author colli
+ * A custom JPanel that displays images and allows users to click and drag them.
+ * Images include Batman, Skeleton, Goblino, and Mushroom.
+ * @author collin
  */
 public class ImagePanel extends JPanel{
     ImageIcon image1 = new ImageIcon("Batman.png");

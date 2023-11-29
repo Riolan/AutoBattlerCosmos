@@ -19,10 +19,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
+ * The SignUpPacket class implements the PacketHandler interface and is responsible
+ * for processing and executing sign-up information received from the server.
  *
  * @author Emily
  */
 public class SignUpPacket implements PacketHandler {
+    /**
+     * Executes the handling of the sign-up packet by processing the information
+     * received from the server and updating the relevant scenes based on success or failure.
+     *
+     * @param response A JSONObject containing the sign-up information.
+     */
     @Override
     public void execute(JSONObject response) {
         // response as the passed variable makes so much more sense

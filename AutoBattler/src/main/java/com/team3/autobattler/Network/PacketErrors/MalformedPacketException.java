@@ -5,10 +5,17 @@
 package com.team3.autobattler.Network.PacketErrors;
 
 /**
+ * The MalformedPacketException class extends the Exception class and is thrown
+ * when a packet is found to be malformed or improperly constructed.
  *
- * @author riola
+ * @author  rio
  */
 public class MalformedPacketException extends Exception {
+     /**
+     * Constructs a new MalformedPacketException with the specified error message.
+     *
+     * @param errorMessage A string containing the error message describing the issue.
+     */
     public MalformedPacketException(String errorMessage) {
         super(errorMessage);
     }

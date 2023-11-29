@@ -17,8 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The Client class represents a user client in the auto-battler game.
+ * It manages the user, game state, and serves as an observable for changes in game state.
+ * The client can set and retrieve its user, game state, and also change the game state.
  *
- * @author Rio
+ * @author rio
  */
 public class Client implements Serializable {
     static User user;
@@ -29,7 +32,9 @@ public class Client implements Serializable {
     // Observer changes with Client's Game State
     GameStateObservable observable; 
     
-            
+    /**
+     * Constructs a new client, initializes the user, game state, and sets up the observable.
+     */
     public Client() {
         user = new User();
         observable = new GameStateObservable();
@@ -41,24 +46,39 @@ public class Client implements Serializable {
         
     }
     
-    
+    /**
+     * Gets the user associated with the client.
+     *
+     * @return The user associated with the client.
+     */
     public User getUser() {
         return user;
     }
     
+    /**
+     * Sets the user associated with the client.
+     *
+     * @param user The user to set.
+     */
     public void setUser(User user) {
         this.user = user;
     }
     
+    /**
+     * Gets the game state of the client.
+     *
+     * @return The game state of the client.
+     */
     public MyGameState getGameState() {
         return gameState;
     }
     
 
-    /**
-     * Returns true if successfully changed state.
-     * @param gameState
-     * @return 
+     /**
+     * Sets the game state of the client. Returns true if the state change is successful.
+     *
+     * @param gameState The new game state to set.
+     * @return True if the state change is successful, false otherwise.
      */
     public boolean setGameState(GameStates gameState) {
         System.out.println("Set game state: " + gameState);
@@ -73,7 +93,12 @@ public class Client implements Serializable {
         return false;
     }
     
-    // temporary function to switch to any game state for testing purposes
+    /**
+     * Temporarily switches to any game state for testing purposes, bypassing the usual state change checks.
+     *
+     * @param gameState The game state to switch to.
+     * @return True if the switch is successful, false otherwise.
+     */
     public boolean bypassGameState(GameStates gameState) {
         System.out.println("bypassGameState Set game state: " + gameState);
         PacketElement statePacket1 = new GameStateChangePacket(GameStates.CONNECTED);

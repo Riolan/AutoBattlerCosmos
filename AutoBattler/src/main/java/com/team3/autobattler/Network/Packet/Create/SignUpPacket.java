@@ -12,7 +12,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Used for sending signup information.
+ * The SignUpPacket class implements the PacketElement interface and is used for
+ * sending signup information. It contains details such as the username and password
+ * for user registration.
+ *
  * @author Emily
  */
 public class SignUpPacket implements PacketElement {
@@ -26,8 +29,10 @@ public class SignUpPacket implements PacketElement {
     Field fld[] = this.getClass().getDeclaredFields();
     
     /**
-     * This is a LoginPacket packer which is used 
-     * 
+     * Constructs a SignUpPacket with the specified username and password.
+     *
+     * @param username The username for user registration.
+     * @param password The password for user registration.
      */
     public SignUpPacket(String username, String password) {
         init();
@@ -49,17 +54,32 @@ public class SignUpPacket implements PacketElement {
         }        
     }
     
+     /**
+     * Gets the JSON representation of the packet.
+     *
+     * @return A JSONObject containing the data of the SignUpPacket.
+     */
     @Override
     public JSONObject getJsonObject() {
         return jsonObject;
     }
     
     
+    /**
+     * Accepts a PacketVisitor and returns the JSON representation of the packet
+     * based on the visitor pattern.
+     *
+     * @param visitor The PacketVisitor to accept.
+     * @return A JSONObject containing the data of the SignUpPacket.
+     */
     @Override
     public JSONObject accept(PacketVisitor visitor) {
         return visitor.visit(this);
     }
     
+     /**
+     * Initializes the JSON object.
+     */
     @Override
     public void init() {
         jsonObject.clear();

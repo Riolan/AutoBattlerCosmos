@@ -5,14 +5,21 @@
 package com.team3.autobattler.Game.Base.UnitA;
 
 /**
- * Will eventually generate based off a JSON input file.
+ * The GameBoard class represents the game board, managing game elements and state.
+ * It is implemented as a singleton to ensure a single instance.
+ * 
  * @author Rio
  */
 public class GameBoard {
     public static GameBoard INSTANCE;
     Troop troop;
     
-    
+    /**
+     * Private constructor to enforce the singleton pattern.
+     * Throws an IllegalAccessException if an attempt is made to construct another instance.
+     *
+     * @throws IllegalAccessException If an attempt is made to construct another instance.
+     */
     public GameBoard() throws IllegalAccessException {
         if (INSTANCE != null) {
             throw new IllegalAccessException("You cannot construct an instance of the GameBoard class. Please use the getInstance() function.");
@@ -24,6 +31,11 @@ public class GameBoard {
         
     }
     
+    /**
+     * Retrieves the singleton instance of the GameBoard class.
+     *
+     * @return The singleton instance of the GameBoard class.
+     */
     public static GameBoard getInstance() {
         if (INSTANCE == null) {
             try {

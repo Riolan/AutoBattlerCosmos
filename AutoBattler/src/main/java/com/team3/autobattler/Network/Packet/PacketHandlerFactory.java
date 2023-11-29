@@ -10,10 +10,19 @@ import static com.team3.autobattler.Network.Packet.PacketBuilder.*;
 import com.team3.autobattler.Network.Packet.PacketHandler;
 
 /**
- *
+ * The PacketHandlerFactory class is responsible for creating instances of PacketHandler
+ * based on the provided packetId. It follows the Factory Method design pattern.
+ * 
  * @author Rio
  */
 public class PacketHandlerFactory {
+    
+    /**
+     * Creates a new PacketHandler based on the provided packetId.
+     *
+     * @param packetId The identifier for the type of packet.
+     * @return A PacketHandler instance corresponding to the given packetId.
+     */
     public PacketHandler make(int packetId) {
         return switch (PacketBuilder.values()[packetId]) {
             case TEST -> new TestPacket();

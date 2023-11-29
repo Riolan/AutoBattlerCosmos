@@ -13,7 +13,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- *
+ * The SearchForGamePacket class implements the PacketElement interface and represents
+ * a packet used to initiate or stop the search for a game. It contains information about
+ * whether the client intends to search for a game.
+ * 
  * @author Rio
  */
 public class SearchForGamePacket implements PacketElement {
@@ -22,7 +25,12 @@ public class SearchForGamePacket implements PacketElement {
     private boolean doSearchForGame;
     
     Field fld[] = this.getClass().getDeclaredFields();
-
+    
+     /**
+     * Constructs a SearchForGamePacket with the specified search status.
+     *
+     * @param doSearchForGame True if the client intends to search for a game, false otherwise.
+     */
     public SearchForGamePacket(boolean doSearchForGame) {  
         init();
         this.doSearchForGame = doSearchForGame;
@@ -37,18 +45,32 @@ public class SearchForGamePacket implements PacketElement {
         }
     }
     
+    /**
+     * Gets the JSON representation of the packet.
+     *
+     * @return A JSONObject containing the data of the SearchForGamePacket.
+     */
     @Override
     public JSONObject getJsonObject() {
         return jsonObject;
     }
     
-    
+    /**
+     * Accepts a PacketVisitor and returns the JSON representation of the packet
+     * based on the visitor pattern.
+     *
+     * @param visitor The PacketVisitor to accept.
+     * @return A JSONObject containing the data of the SearchForGamePacket.
+     */
     @Override
     public JSONObject accept(PacketVisitor visitor) {
         return visitor.visit(this);
     }
     
-        @Override
+    /**
+     * Initializes the JSON object.
+     */
+    @Override
     public void init() {
         jsonObject.clear();
     }

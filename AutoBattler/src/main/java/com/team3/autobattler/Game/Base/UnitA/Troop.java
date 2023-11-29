@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Unit which is used for battle.
+ * The Troop class represents a collection of units used in battle.
+ * It provides methods to create, retrieve, remove, and swap units within the troop.
+ * 
  * @author Rio
  */
 public class Troop {
@@ -19,7 +21,12 @@ public class Troop {
     
     
     
-    // More so add unit
+    /**
+     * Creates a new unit and adds it to the troop associated with the given client UUID.
+     *
+     * @param client_uuid The client UUID associated with the troop.
+     * @param newUnit     The new unit to be added.
+     */
     public void createUnit(int client_uuid, Unit newUnit) {
         
         System.out.println("New unit associated with: " + client_uuid);
@@ -51,7 +58,16 @@ public class Troop {
     }
 
     
-    
+    /**
+     * Creates a new unit with specified characteristics and adds it to the troop associated with the given client UUID.
+     *
+     * @param client_uuid The client UUID associated with the troop.
+     * @param health      The health of the new unit.
+     * @param attack      The attack value of the new unit.
+     * @param name        The name of the new unit.
+     * @param ability     The ability of the new unit.
+     * @param cost        The cost of the new unit.
+     */
     public void createUnit(int client_uuid, int health, int attack, String name, String ability, int cost) {
 
         // Shared information from a UnitType
@@ -77,7 +93,12 @@ public class Troop {
         }
     }
     
-    /* Nullable */
+    /**
+     * Retrieves the list of units associated with the given client UUID.
+     *
+     * @param key The client UUID associated with the troop.
+     * @return The list of units, or null if the troop is empty.
+     */
     public List<Unit> getUnits(int key) {
         if (aggregate.containsKey(key)) {
             return aggregate.get(key);
@@ -86,7 +107,13 @@ public class Troop {
     }
     
     
-    // remove a unit at x location.
+    /**
+     * Removes a unit from the troop associated with the given client UUID at the specified position.
+     *
+     * @param client_uuid The client UUID associated with the troop.
+     * @param pos         The position of the unit to be removed.
+     * @return True if the removal is successful, false otherwise.
+     */
     public boolean removeUnit(int client_uuid, int pos) {
         
         System.out.println("Removing unit associated with: " + client_uuid);
@@ -104,7 +131,14 @@ public class Troop {
     
     
     
-    // Swap unit at A location to B, and B to A.
+    /**
+     * Swaps two units within the troop associated with the given client UUID.
+     *
+     * @param client_uuid The client UUID associated with the troop.
+     * @param A           The position of the first unit.
+     * @param B           The position of the second unit.
+     * @return True if the swap is successful, false otherwise.
+     */
     public boolean swapUnits(int client_uuid, int A, int B) {
        
         if (!aggregate.containsKey(client_uuid)) return false;

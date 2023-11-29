@@ -5,9 +5,11 @@
 package com.team3.autobattler.Network;
 
 /**
- * Each client has a user. https://www.baeldung.com/java-dao-pattern
+ * The User class represents a user in the auto-battler game.
+ * Each user has a unique identifier (UUID), username, and password.
+ * This class follows the DAO (Data Access Object) pattern.
  *
- * @author riola
+ * @author rio
  */
 public class User {
     
@@ -16,21 +18,45 @@ public class User {
     private String username;
     private String password;
     
+    /**
+     * Constructs a new user with default values.
+     */
     public User() {
 
     }
     
+    /**
+     * Gets the unique identifier (UUID) of the user.
+     *
+     * @return The UUID of the user.
+     */
     public long getId() {
         return uuid;
     }
+    
+    /**
+     * Sets the unique identifier (UUID) of the user.
+     *
+     * @param uuid The UUID to set.
+     */
     public void setId(long uuid) {
         this.uuid = uuid;
     }
-
+    
+    /**
+     * Gets the username of the user.
+     *
+     * @return The username of the user.
+     */
     public String getUsername() {
         return username;
     }
-
+    
+    /**
+     * Sets the username of the user.
+     *
+     * @param username The username to set.
+     */
     public void setUsername(String username) {
         this.username = username;
     }

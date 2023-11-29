@@ -13,14 +13,21 @@ import com.team3.autobattler.SceneManagement.Scenes.MainMenuScene;
 import org.json.JSONObject;
 
 /**
- * receives game results from server and displays to user
+ * The GameResultsPacket class implements the PacketHandler interface and is
+ * responsible for receiving game results from the server and displaying them to the user.
+ *
  * @author Emily
  */
 public class GameResultsPacket implements PacketHandler {
  
     
     
-    
+    /**
+     * Executes the handling of the game results packet by extracting the relevant
+     * information from the inputBuffer and updating the UI with the results.
+     *
+     * @param inputBuffer A JSONObject containing game results information.
+     */
     @Override
     public void execute(JSONObject inputBuffer) {
         
